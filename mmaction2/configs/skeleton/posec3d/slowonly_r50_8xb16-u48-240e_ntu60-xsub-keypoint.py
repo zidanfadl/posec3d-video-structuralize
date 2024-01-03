@@ -81,7 +81,7 @@ test_pipeline = [
 ]
 
 train_dataloader = dict(
-    batch_size=16,
+    batch_size=4,
     num_workers=8,
     persistent_workers=True,
     sampler=dict(type='DefaultSampler', shuffle=True),
@@ -94,7 +94,7 @@ train_dataloader = dict(
             split='xsub_train',
             pipeline=train_pipeline)))
 val_dataloader = dict(
-    batch_size=16,
+    batch_size=4,
     num_workers=8,
     persistent_workers=True,
     sampler=dict(type='DefaultSampler', shuffle=False),
