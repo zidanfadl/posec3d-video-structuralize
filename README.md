@@ -46,6 +46,7 @@ install:
 // mim install mmcv
 // mim install mmdet
 // mim install mmpose
+// pip install mmaction2
 
 download and move to the proper folder:
 // https://github.com/open-mmlab/mmaction2/blob/main/tools/data/skeleton/ntu_pose_extraction.py
@@ -59,8 +60,39 @@ download and move to the proper folder:
 run ntu_pose_extraction.py:
 // python ntu_pose_extraction.py S001C001P001R001A001_rgb.avi S001C001P001R001A001_rgb.pkl
 
-Neural Network Architecture Used:
+========================================
+Neural Network Architecture Used in ntu_pose_extraction.py:
 - faster-rcnn_r50-caffe_fpn_ms-1x_coco-person
 	//checkpoint = https://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_rcnn_r50_fpn_1x_coco-person/faster_rcnn_r50_fpn_1x_coco-person_20201216_175929-d022e227.pth
 - td-hm_hrnet-w32_8xb64-210e_coco-256x192_infer
 	//checkpoint = https://download.openmmlab.com/mmpose/top_down/hrnet/hrnet_w32_coco_256x192-c78dce93_20200708.pth
+########################################
+
+vlc:
+// sudo apt install vlc #optional
+
+testing:
+// pip install notebook
+// pip install ipython
+// pip install moviepy
+
+download and move to the proper folder:
+// https://github.com/open-mmlab/mmaction2/blob/main/configs/_base_/default_runtime.py
+// https://github.com/open-mmlab/mmaction2/blob/main/demo/demo_configs/faster-rcnn_r50_fpn_2x_coco_infer.py #POSE DETECTION
+
+add drn:
+// pip show mmaction2 #remember the location
+	download folder:
+	// https://github.com/open-mmlab/mmaction2/tree/main/mmaction/models/localizers/drn
+	add folder to location:
+	// https://github.com/open-mmlab/mmaction2/issues/2714
+
+chrome:
+// wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+// sudo dpkg -i google-chrome-stable_current_amd64.deb
+// sudo apt-get install -f
+
+run demo_testing.ipynb
+
+## not yet
+- training
