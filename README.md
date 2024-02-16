@@ -148,7 +148,11 @@ Neural Network Architecture Used in demo_training.ipynb:<br />
 - pose_extraction.py #skip ntu_det_postproc step<br />
 - place pkl at data/skeleton/<br />
 - configure ann_file, pretrained, num_classes inside config file, slowonly_..._.py #<br />
-
+<br />
+### Solve imageio_ffmpeg "TypeError: must be real number, not NoneType":<br />
+// pip uninstall ffmpeg<br />
+// pip install moviepy --upgrade --force-reinstall<br />
+<br />
 ### to do<br />
 - mmaction2/demo/visualize_heatmap_volume.py<br />
 - where is the .pth file saved after training? ~work_dirs/<br />
