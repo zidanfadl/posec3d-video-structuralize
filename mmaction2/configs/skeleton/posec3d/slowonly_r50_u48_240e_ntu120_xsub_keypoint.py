@@ -82,6 +82,7 @@ test_pipeline = [
     dict(type='FormatShape', input_format='NCTHW'),
     dict(type='Collect', keys=['imgs', 'label'], meta_keys=[]),
     dict(type='ToTensor', keys=['imgs'])
+    # dict(type='PackActionInputs')
 ]
 data = dict(
     videos_per_gpu=16, # default 16
@@ -128,7 +129,7 @@ log_config = dict(
     ])
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = '/home/ciis-compnew/Downloads/mmaction2/work_dirs/slowonly_r50_u48_240e_ntu120_xsub_keypoint/'
+work_dir = 'work_dirs/slowonly_r50_u48_240e_ntu120_xsub_keypoint/'
 load_from = None
 resume_from = None
 find_unused_parameters = False
