@@ -1,3 +1,4 @@
 data/skeleton/ntu60_2d.pkl
-data/dji_fly_*
+data/DJI*
+data/dji*
 .ipynb_checkpoints/
