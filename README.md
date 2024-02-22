@@ -207,7 +207,7 @@ pip install moviepy --upgrade --force-reinstall
 ```
 ## To Do
 - mmaction2/demo/visualize_heatmap_volume.py
-- where is the .pth file saved after training? ~work_dirs/
-- add hash_id to .pth file using publish_model.py
+- where is the .pth file saved after training? work_dirs/
+- add hash_id to .pth file using publish_model.ipynb
 - demo_video_structuralize.py
 - training video structuralize
