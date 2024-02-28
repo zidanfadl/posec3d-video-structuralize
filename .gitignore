@@ -23,4 +23,20 @@ work_dirs/slowonly_r50_8xb16-u48-240e_ntu60-xsub-keypoint/20240223_171206/
 work_dirs/slowonly_r50_8xb16-u48-240e_ntu60-xsub-keypoint/20240226_123103/
 work_dirs/slowonly_r50_8xb16-u48-240e_ntu60-xsub-keypoint/20240227_165150/
 screenshot/Screenshot from 2024-02-27 16-12-17.png
+DJI_0012_1080p_15r_10s_2019.MP4
+DJI_0012_1080p_15r_10s_heatmap.mp4
+DJI_0012_1080p_15r_10s_heatmap_no-anno.mp4
+DJI_0012_1080p_15r_10s_out.MP4
+DJI_0012_1080p_15r_10s_out_anno.txt
+DJI_0013_1080p_30r_30s_2019.MP4
+DJI_0013_1080p_30r_30s_out.MP4
+DJI_0013_1080p_30r_30s_out_no-anno.MP4
+DJI_0014_1080p_15r_10s_2019.MP4
+DJI_0014_1080p_15r_10s_heatmap_no-anno.mp4
+DJI_0014_1080p_15r_10s_out.MP4
+DJI_0014_1080p_15r_10s_out_anno.txt
+mmaction2/tools/data/skeleton/DJI_0012_1080p_15r_10s.pkl
+mmaction2/tools/data/skeleton/DJI_0012_720p_15r.pkl
+mmaction2/tools/data/skeleton/DJI_0013_1080p_30r_30s.pkl
+mmaction2/tools/data/skeleton/DJI_0014_1080p_15r_10s.pkl
 .ipynb_checkpoints/
