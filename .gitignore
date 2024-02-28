@@ -4,4 +4,23 @@ data/dji_fly_20240216_153206_11_1708073657446_video.mp4
 data/dji_fly_20240216_153206_11_1708073657446_video_30.mp4
 data/dji_fly_20240216_153920_12_1708073394745_video.mp4
 data/dji_fly_20240216_153920_12_1708073394745_video_30.mp4
+ava_v2.1.zip
+data/DJI_0011_720p_30r_10s_1_out.MP4
+data/video_1.mp4
+data/video_1_out_fix.MP4
+data/video_1_out_fix.txt
+data/video_2.mp4
+data/video_2_out_fix.MP4
+data/video_2_out_fix.txt
+data/video_3.mp4
+data/video_3_out_fix.MP4
+data/video_3_out_fix.txt
+data/video_4.mp4
+data/video_4_out_fix.MP4
+data/video_4_out_fix.txt
+work_dirs/slowonly_r50_8xb16-u48-240e_ntu60-xsub-keypoint/20240223_170638/
+work_dirs/slowonly_r50_8xb16-u48-240e_ntu60-xsub-keypoint/20240223_171206/
+work_dirs/slowonly_r50_8xb16-u48-240e_ntu60-xsub-keypoint/20240226_123103/
+work_dirs/slowonly_r50_8xb16-u48-240e_ntu60-xsub-keypoint/20240227_165150/
+screenshot/Screenshot from 2024-02-27 16-12-17.png
 .ipynb_checkpoints/
