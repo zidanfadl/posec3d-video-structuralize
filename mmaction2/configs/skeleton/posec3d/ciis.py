@@ -8,7 +8,8 @@ model = dict(
     backbone=dict(
         type='ResNet3dSlowOnly',
         depth=50,
-        pretrained=None,  # can be changed for ciis
+        # pretrained='https://download.openmmlab.com/mmaction/skeleton/posec3d/posec3d_ava.pth',
+        init_cfg=dict(type='Pretrained', checkpoint='https://download.openmmlab.com/mmaction/skeleton/posec3d/posec3d_ava.pth'),  # can be changed for ciis
         in_channels=17,
         base_channels=32,
         num_stages=3,
@@ -26,7 +27,7 @@ model = dict(
         num_classes=10,  # changed for ciis  # Number of classes to be classified.
         spatial_type='avg',  # added for ava
         multi_class=True,  # added for ava
-        loss_cls=dict(type='BCELossWithLogits', loss_weight=loss_weight),
+        # loss_cls=dict(type='BCELossWithLogits', loss_weight=loss_weight),
         dropout_ratio=0.5
         # average_clips='prob'
         ))
