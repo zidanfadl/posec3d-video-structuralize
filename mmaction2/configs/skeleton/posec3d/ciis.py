@@ -1,6 +1,6 @@
 _base_ = '../../_base_/default_runtime.py'
 
-
+loss_weight = 50.
         # model (:obj:`torch.nn.Module` or dict): The model to be run. It can be
         #     a dict used for build a model.
 model = dict(
@@ -23,11 +23,13 @@ model = dict(
     cls_head=dict(
         type='I3DHead',
         in_channels=512,
-        num_classes=11,  # changed for ciis
+        num_classes=10,  # changed for ciis  # Number of classes to be classified.
         spatial_type='avg',  # added for ava
         multi_class=True,  # added for ava
-        dropout_ratio=0.5,
-        average_clips='prob'))
+        loss_cls=dict(type='BCELossWithLogits', loss_weight=loss_weight),
+        dropout_ratio=0.5
+        # average_clips='prob'
+        ))
 
 
         # work_dir (str): The working directory to save checkpoints. The logs
@@ -40,7 +42,7 @@ ann_file = 'data/skeleton/ciis.pkl'  # changed for ciis
 left_kp = [1, 3, 5, 7, 9, 11, 13, 15]
 right_kp = [2, 4, 6, 8, 10, 12, 14, 16]
 train_pipeline = [
-    dict(type='UniformSampleFrames', clip_len=12),  # changed for ciis
+    dict(type='UniformSampleFrames', clip_len=4),  # changed for ciis  # To sample an n-frame clip from the video. UniformSampleFrames basically divide the video into n segments of equal length and randomly sample one frame from each segment. To make the testing results reproducible, a random seed is set during testing, to make the sampling results deterministic.
     dict(type='PoseDecode'),
     dict(type='PoseCompact', hw_ratio=1., allow_imgpad=True),
     dict(type='Resize', scale=(-1, 64)),
@@ -49,15 +51,15 @@ train_pipeline = [
     dict(type='Flip', flip_ratio=0.5, left_kp=left_kp, right_kp=right_kp),
     dict(
         type='GeneratePoseTarget',
-        sigma=0.6,
-        use_score=True,
-        with_kp=True,
-        with_limb=False),
-    dict(type='FormatShape', input_format='NCTHW_Heatmap'),
+        sigma=0.6,  # The sigma of the generated gaussian map. Default: 0.6.
+        use_score=True,  # Use the confidence score of keypoints as the maximum of the gaussian maps. Default: True.
+        with_kp=True,  # Generate pseudo heatmaps for keypoints. Default: True.
+        with_limb=False),  # Generate pseudo heatmaps for limbs. At least one of 'with_kp' and 'with_limb' should be True. Default: False.
+    dict(type='FormatShape', input_format='NCTHW_Heatmap'),  # 'NCTHW', 'NCHW', 'NCTHW_Heatmap', 'NPTCHW'
     dict(type='PackActionInputs')
 ]
 val_pipeline = [
-    dict(type='UniformSampleFrames', clip_len=12, num_clips=1, test_mode=True),  # changed for ciis
+    dict(type='UniformSampleFrames', clip_len=4, num_clips=1, test_mode=True),  # changed for ciis
     dict(type='PoseDecode'),
     dict(type='PoseCompact', hw_ratio=1., allow_imgpad=True),
     dict(type='Resize', scale=(-1, 64)),
@@ -73,7 +75,7 @@ val_pipeline = [
 ]
 test_pipeline = [
     dict(
-        type='UniformSampleFrames', clip_len=12, num_clips=10, test_mode=True),  # changed for ciis
+        type='UniformSampleFrames', clip_len=4, num_clips=10, test_mode=True),  # changed for ciis
     dict(type='PoseDecode'),
     dict(type='PoseCompact', hw_ratio=1., allow_imgpad=True),
     dict(type='Resize', scale=(-1, 64)),
@@ -98,7 +100,7 @@ test_pipeline = [
         #     See :meth:`build_dataloader` for more details.
 train_dataloader = dict(
     batch_size=4,
-    num_workers=8,
+    num_workers=2,
     persistent_workers=True,
     sampler=dict(type='DefaultSampler', shuffle=True),
     dataset=dict(
@@ -117,7 +119,7 @@ train_dataloader = dict(
         #     See :meth:`build_dataloader` for more details.
 val_dataloader = dict(
     batch_size=4,
-    num_workers=8,
+    num_workers=2,
     persistent_workers=True,
     sampler=dict(type='DefaultSampler', shuffle=False),
     dataset=dict(
@@ -134,7 +136,7 @@ val_dataloader = dict(
         #     See :meth:`build_dataloader` for more details.
 test_dataloader = dict(
     batch_size=1,
-    num_workers=8,
+    num_workers=2,
     persistent_workers=True,
     sampler=dict(type='DefaultSampler', shuffle=False),
     dataset=dict(
