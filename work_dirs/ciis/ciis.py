@@ -1,4 +1,4 @@
-ann_file = 'data/skeleton/ciis_1.pkl'
+ann_file = 'data/skeleton/ciis.pkl'
 dataset_type = 'PoseDataset'
 default_hooks = dict(
     checkpoint=dict(interval=1, save_best='auto', type='CheckpointHook'),
@@ -27,6 +27,7 @@ left_kp = [
 load_from = None
 log_level = 'INFO'
 log_processor = dict(by_epoch=True, type='LogProcessor', window_size=20)
+loss_weight = 50.0
 model = dict(
     backbone=dict(
         base_channels=32,
@@ -77,14 +78,14 @@ optim_wrapper = dict(
     optimizer=dict(lr=0.2, momentum=0.9, type='SGD', weight_decay=0.0003))
 param_scheduler = [
     dict(
-        T_max=24,
+        T_max=240,
         by_epoch=True,
         convert_to_iter_based=True,
         eta_min=0,
         type='CosineAnnealingLR'),
 ]
 randomness = dict(deterministic=False, diff_rank_seed=False, seed=0)
-resume = True
+resume = False
 right_kp = [
     2,
     4,
@@ -99,10 +100,10 @@ test_cfg = dict(type='TestLoop')
 test_dataloader = dict(
     batch_size=1,
     dataset=dict(
-        ann_file='data/skeleton/ciis_1.pkl',
+        ann_file='data/skeleton/ciis.pkl',
         pipeline=[
             dict(
-                clip_len=12,
+                clip_len=4,
                 num_clips=10,
                 test_mode=True,
                 type='UniformSampleFrames'),
@@ -146,15 +147,14 @@ test_dataloader = dict(
         split='xsub_val',
         test_mode=True,
         type='PoseDataset'),
-    num_workers=8,
+    num_workers=1,
     persistent_workers=True,
     sampler=dict(shuffle=False, type='DefaultSampler'))
 test_evaluator = [
     dict(type='AccMetric'),
 ]
 test_pipeline = [
-    dict(
-        clip_len=12, num_clips=10, test_mode=True, type='UniformSampleFrames'),
+    dict(clip_len=4, num_clips=10, test_mode=True, type='UniformSampleFrames'),
     dict(type='PoseDecode'),
     dict(allow_imgpad=True, hw_ratio=1.0, type='PoseCompact'),
     dict(scale=(
@@ -193,14 +193,14 @@ test_pipeline = [
     dict(type='PackActionInputs'),
 ]
 train_cfg = dict(
-    max_epochs=24, type='EpochBasedTrainLoop', val_begin=1, val_interval=1)
+    max_epochs=240, type='EpochBasedTrainLoop', val_begin=1, val_interval=1)
 train_dataloader = dict(
-    batch_size=4,
+    batch_size=8,
     dataset=dict(
         dataset=dict(
-            ann_file='data/skeleton/ciis_1.pkl',
+            ann_file='data/skeleton/ciis.pkl',
             pipeline=[
-                dict(clip_len=12, type='UniformSampleFrames'),
+                dict(clip_len=4, type='UniformSampleFrames'),
                 dict(type='PoseDecode'),
                 dict(allow_imgpad=True, hw_ratio=1.0, type='PoseCompact'),
                 dict(scale=(
@@ -251,11 +251,11 @@ train_dataloader = dict(
             type='PoseDataset'),
         times=10,
         type='RepeatDataset'),
-    num_workers=8,
+    num_workers=1,
     persistent_workers=True,
     sampler=dict(shuffle=True, type='DefaultSampler'))
 train_pipeline = [
-    dict(clip_len=12, type='UniformSampleFrames'),
+    dict(clip_len=4, type='UniformSampleFrames'),
     dict(type='PoseDecode'),
     dict(allow_imgpad=True, hw_ratio=1.0, type='PoseCompact'),
     dict(scale=(
@@ -304,12 +304,12 @@ train_pipeline = [
 ]
 val_cfg = dict(type='ValLoop')
 val_dataloader = dict(
-    batch_size=4,
+    batch_size=8,
     dataset=dict(
-        ann_file='data/skeleton/ciis_1.pkl',
+        ann_file='data/skeleton/ciis.pkl',
         pipeline=[
             dict(
-                clip_len=12,
+                clip_len=4,
                 num_clips=1,
                 test_mode=True,
                 type='UniformSampleFrames'),
@@ -332,14 +332,14 @@ val_dataloader = dict(
         split='xsub_val',
         test_mode=True,
         type='PoseDataset'),
-    num_workers=8,
+    num_workers=1,
     persistent_workers=True,
     sampler=dict(shuffle=False, type='DefaultSampler'))
 val_evaluator = [
     dict(type='AccMetric'),
 ]
 val_pipeline = [
-    dict(clip_len=12, num_clips=1, test_mode=True, type='UniformSampleFrames'),
+    dict(clip_len=4, num_clips=1, test_mode=True, type='UniformSampleFrames'),
     dict(type='PoseDecode'),
     dict(allow_imgpad=True, hw_ratio=1.0, type='PoseCompact'),
     dict(scale=(
