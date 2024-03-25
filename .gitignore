@@ -20,3 +20,13 @@ mmaction2/tools/data/skeleton/DJI_0012_720p_15r.pkl
 mmaction2/tools/data/skeleton/DJI_0013_1080p_30r_30s.pkl
 mmaction2/tools/data/skeleton/DJI_0014_1080p_15r_10s.pkl
 .ipynb_checkpoints/
+
+
+
+
+data/FLIR_042940_10s_1_out.mp4
+data/FLIR_042940_10s_2_out.mp4
+work_dirs/ciis_not-multi-2/
+work_dirs/ciis_not-multi/
+work_dirs/ciis_pretrained/
+work_dirs/ciis_pretrained_multi/

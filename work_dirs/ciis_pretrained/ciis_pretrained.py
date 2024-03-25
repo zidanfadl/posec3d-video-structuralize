@@ -89,7 +89,7 @@ param_scheduler = [
         type='CosineAnnealingLR'),
 ]
 randomness = dict(deterministic=False, diff_rank_seed=False, seed=0)
-resume = False
+resume = True
 right_kp = [
     2,
     4,
