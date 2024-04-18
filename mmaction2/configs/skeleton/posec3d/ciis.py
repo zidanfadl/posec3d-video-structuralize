@@ -1,6 +1,6 @@
 _base_ = '../../_base_/default_runtime.py'
 
-loss_weight = 50.
+# loss_weight = 50
         # model (:obj:`torch.nn.Module` or dict): The model to be run. It can be
         #     a dict used for build a model.
 model = dict(
@@ -9,7 +9,7 @@ model = dict(
         type='ResNet3dSlowOnly',
         depth=50,
         # pretrained='https://download.openmmlab.com/mmaction/skeleton/posec3d/posec3d_ava.pth',
-        init_cfg=dict(type='Pretrained', checkpoint='https://download.openmmlab.com/mmaction/skeleton/posec3d/posec3d_ava.pth'),  # can be changed for ciis
+        # init_cfg=dict(type='Pretrained', checkpoint='https://download.openmmlab.com/mmaction/skeleton/posec3d/posec3d_ava.pth'),  # can be changed for ciis
         in_channels=17,
         base_channels=32,
         num_stages=3,
@@ -26,10 +26,10 @@ model = dict(
         in_channels=512,
         num_classes=10,  # changed for ciis  # Number of classes to be classified.
         spatial_type='avg',  # added for ava
-        multi_class=True,  # added for ava
         # loss_cls=dict(type='BCELossWithLogits', loss_weight=loss_weight),
-        dropout_ratio=0.5
-        # average_clips='prob'
+        dropout_ratio=0.5,
+        # multi_class=True  # added for ava
+        average_clips='prob'
         ))
 
 
@@ -43,7 +43,8 @@ ann_file = 'data/skeleton/ciis.pkl'  # changed for ciis
 left_kp = [1, 3, 5, 7, 9, 11, 13, 15]
 right_kp = [2, 4, 6, 8, 10, 12, 14, 16]
 train_pipeline = [
-    dict(type='UniformSampleFrames', clip_len=4),  # changed for ciis  # To sample an n-frame clip from the video. UniformSampleFrames basically divide the video into n segments of equal length and randomly sample one frame from each segment. To make the testing results reproducible, a random seed is set during testing, to make the sampling results deterministic.
+    dict(type='UniformSampleFrames', clip_len=1),  # changed for ciis  # To sample an n-frame clip from the video. UniformSampleFrames basically divide the video into n segments of equal length and randomly sample one frame from each segment. To make the testing results reproducible, a random seed is set during testing, to make the sampling results deterministic.
+    # dict(type='SampleFrames', clip_len=4, frame_interval=1, num_clips=1),
     dict(type='PoseDecode'),
     dict(type='PoseCompact', hw_ratio=1., allow_imgpad=True),
     dict(type='Resize', scale=(-1, 64)),
@@ -60,7 +61,8 @@ train_pipeline = [
     dict(type='PackActionInputs')
 ]
 val_pipeline = [
-    dict(type='UniformSampleFrames', clip_len=4, num_clips=1, test_mode=True),  # changed for ciis
+    dict(type='UniformSampleFrames', clip_len=1, num_clips=1, test_mode=True),  # changed for ciis
+    # dict(type='SampleFrames', clip_len=12, frame_interval=1, num_clips=1),
     dict(type='PoseDecode'),
     dict(type='PoseCompact', hw_ratio=1., allow_imgpad=True),
     dict(type='Resize', scale=(-1, 64)),
@@ -76,7 +78,7 @@ val_pipeline = [
 ]
 test_pipeline = [
     dict(
-        type='UniformSampleFrames', clip_len=4, num_clips=10, test_mode=True),  # changed for ciis
+        type='UniformSampleFrames', clip_len=1, num_clips=1, test_mode=True),  # changed for ciis
     dict(type='PoseDecode'),
     dict(type='PoseCompact', hw_ratio=1., allow_imgpad=True),
     dict(type='Resize', scale=(-1, 64)),
@@ -100,18 +102,21 @@ test_pipeline = [
         #     skipping training steps. Defaults to None.
         #     See :meth:`build_dataloader` for more details.
 train_dataloader = dict(
-    batch_size=4,
-    num_workers=2,
+    batch_size=1,
+    num_workers=1,
     persistent_workers=True,
-    sampler=dict(type='DefaultSampler', shuffle=True),
-    dataset=dict(
-        type='RepeatDataset',
-        times=10,
-        dataset=dict(
-            type=dataset_type,
-            ann_file=ann_file,
-            split='xsub_train',
-            pipeline=train_pipeline)))
+    sampler=dict(type='DefaultSampler', shuffle=False),
+    # dataset=dict(
+      # type='RepeatDataset',
+      # times=10,
+      dataset=dict(
+          type=dataset_type,
+          ann_file=ann_file,
+          # multi_class=True,
+          # num_classes=11,
+          # data_prefix="",
+          split='xsub_train',
+          pipeline=train_pipeline))# )
 
 
         # val_dataloader (Dataloader or dict, optional): A dataloader object or
@@ -119,13 +124,16 @@ train_dataloader = dict(
         #     skipping validation steps. Defaults to None.
         #     See :meth:`build_dataloader` for more details.
 val_dataloader = dict(
-    batch_size=4,
-    num_workers=2,
+    batch_size=1,
+    num_workers=1,
     persistent_workers=True,
     sampler=dict(type='DefaultSampler', shuffle=False),
     dataset=dict(
         type=dataset_type,
         ann_file=ann_file,
+        # multi_class=True,
+        # num_classes=11,
+        # data_prefix="",
         split='xsub_val',
         pipeline=val_pipeline,
         test_mode=True))
@@ -137,12 +145,15 @@ val_dataloader = dict(
         #     See :meth:`build_dataloader` for more details.
 test_dataloader = dict(
     batch_size=1,
-    num_workers=2,
+    num_workers=1,
     persistent_workers=True,
     sampler=dict(type='DefaultSampler', shuffle=False),
     dataset=dict(
         type=dataset_type,
         ann_file=ann_file,
+        # multi_class=True,
+        # num_classes=11,
+        # data_prefix="",
         split='xsub_val',
         pipeline=test_pipeline,
         test_mode=True))
@@ -152,8 +163,13 @@ test_dataloader = dict(
         #     used for computing metrics for validation. It can be a dict or a
         #     list of dict to build a evaluator. If specified,
         #     :attr:`val_dataloader` should also be specified. Defaults to None.
-val_evaluator = [dict(type='AccMetric')]
-
+# val_evaluator = [dict(type='AccMetric')]
+val_evaluator = dict(
+    type='AccMetric'# ,
+    # metric_list=('mean_average_precision'),
+    # num_classes=num_classes,
+    # metric_list=('mmit_mean_average_precision')
+    )
 
         # test_evaluator (Evaluator or dict or list, optional): A evaluator
         #     object used for computing metrics for test steps. It can be a dict
@@ -214,7 +230,7 @@ param_scheduler = [
         #     AmpOptimizerWrapper. See :meth:`build_optim_wrapper` for
         #     examples. Defaults to None.
 optim_wrapper = dict(
-    optimizer=dict(type='SGD', lr=0.2, momentum=0.9, weight_decay=0.0003),
+    optimizer=dict(type='SGD', lr=0.025, momentum=0.9, weight_decay=0.0003),
     clip_grad=dict(max_norm=40, norm_type=2))
 
 
