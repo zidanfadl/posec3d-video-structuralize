@@ -103,7 +103,7 @@ train_dataloader = dict(
     batch_size=8,
     num_workers=1,
     persistent_workers=True,
-    sampler=dict(type='DefaultSampler', shuffle=True),
+    sampler=dict(type='DefaultSampler', shuffle=False),
     dataset=dict(
         type='RepeatDataset',
         times=10,

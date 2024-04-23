@@ -40,7 +40,7 @@ ann_file = 'data/skeleton/ciis.pkl'  # changed for ciis
 left_kp = [1, 3, 5, 7, 9, 11, 13, 15]
 right_kp = [2, 4, 6, 8, 10, 12, 14, 16]
 train_pipeline = [
-    dict(type='UniformSampleFrames', clip_len=1),  # changed for ciis  # To sample an n-frame clip from the video. UniformSampleFrames basically divide the video into n segments of equal length and randomly sample one frame from each segment. To make the testing results reproducible, a random seed is set during testing, to make the sampling results deterministic.
+    # dict(type='UniformSampleFrames', clip_len=4),  # changed for ciis  # To sample an n-frame clip from the video. UniformSampleFrames basically divide the video into n segments of equal length and randomly sample one frame from each segment. To make the testing results reproducible, a random seed is set during testing, to make the sampling results deterministic.
     dict(type='PoseDecode'),
     dict(type='PoseCompact', hw_ratio=1., allow_imgpad=True),
     dict(type='Resize', scale=(-1, 64)),
@@ -57,7 +57,7 @@ train_pipeline = [
     dict(type='PackActionInputs')
 ]
 val_pipeline = [
-    dict(type='UniformSampleFrames', clip_len=1, num_clips=1, test_mode=True),  # changed for ciis
+    # dict(type='UniformSampleFrames', clip_len=4, num_clips=1, test_mode=True),  # changed for ciis
     dict(type='PoseDecode'),
     dict(type='PoseCompact', hw_ratio=1., allow_imgpad=True),
     dict(type='Resize', scale=(-1, 64)),
@@ -72,8 +72,7 @@ val_pipeline = [
     dict(type='PackActionInputs')
 ]
 test_pipeline = [
-    dict(
-        type='UniformSampleFrames', clip_len=1, num_clips=1, test_mode=True),  # changed for ciis
+    # dict(type='UniformSampleFrames', clip_len=4, num_clips=1, test_mode=True),  # changed for ciis
     dict(type='PoseDecode'),
     dict(type='PoseCompact', hw_ratio=1., allow_imgpad=True),
     dict(type='Resize', scale=(-1, 64)),
@@ -211,7 +210,7 @@ param_scheduler = [
         #     AmpOptimizerWrapper. See :meth:`build_optim_wrapper` for
         #     examples. Defaults to None.
 optim_wrapper = dict(
-    optimizer=dict(type='SGD', lr=0.005, momentum=0.9, weight_decay=0.0001),
+    optimizer=dict(type='SGD', lr=0.05, momentum=0.9, weight_decay=0.0001),
     clip_grad=dict(max_norm=40, norm_type=2))
 
 
