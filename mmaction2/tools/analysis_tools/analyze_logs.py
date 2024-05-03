@@ -153,7 +153,6 @@ def load_json_logs(json_logs):
                     continue  # "epoch": _, should be in .json
                 epoch = log.pop('epoch')
                 if epoch not in log_dict:  # if key epoch not yet created in log_dict
-                    print(epoch)
                     log_dict[epoch] = defaultdict(list)
                 for k, v in log.items():
                     log_dict[epoch][k].append(v)
