@@ -177,7 +177,7 @@ val_evaluator = dict(
 test_evaluator = val_evaluator
 
 train_cfg = dict(
-    type='EpochBasedTrainLoop', max_epochs=24, val_begin=1, val_interval=1)
+    type='EpochBasedTrainLoop', max_epochs=24, val_begin=5, val_interval=5)
 
 
         # val_cfg (dict, optional): A dict to build a validation loop. If it does

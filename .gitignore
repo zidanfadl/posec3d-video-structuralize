@@ -2,10 +2,13 @@ data/skeleton/ntu60_2d.pkl
 .ipynb_checkpoints/*.ipynb
 
 data/Action-Recognition_out.mp4
+data/DJI_0011_12r_10s_1_heatmap_17.MP4
 data/DJI_0011_12r_10s_1_out.mp4
 data/DJI_0011_12r_10s_3_out.mp4
 data/DJI_0012_12r_10s_3_out.mp4
+data/DJI_0013_12r_10s_2_heatmap_17.MP4
 
+data/anno/DJI_0011_12r_10s_1_ann.mp4
 data/anno/DJI_0011_12r_10s_1_gt.mp4
 data/anno/DJI_0011_12r_10s_1_test.mp4
 data/anno/DJI_0012_12r_10s_2_gt.mp4
