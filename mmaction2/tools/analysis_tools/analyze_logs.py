@@ -50,23 +50,31 @@ def plot_curve(log_dicts, args):
         epochs = list(log_dict.keys())
         for j, metric in enumerate(metrics):
             print(f'plot curve of {args.json_logs[i]}, metric is {metric}')
-            if metric not in log_dict[epochs[0]]:  # metric AND epoch, BOTH should be in .json
+            if metric not in log_dict[epochs[-1]]:  # metric AND epoch, BOTH should be in .json
                 raise KeyError(
-                    f'{args.json_logs[i]} does not contain metric {metric}')
+                    f'last epoch of {args.json_logs[i]} does not contain metric {metric}')
             xs = []
             ys = []
-            for epoch in epochs:
+
+            if metric not in log_dict[epochs[0]]:
+                xs.append(np.array([epochs[0]]))
+                # ys.append(np.zeros(len(log_dict[epochs[0]]['iter'])))
+                ys.append(np.array([np.NAN]))
+
+            for k, epoch in enumerate(epochs):
                 iters = log_dict[epoch]['iter']
                 if log_dict[epoch]['mode'][-1] == 'val':
                     iters = iters[:-1]  # removing iter of "mode": "val"
                 
-                # num_iters_per_epoch = iters[-1]  # last index of iter before "mode": "val". For old iter format
-                # xs.append(np.array(iters) + (epoch - 1) * num_iters_per_epoch)  # append current iter value. For old iter format
+                if metric in (log_dict[epoch]).keys():
+                    # num_iters_per_epoch = iters[-1]  # last index of iter before "mode": "val". For old iter format
+                    # xs.append(np.array(iters) + (epoch - 1) * num_iters_per_epoch)  # append current iter value. For old iter format
 
-                # xs.append(np.array(iters))  # for xs = iter
-                xs.append(np.array([epoch]))  # for xs = epoch
-                
-                ys.append(np.array(log_dict[epoch][metric][:len(iters)]))
+                    # xs.append(np.array(iters))  # for xs = iter
+                    xs.append(np.array([epoch]))  # for xs = epoch
+
+                    ys.append(np.array(log_dict[epoch][metric][:len(iters)]))
+
             xs = np.concatenate(xs)
             ys = np.concatenate(ys)
             
@@ -162,23 +170,21 @@ def load_json_logs(json_logs):
     # [
     #  {
     #     1: {
-    #          'mode': ['train', 'val'], 
+    #          'mode': ['train'], 
     #          'lr': [0.004999785873037446], 
-    #          'data_time': [0.0045792579650878905, 0.00541830574623262], 
+    #          'data_time': [0.0045792579650878905], 
     #          'grad_norm': [1.4281674385070802], 
     #          'loss': [1.4950079053640366], 
     #          'top1_acc': [1.0], 
     #          'top5_acc': [1.0], 
     #          'loss_cls': [1.4950079053640366], 
-    #          'time': [0.02739635705947876, 0.013280755040621517], 
-    #          'iter': [7917, 1], 
+    #          'time': [0.02739635705947876], 
+    #          'iter': [7917], 
     #          'memory': [263], 
-    #          'step': [7917, 1], 
-    #          'acc/top1': [0.375967156166114], 
-    #          'acc/top5': [0.6376125059213643], 
-    #          'acc/mean1': [0.10305584448190523]
-    #        }, 
-    #     2: {
+    #          'step': [7917]
+    #        },
+    #     ...
+    #     5: {
     #          'mode': ['train', 'val'], 
     #          'lr': [0.004999143420637911], 
     #          'data_time': [0.004415082931518555, 0.005323137641704698], 
@@ -195,7 +201,7 @@ def load_json_logs(json_logs):
     #          'acc/top5': [0.6737723038054635], 
     #          'acc/mean1': [0.13798725350521882]
     #        },
-    #     3: ...
+    #     ...
     #  },
     # 
     #  {
