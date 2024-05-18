@@ -18,6 +18,7 @@ data/anno/DJI_153920_12r_10s_2_test.mp4
 
 work_dirs/ciis_1/
 work_dirs/temp/
+work_dirs/trial_temp-2/
 
 work_dirs/ciis_not-multi_1-1_best-79/all.json
 work_dirs/ciis_not-multi_1-1_best-79/best_acc_top1_epoch_79.pth
@@ -28,3 +29,5 @@ work_dirs/ciis_not-multi_2-1_best-294/epoch_294.pth
 work_dirs/ciis_not-multi_3-1_best-129/all.json
 work_dirs/ciis_not-multi_3-1_best-129/best_acc_top1_epoch_129.pth
 work_dirs/ciis_not-multi_3-1_best-129/epoch_250.pth
+work_dirs/ciis_not-multi_no-berdiri_1-1_best-200/best_acc_top1_epoch_200.pth
+work_dirs/ciis_not-multi_no-berdiri_1-1_best-200/epoch_310.pth
