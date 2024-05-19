@@ -1,0 +1,1595 @@
+2024/05/18 09:22:20 - mmengine - INFO - 
+------------------------------------------------------------
+System environment:
+    sys.platform: linux
+    Python: 3.10.13 | packaged by conda-forge | (main, Dec 23 2023, 15:36:39) [GCC 12.3.0]
+    CUDA available: True
+    MUSA available: False
+    numpy_random_seed: 0
+    GPU 0: Tesla P100-PCIE-16GB
+    CUDA_HOME: /usr/local/cuda
+    NVCC: Cuda compilation tools, release 12.1, V12.1.105
+    GCC: gcc (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0
+    PyTorch: 2.3.0+cu121
+    PyTorch compiling details: PyTorch built with:
+  - GCC 9.3
+  - C++ Version: 201703
+  - Intel(R) oneAPI Math Kernel Library Version 2022.2-Product Build 20220804 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v3.3.6 (Git Hash 86e6af5974177e513fd3fee58425e1063e7f1361)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX512
+  - CUDA Runtime 12.1
+  - NVCC architecture flags: -gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_90,code=sm_90
+  - CuDNN 8.9.2
+  - Magma 2.6.1
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=12.1, CUDNN_VERSION=8.9.2, CXX_COMPILER=/opt/rh/devtoolset-9/root/usr/bin/c++, CXX_FLAGS= -D_GLIBCXX_USE_CXX11_ABI=0 -fabi-version=11 -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-unused-parameter -Wno-unused-function -Wno-unused-result -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=pedantic -Wno-error=old-style-cast -Wno-missing-braces -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=2.3.0, USE_CUDA=ON, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=1, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, 
+
+    TorchVision: 0.18.0+cu121
+    OpenCV: 4.9.0
+    MMEngine: 0.10.4
+
+Runtime environment:
+    cudnn_benchmark: False
+    mp_cfg: {'mp_start_method': 'fork', 'opencv_num_threads': 0}
+    dist_cfg: {'backend': 'nccl'}
+    seed: 0
+    diff_rank_seed: False
+    deterministic: False
+    Distributed launcher: none
+    Distributed training: False
+    GPU number: 1
+------------------------------------------------------------
+
+2024/05/18 09:22:21 - mmengine - INFO - Config:
+ann_file = 'data/skeleton/ciis_0s7_no-berdiri.pkl'
+dataset_type = 'PoseDataset'
+default_hooks = dict(
+    checkpoint=dict(interval=10, save_best='auto', type='CheckpointHook'),
+    logger=dict(ignore_last=False, interval=10000, type='LoggerHook'),
+    param_scheduler=dict(type='ParamSchedulerHook'),
+    runtime_info=dict(type='RuntimeInfoHook'),
+    sampler_seed=dict(type='DistSamplerSeedHook'),
+    sync_buffers=dict(type='SyncBuffersHook'),
+    timer=dict(type='IterTimerHook'))
+default_scope = 'mmaction'
+env_cfg = dict(
+    cudnn_benchmark=False,
+    dist_cfg=dict(backend='nccl'),
+    mp_cfg=dict(mp_start_method='fork', opencv_num_threads=0))
+launcher = 'none'
+left_kp = [
+    1,
+    3,
+    5,
+    7,
+    9,
+    11,
+    13,
+    15,
+]
+load_from = None
+log_level = 'INFO'
+log_processor = dict(by_epoch=True, type='LogProcessor', window_size=20)
+model = dict(
+    backbone=dict(
+        base_channels=32,
+        conv1_stride_s=1,
+        depth=50,
+        dilations=(
+            1,
+            1,
+            1,
+        ),
+        in_channels=17,
+        inflate=(
+            0,
+            1,
+            1,
+        ),
+        num_stages=3,
+        out_indices=(2, ),
+        pool1_stride_s=1,
+        pretrained=None,
+        spatial_strides=(
+            2,
+            2,
+            2,
+        ),
+        stage_blocks=(
+            4,
+            6,
+            3,
+        ),
+        temporal_strides=(
+            1,
+            1,
+            2,
+        ),
+        type='ResNet3dSlowOnly'),
+    cls_head=dict(
+        average_clips='prob',
+        dropout_ratio=0.5,
+        in_channels=512,
+        num_classes=9,
+        type='I3DHead'),
+    type='Recognizer3D')
+optim_wrapper = dict(
+    clip_grad=dict(max_norm=40, norm_type=2),
+    optimizer=dict(lr=0.05, momentum=0.9, type='SGD', weight_decay=0.0001))
+param_scheduler = [
+    dict(
+        T_max=960,
+        by_epoch=True,
+        convert_to_iter_based=True,
+        eta_min=0,
+        type='CosineAnnealingLR'),
+]
+randomness = dict(deterministic=False, diff_rank_seed=False, seed=0)
+resume = True
+right_kp = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+]
+test_cfg = dict(type='TestLoop')
+test_dataloader = dict(
+    batch_size=1,
+    dataset=dict(
+        ann_file='data/skeleton/ciis_0s7_no-berdiri.pkl',
+        pipeline=[
+            dict(type='PoseDecode'),
+            dict(allow_imgpad=True, hw_ratio=1.0, type='PoseCompact'),
+            dict(scale=(
+                -1,
+                64,
+            ), type='Resize'),
+            dict(crop_size=64, type='CenterCrop'),
+            dict(
+                double=True,
+                left_kp=[
+                    1,
+                    3,
+                    5,
+                    7,
+                    9,
+                    11,
+                    13,
+                    15,
+                ],
+                right_kp=[
+                    2,
+                    4,
+                    6,
+                    8,
+                    10,
+                    12,
+                    14,
+                    16,
+                ],
+                sigma=0.6,
+                type='GeneratePoseTarget',
+                use_score=True,
+                with_kp=True,
+                with_limb=False),
+            dict(input_format='NCTHW_Heatmap', type='FormatShape'),
+            dict(type='PackActionInputs'),
+        ],
+        split='xsub_val',
+        test_mode=True,
+        type='PoseDataset'),
+    num_workers=1,
+    persistent_workers=True,
+    sampler=dict(shuffle=False, type='DefaultSampler'))
+test_evaluator = [
+    dict(type='AccMetric'),
+]
+test_pipeline = [
+    dict(type='PoseDecode'),
+    dict(allow_imgpad=True, hw_ratio=1.0, type='PoseCompact'),
+    dict(scale=(
+        -1,
+        64,
+    ), type='Resize'),
+    dict(crop_size=64, type='CenterCrop'),
+    dict(
+        double=True,
+        left_kp=[
+            1,
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+        ],
+        right_kp=[
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+        ],
+        sigma=0.6,
+        type='GeneratePoseTarget',
+        use_score=True,
+        with_kp=True,
+        with_limb=False),
+    dict(input_format='NCTHW_Heatmap', type='FormatShape'),
+    dict(type='PackActionInputs'),
+]
+train_cfg = dict(
+    max_epochs=960, type='EpochBasedTrainLoop', val_begin=10, val_interval=10)
+train_dataloader = dict(
+    batch_size=256,
+    dataset=dict(
+        dataset=dict(
+            ann_file='data/skeleton/ciis_0s7_no-berdiri.pkl',
+            pipeline=[
+                dict(type='PoseDecode'),
+                dict(allow_imgpad=True, hw_ratio=1.0, type='PoseCompact'),
+                dict(scale=(
+                    -1,
+                    64,
+                ), type='Resize'),
+                dict(area_range=(
+                    0.56,
+                    1.0,
+                ), type='RandomResizedCrop'),
+                dict(keep_ratio=False, scale=(
+                    56,
+                    56,
+                ), type='Resize'),
+                dict(
+                    flip_ratio=0.5,
+                    left_kp=[
+                        1,
+                        3,
+                        5,
+                        7,
+                        9,
+                        11,
+                        13,
+                        15,
+                    ],
+                    right_kp=[
+                        2,
+                        4,
+                        6,
+                        8,
+                        10,
+                        12,
+                        14,
+                        16,
+                    ],
+                    type='Flip'),
+                dict(
+                    sigma=0.6,
+                    type='GeneratePoseTarget',
+                    use_score=True,
+                    with_kp=True,
+                    with_limb=False),
+                dict(input_format='NCTHW_Heatmap', type='FormatShape'),
+                dict(type='PackActionInputs'),
+            ],
+            split='xsub_train',
+            type='PoseDataset'),
+        times=10,
+        type='RepeatDataset'),
+    num_workers=1,
+    persistent_workers=True,
+    sampler=dict(shuffle=False, type='DefaultSampler'))
+train_pipeline = [
+    dict(type='PoseDecode'),
+    dict(allow_imgpad=True, hw_ratio=1.0, type='PoseCompact'),
+    dict(scale=(
+        -1,
+        64,
+    ), type='Resize'),
+    dict(area_range=(
+        0.56,
+        1.0,
+    ), type='RandomResizedCrop'),
+    dict(keep_ratio=False, scale=(
+        56,
+        56,
+    ), type='Resize'),
+    dict(
+        flip_ratio=0.5,
+        left_kp=[
+            1,
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+        ],
+        right_kp=[
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+        ],
+        type='Flip'),
+    dict(
+        sigma=0.6,
+        type='GeneratePoseTarget',
+        use_score=True,
+        with_kp=True,
+        with_limb=False),
+    dict(input_format='NCTHW_Heatmap', type='FormatShape'),
+    dict(type='PackActionInputs'),
+]
+val_cfg = dict(type='ValLoop')
+val_dataloader = dict(
+    batch_size=256,
+    dataset=dict(
+        ann_file='data/skeleton/ciis_0s7_no-berdiri.pkl',
+        pipeline=[
+            dict(type='PoseDecode'),
+            dict(allow_imgpad=True, hw_ratio=1.0, type='PoseCompact'),
+            dict(scale=(
+                -1,
+                64,
+            ), type='Resize'),
+            dict(crop_size=64, type='CenterCrop'),
+            dict(
+                sigma=0.6,
+                type='GeneratePoseTarget',
+                use_score=True,
+                with_kp=True,
+                with_limb=False),
+            dict(input_format='NCTHW_Heatmap', type='FormatShape'),
+            dict(type='PackActionInputs'),
+        ],
+        split='xsub_val',
+        test_mode=True,
+        type='PoseDataset'),
+    num_workers=1,
+    persistent_workers=True,
+    sampler=dict(shuffle=False, type='DefaultSampler'))
+val_evaluator = [
+    dict(type='AccMetric'),
+]
+val_pipeline = [
+    dict(type='PoseDecode'),
+    dict(allow_imgpad=True, hw_ratio=1.0, type='PoseCompact'),
+    dict(scale=(
+        -1,
+        64,
+    ), type='Resize'),
+    dict(crop_size=64, type='CenterCrop'),
+    dict(
+        sigma=0.6,
+        type='GeneratePoseTarget',
+        use_score=True,
+        with_kp=True,
+        with_limb=False),
+    dict(input_format='NCTHW_Heatmap', type='FormatShape'),
+    dict(type='PackActionInputs'),
+]
+vis_backends = [
+    dict(type='LocalVisBackend'),
+]
+visualizer = dict(
+    type='ActionVisualizer', vis_backends=[
+        dict(type='LocalVisBackend'),
+    ])
+work_dir = 'ciis_not-multi_no-berdiri'
+
+2024/05/18 09:22:26 - mmengine - INFO - Distributed training is not used, all SyncBatchNorm (SyncBN) layers in the model will be automatically reverted to BatchNormXd layers if they are used.
+2024/05/18 09:22:26 - mmengine - INFO - Hooks will be executed in the following order:
+before_run:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+before_train:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+before_train_epoch:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(NORMAL      ) DistSamplerSeedHook                
+ -------------------- 
+before_train_iter:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+after_train_iter:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+(LOW         ) ParamSchedulerHook                 
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+after_train_epoch:
+(NORMAL      ) IterTimerHook                      
+(NORMAL      ) SyncBuffersHook                    
+(LOW         ) ParamSchedulerHook                 
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+before_val:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+before_val_epoch:
+(NORMAL      ) IterTimerHook                      
+(NORMAL      ) SyncBuffersHook                    
+ -------------------- 
+before_val_iter:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+after_val_iter:
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+after_val_epoch:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+(LOW         ) ParamSchedulerHook                 
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+after_val:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+after_train:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+before_test:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+before_test_epoch:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+before_test_iter:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+after_test_iter:
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+after_test_epoch:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+after_test:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+after_run:
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+2024/05/18 09:22:27 - mmengine - INFO - 1916 videos remain after valid thresholding
+2024/05/18 09:22:28 - mmengine - INFO - 816 videos remain after valid thresholding
+Name of parameter - Initialization information
+
+backbone.conv1.conv.weight - torch.Size([32, 17, 1, 7, 7]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.conv1.bn.weight - torch.Size([32]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.conv1.bn.bias - torch.Size([32]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer1.0.conv1.conv.weight - torch.Size([32, 32, 1, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer1.0.conv1.bn.weight - torch.Size([32]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer1.0.conv1.bn.bias - torch.Size([32]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer1.0.conv2.conv.weight - torch.Size([32, 32, 1, 3, 3]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer1.0.conv2.bn.weight - torch.Size([32]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer1.0.conv2.bn.bias - torch.Size([32]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer1.0.conv3.conv.weight - torch.Size([128, 32, 1, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer1.0.conv3.bn.weight - torch.Size([128]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer1.0.conv3.bn.bias - torch.Size([128]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer1.0.downsample.conv.weight - torch.Size([128, 32, 1, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer1.0.downsample.bn.weight - torch.Size([128]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer1.0.downsample.bn.bias - torch.Size([128]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer1.1.conv1.conv.weight - torch.Size([32, 128, 1, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer1.1.conv1.bn.weight - torch.Size([32]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer1.1.conv1.bn.bias - torch.Size([32]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer1.1.conv2.conv.weight - torch.Size([32, 32, 1, 3, 3]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer1.1.conv2.bn.weight - torch.Size([32]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer1.1.conv2.bn.bias - torch.Size([32]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer1.1.conv3.conv.weight - torch.Size([128, 32, 1, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer1.1.conv3.bn.weight - torch.Size([128]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer1.1.conv3.bn.bias - torch.Size([128]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer1.2.conv1.conv.weight - torch.Size([32, 128, 1, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer1.2.conv1.bn.weight - torch.Size([32]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer1.2.conv1.bn.bias - torch.Size([32]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer1.2.conv2.conv.weight - torch.Size([32, 32, 1, 3, 3]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer1.2.conv2.bn.weight - torch.Size([32]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer1.2.conv2.bn.bias - torch.Size([32]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer1.2.conv3.conv.weight - torch.Size([128, 32, 1, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer1.2.conv3.bn.weight - torch.Size([128]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer1.2.conv3.bn.bias - torch.Size([128]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer1.3.conv1.conv.weight - torch.Size([32, 128, 1, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer1.3.conv1.bn.weight - torch.Size([32]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer1.3.conv1.bn.bias - torch.Size([32]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer1.3.conv2.conv.weight - torch.Size([32, 32, 1, 3, 3]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer1.3.conv2.bn.weight - torch.Size([32]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer1.3.conv2.bn.bias - torch.Size([32]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer1.3.conv3.conv.weight - torch.Size([128, 32, 1, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer1.3.conv3.bn.weight - torch.Size([128]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer1.3.conv3.bn.bias - torch.Size([128]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.0.conv1.conv.weight - torch.Size([64, 128, 3, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.0.conv1.bn.weight - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.0.conv1.bn.bias - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.0.conv2.conv.weight - torch.Size([64, 64, 1, 3, 3]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.0.conv2.bn.weight - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.0.conv2.bn.bias - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.0.conv3.conv.weight - torch.Size([256, 64, 1, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.0.conv3.bn.weight - torch.Size([256]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.0.conv3.bn.bias - torch.Size([256]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.0.downsample.conv.weight - torch.Size([256, 128, 1, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.0.downsample.bn.weight - torch.Size([256]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.0.downsample.bn.bias - torch.Size([256]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.1.conv1.conv.weight - torch.Size([64, 256, 3, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.1.conv1.bn.weight - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.1.conv1.bn.bias - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.1.conv2.conv.weight - torch.Size([64, 64, 1, 3, 3]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.1.conv2.bn.weight - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.1.conv2.bn.bias - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.1.conv3.conv.weight - torch.Size([256, 64, 1, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.1.conv3.bn.weight - torch.Size([256]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.1.conv3.bn.bias - torch.Size([256]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.2.conv1.conv.weight - torch.Size([64, 256, 3, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.2.conv1.bn.weight - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.2.conv1.bn.bias - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.2.conv2.conv.weight - torch.Size([64, 64, 1, 3, 3]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.2.conv2.bn.weight - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.2.conv2.bn.bias - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.2.conv3.conv.weight - torch.Size([256, 64, 1, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.2.conv3.bn.weight - torch.Size([256]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.2.conv3.bn.bias - torch.Size([256]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.3.conv1.conv.weight - torch.Size([64, 256, 3, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.3.conv1.bn.weight - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.3.conv1.bn.bias - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.3.conv2.conv.weight - torch.Size([64, 64, 1, 3, 3]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.3.conv2.bn.weight - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.3.conv2.bn.bias - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.3.conv3.conv.weight - torch.Size([256, 64, 1, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.3.conv3.bn.weight - torch.Size([256]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.3.conv3.bn.bias - torch.Size([256]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.4.conv1.conv.weight - torch.Size([64, 256, 3, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.4.conv1.bn.weight - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.4.conv1.bn.bias - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.4.conv2.conv.weight - torch.Size([64, 64, 1, 3, 3]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.4.conv2.bn.weight - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.4.conv2.bn.bias - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.4.conv3.conv.weight - torch.Size([256, 64, 1, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.4.conv3.bn.weight - torch.Size([256]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.4.conv3.bn.bias - torch.Size([256]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.5.conv1.conv.weight - torch.Size([64, 256, 3, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.5.conv1.bn.weight - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.5.conv1.bn.bias - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.5.conv2.conv.weight - torch.Size([64, 64, 1, 3, 3]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.5.conv2.bn.weight - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.5.conv2.bn.bias - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer2.5.conv3.conv.weight - torch.Size([256, 64, 1, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.5.conv3.bn.weight - torch.Size([256]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer2.5.conv3.bn.bias - torch.Size([256]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer3.0.conv1.conv.weight - torch.Size([128, 256, 3, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer3.0.conv1.bn.weight - torch.Size([128]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer3.0.conv1.bn.bias - torch.Size([128]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer3.0.conv2.conv.weight - torch.Size([128, 128, 1, 3, 3]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer3.0.conv2.bn.weight - torch.Size([128]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer3.0.conv2.bn.bias - torch.Size([128]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer3.0.conv3.conv.weight - torch.Size([512, 128, 1, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer3.0.conv3.bn.weight - torch.Size([512]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer3.0.conv3.bn.bias - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer3.0.downsample.conv.weight - torch.Size([512, 256, 1, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer3.0.downsample.bn.weight - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer3.0.downsample.bn.bias - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer3.1.conv1.conv.weight - torch.Size([128, 512, 3, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer3.1.conv1.bn.weight - torch.Size([128]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer3.1.conv1.bn.bias - torch.Size([128]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer3.1.conv2.conv.weight - torch.Size([128, 128, 1, 3, 3]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer3.1.conv2.bn.weight - torch.Size([128]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer3.1.conv2.bn.bias - torch.Size([128]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer3.1.conv3.conv.weight - torch.Size([512, 128, 1, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer3.1.conv3.bn.weight - torch.Size([512]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer3.1.conv3.bn.bias - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer3.2.conv1.conv.weight - torch.Size([128, 512, 3, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer3.2.conv1.bn.weight - torch.Size([128]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer3.2.conv1.bn.bias - torch.Size([128]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer3.2.conv2.conv.weight - torch.Size([128, 128, 1, 3, 3]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer3.2.conv2.bn.weight - torch.Size([128]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer3.2.conv2.bn.bias - torch.Size([128]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+backbone.layer3.2.conv3.conv.weight - torch.Size([512, 128, 1, 1, 1]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer3.2.conv3.bn.weight - torch.Size([512]): 
+Initialized by user-defined `init_weights` in ResNet3dSlowOnly  
+
+backbone.layer3.2.conv3.bn.bias - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of Recognizer3D  
+
+cls_head.fc_cls.weight - torch.Size([9, 512]): 
+Initialized by user-defined `init_weights` in I3DHead  
+
+cls_head.fc_cls.bias - torch.Size([9]): 
+Initialized by user-defined `init_weights` in I3DHead  
+2024/05/18 09:22:29 - mmengine - INFO - Auto resumed from the latest checkpoint None.
+2024/05/18 09:22:29 - mmengine - WARNING - "FileClient" will be deprecated in future. Please use io functions in https://mmengine.readthedocs.io/en/latest/api/fileio.html#file-io
+2024/05/18 09:22:29 - mmengine - WARNING - "HardDiskBackend" is the alias of "LocalBackend" and the former will be deprecated in future.
+2024/05/18 09:22:29 - mmengine - INFO - Checkpoints will be saved to /kaggle/working/ciis_not-multi_no-berdiri.
+2024/05/18 09:24:54 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 09:24:54 - mmengine - INFO - Epoch(train)   [1][75/75]  lr: 5.0000e-02  eta: 1 day, 14:46:17  time: 1.8608  data_time: 0.9933  memory: 12670  grad_norm: 1.1035  loss: 2.1742  top1_acc: 0.2639  top5_acc: 0.5787  loss_cls: 2.1742
+2024/05/18 09:27:21 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 09:27:21 - mmengine - INFO - Epoch(train)   [2][75/75]  lr: 4.9999e-02  eta: 1 day, 14:52:04  time: 1.8686  data_time: 1.0050  memory: 12670  grad_norm: 1.3203  loss: 2.0434  top1_acc: 0.3287  top5_acc: 0.7037  loss_cls: 2.0434
+2024/05/18 09:29:45 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 09:29:45 - mmengine - INFO - Epoch(train)   [3][75/75]  lr: 4.9999e-02  eta: 1 day, 14:37:12  time: 1.8340  data_time: 0.9708  memory: 12670  grad_norm: 1.3771  loss: 1.9418  top1_acc: 0.3102  top5_acc: 0.7824  loss_cls: 1.9418
+2024/05/18 09:32:07 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 09:32:07 - mmengine - INFO - Epoch(train)   [4][75/75]  lr: 4.9998e-02  eta: 1 day, 14:25:00  time: 1.8047  data_time: 0.9355  memory: 12670  grad_norm: 1.5092  loss: 1.8179  top1_acc: 0.3519  top5_acc: 0.8009  loss_cls: 1.8179
+2024/05/18 09:34:31 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 09:34:31 - mmengine - INFO - Epoch(train)   [5][75/75]  lr: 4.9997e-02  eta: 1 day, 14:17:55  time: 1.8319  data_time: 0.9550  memory: 12670  grad_norm: 1.6114  loss: 1.6818  top1_acc: 0.3611  top5_acc: 0.8981  loss_cls: 1.6818
+2024/05/18 09:36:55 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 09:36:55 - mmengine - INFO - Epoch(train)   [6][75/75]  lr: 4.9995e-02  eta: 1 day, 14:14:37  time: 1.8627  data_time: 0.9796  memory: 12670  grad_norm: 1.7687  loss: 1.5127  top1_acc: 0.4120  top5_acc: 0.9213  loss_cls: 1.5127
+2024/05/18 09:39:18 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 09:39:18 - mmengine - INFO - Epoch(train)   [7][75/75]  lr: 4.9993e-02  eta: 1 day, 14:10:16  time: 1.7943  data_time: 0.9357  memory: 12670  grad_norm: 1.9281  loss: 1.3086  top1_acc: 0.5000  top5_acc: 0.9583  loss_cls: 1.3086
+2024/05/18 09:41:42 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 09:41:42 - mmengine - INFO - Epoch(train)   [8][75/75]  lr: 4.9991e-02  eta: 1 day, 14:06:46  time: 1.8246  data_time: 0.9584  memory: 12670  grad_norm: 2.0176  loss: 1.1105  top1_acc: 0.5556  top5_acc: 0.9769  loss_cls: 1.1105
+2024/05/18 09:44:07 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 09:44:07 - mmengine - INFO - Epoch(train)   [9][75/75]  lr: 4.9989e-02  eta: 1 day, 14:05:12  time: 1.8471  data_time: 0.9809  memory: 12670  grad_norm: 2.0885  loss: 0.9537  top1_acc: 0.6898  top5_acc: 0.9861  loss_cls: 0.9537
+2024/05/18 09:46:28 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 09:46:28 - mmengine - INFO - Epoch(train)  [10][75/75]  lr: 4.9987e-02  eta: 1 day, 13:59:10  time: 1.8252  data_time: 0.9584  memory: 12670  grad_norm: 1.5499  loss: 0.8181  top1_acc: 0.7500  top5_acc: 0.9954  loss_cls: 0.8181
+2024/05/18 09:46:28 - mmengine - INFO - Saving checkpoint at 10 epochs
+2024/05/18 09:46:35 - mmengine - INFO - Epoch(val) [10][4/4]    acc/top1: 0.3652  acc/top5: 0.8468  acc/mean1: 0.3740  data_time: 1.2515  time: 1.6303
+2024/05/18 09:46:36 - mmengine - INFO - The best checkpoint with 0.3652 acc/top1 at 10 epoch is saved to best_acc_top1_epoch_10.pth.
+2024/05/18 09:49:00 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 09:49:00 - mmengine - INFO - Epoch(train)  [11][75/75]  lr: 4.9984e-02  eta: 1 day, 13:56:17  time: 1.8557  data_time: 0.9953  memory: 12670  grad_norm: 1.5052  loss: 0.7006  top1_acc: 0.7176  top5_acc: 0.9907  loss_cls: 0.7006
+2024/05/18 09:51:22 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 09:51:22 - mmengine - INFO - Epoch(train)  [12][75/75]  lr: 4.9981e-02  eta: 1 day, 13:51:14  time: 1.8550  data_time: 0.9923  memory: 12670  grad_norm: 1.7584  loss: 0.7265  top1_acc: 0.7315  top5_acc: 0.9954  loss_cls: 0.7265
+2024/05/18 09:53:44 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 09:53:44 - mmengine - INFO - Epoch(train)  [13][75/75]  lr: 4.9977e-02  eta: 1 day, 13:46:38  time: 1.8337  data_time: 0.9691  memory: 12670  grad_norm: 1.5419  loss: 0.5731  top1_acc: 0.7315  top5_acc: 0.9954  loss_cls: 0.5731
+2024/05/18 09:54:33 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 09:56:06 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 09:56:06 - mmengine - INFO - Epoch(train)  [14][75/75]  lr: 4.9974e-02  eta: 1 day, 13:42:47  time: 1.8458  data_time: 0.9825  memory: 12670  grad_norm: 1.3908  loss: 0.5283  top1_acc: 0.7963  top5_acc: 0.9954  loss_cls: 0.5283
+2024/05/18 09:58:26 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 09:58:26 - mmengine - INFO - Epoch(train)  [15][75/75]  lr: 4.9970e-02  eta: 1 day, 13:36:18  time: 1.7909  data_time: 0.9262  memory: 12670  grad_norm: 1.3318  loss: 0.5951  top1_acc: 0.7685  top5_acc: 0.9954  loss_cls: 0.5951
+2024/05/18 10:00:48 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:00:48 - mmengine - INFO - Epoch(train)  [16][75/75]  lr: 4.9966e-02  eta: 1 day, 13:32:52  time: 1.7963  data_time: 0.9284  memory: 12670  grad_norm: 1.1889  loss: 0.4388  top1_acc: 0.7500  top5_acc: 0.9954  loss_cls: 0.4388
+2024/05/18 10:03:10 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:03:10 - mmengine - INFO - Epoch(train)  [17][75/75]  lr: 4.9961e-02  eta: 1 day, 13:29:10  time: 1.8272  data_time: 0.9633  memory: 12670  grad_norm: 1.1679  loss: 0.4211  top1_acc: 0.7870  top5_acc: 1.0000  loss_cls: 0.4211
+2024/05/18 10:05:35 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:05:35 - mmengine - INFO - Epoch(train)  [18][75/75]  lr: 4.9957e-02  eta: 1 day, 13:27:55  time: 1.8589  data_time: 0.9991  memory: 12670  grad_norm: 1.2859  loss: 0.4038  top1_acc: 0.7454  top5_acc: 1.0000  loss_cls: 0.4038
+2024/05/18 10:07:57 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:07:57 - mmengine - INFO - Epoch(train)  [19][75/75]  lr: 4.9952e-02  eta: 1 day, 13:25:12  time: 1.8421  data_time: 0.9766  memory: 12670  grad_norm: 1.1846  loss: 0.3730  top1_acc: 0.7824  top5_acc: 1.0000  loss_cls: 0.3730
+2024/05/18 10:10:20 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:10:20 - mmengine - INFO - Epoch(train)  [20][75/75]  lr: 4.9947e-02  eta: 1 day, 13:22:31  time: 1.7874  data_time: 0.9242  memory: 12670  grad_norm: 1.2922  loss: 0.3574  top1_acc: 0.8056  top5_acc: 0.9954  loss_cls: 0.3574
+2024/05/18 10:10:20 - mmengine - INFO - Saving checkpoint at 20 epochs
+2024/05/18 10:10:27 - mmengine - INFO - Epoch(val) [20][4/4]    acc/top1: 0.6336  acc/top5: 0.9706  acc/mean1: 0.6234  data_time: 0.9476  time: 1.2680
+2024/05/18 10:10:27 - mmengine - INFO - The previous best checkpoint /kaggle/working/ciis_not-multi_no-berdiri/best_acc_top1_epoch_10.pth is removed
+2024/05/18 10:10:27 - mmengine - INFO - The best checkpoint with 0.6336 acc/top1 at 20 epoch is saved to best_acc_top1_epoch_20.pth.
+2024/05/18 10:12:48 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:12:48 - mmengine - INFO - Epoch(train)  [21][75/75]  lr: 4.9941e-02  eta: 1 day, 13:18:22  time: 1.8115  data_time: 0.9503  memory: 12670  grad_norm: 1.1029  loss: 0.3125  top1_acc: 0.8241  top5_acc: 1.0000  loss_cls: 0.3125
+2024/05/18 10:15:12 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:15:12 - mmengine - INFO - Epoch(train)  [22][75/75]  lr: 4.9935e-02  eta: 1 day, 13:16:09  time: 1.8421  data_time: 0.9837  memory: 12670  grad_norm: 1.1800  loss: 0.3206  top1_acc: 0.7778  top5_acc: 1.0000  loss_cls: 0.3206
+2024/05/18 10:17:32 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:17:32 - mmengine - INFO - Epoch(train)  [23][75/75]  lr: 4.9929e-02  eta: 1 day, 13:12:00  time: 1.8304  data_time: 0.9695  memory: 12670  grad_norm: 0.9789  loss: 0.2799  top1_acc: 0.8333  top5_acc: 1.0000  loss_cls: 0.2799
+2024/05/18 10:19:54 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:19:54 - mmengine - INFO - Epoch(train)  [24][75/75]  lr: 4.9923e-02  eta: 1 day, 13:08:57  time: 1.8138  data_time: 0.9507  memory: 12670  grad_norm: 0.9336  loss: 0.2584  top1_acc: 0.8426  top5_acc: 1.0000  loss_cls: 0.2584
+2024/05/18 10:22:19 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:22:19 - mmengine - INFO - Epoch(train)  [25][75/75]  lr: 4.9916e-02  eta: 1 day, 13:07:52  time: 1.8961  data_time: 1.0314  memory: 12670  grad_norm: 0.9808  loss: 0.2657  top1_acc: 0.8380  top5_acc: 1.0000  loss_cls: 0.2657
+2024/05/18 10:24:41 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:24:41 - mmengine - INFO - Epoch(train)  [26][75/75]  lr: 4.9910e-02  eta: 1 day, 13:04:43  time: 1.8311  data_time: 0.9665  memory: 12670  grad_norm: 0.9420  loss: 0.2625  top1_acc: 0.8102  top5_acc: 1.0000  loss_cls: 0.2625
+2024/05/18 10:26:17 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:27:03 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:27:03 - mmengine - INFO - Epoch(train)  [27][75/75]  lr: 4.9903e-02  eta: 1 day, 13:01:54  time: 1.8334  data_time: 0.9723  memory: 12670  grad_norm: 1.1655  loss: 0.2862  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.2862
+2024/05/18 10:29:23 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:29:23 - mmengine - INFO - Epoch(train)  [28][75/75]  lr: 4.9895e-02  eta: 1 day, 12:57:49  time: 1.7749  data_time: 0.9103  memory: 12670  grad_norm: 0.7249  loss: 0.2276  top1_acc: 0.8796  top5_acc: 1.0000  loss_cls: 0.2276
+2024/05/18 10:31:43 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:31:43 - mmengine - INFO - Epoch(train)  [29][75/75]  lr: 4.9888e-02  eta: 1 day, 12:53:54  time: 1.7863  data_time: 0.9260  memory: 12670  grad_norm: 0.7923  loss: 0.2312  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.2312
+2024/05/18 10:34:02 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:34:02 - mmengine - INFO - Epoch(train)  [30][75/75]  lr: 4.9880e-02  eta: 1 day, 12:49:53  time: 1.8207  data_time: 0.9390  memory: 12670  grad_norm: 0.8039  loss: 0.2188  top1_acc: 0.8565  top5_acc: 1.0000  loss_cls: 0.2188
+2024/05/18 10:34:02 - mmengine - INFO - Saving checkpoint at 30 epochs
+2024/05/18 10:34:09 - mmengine - INFO - Epoch(val) [30][4/4]    acc/top1: 0.7426  acc/top5: 0.9853  acc/mean1: 0.6996  data_time: 1.0455  time: 1.3621
+2024/05/18 10:34:09 - mmengine - INFO - The previous best checkpoint /kaggle/working/ciis_not-multi_no-berdiri/best_acc_top1_epoch_20.pth is removed
+2024/05/18 10:34:10 - mmengine - INFO - The best checkpoint with 0.7426 acc/top1 at 30 epoch is saved to best_acc_top1_epoch_30.pth.
+2024/05/18 10:36:31 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:36:31 - mmengine - INFO - Epoch(train)  [31][75/75]  lr: 4.9872e-02  eta: 1 day, 12:46:28  time: 1.8086  data_time: 0.9463  memory: 12670  grad_norm: 0.7735  loss: 0.2202  top1_acc: 0.8333  top5_acc: 1.0000  loss_cls: 0.2202
+2024/05/18 10:38:53 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:38:53 - mmengine - INFO - Epoch(train)  [32][75/75]  lr: 4.9863e-02  eta: 1 day, 12:43:50  time: 1.8030  data_time: 0.9374  memory: 12670  grad_norm: 0.7513  loss: 0.2145  top1_acc: 0.8333  top5_acc: 1.0000  loss_cls: 0.2145
+2024/05/18 10:41:16 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:41:17 - mmengine - INFO - Epoch(train)  [33][75/75]  lr: 4.9854e-02  eta: 1 day, 12:42:03  time: 1.8177  data_time: 0.9505  memory: 12670  grad_norm: 0.6635  loss: 0.1928  top1_acc: 0.8380  top5_acc: 1.0000  loss_cls: 0.1928
+2024/05/18 10:43:42 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:43:42 - mmengine - INFO - Epoch(train)  [34][75/75]  lr: 4.9846e-02  eta: 1 day, 12:40:59  time: 1.8806  data_time: 1.0123  memory: 12670  grad_norm: 0.6314  loss: 0.1922  top1_acc: 0.8843  top5_acc: 1.0000  loss_cls: 0.1922
+2024/05/18 10:46:04 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:46:04 - mmengine - INFO - Epoch(train)  [35][75/75]  lr: 4.9836e-02  eta: 1 day, 12:38:27  time: 1.8474  data_time: 0.9814  memory: 12670  grad_norm: 0.6462  loss: 0.1918  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1918
+2024/05/18 10:48:30 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:48:30 - mmengine - INFO - Epoch(train)  [36][75/75]  lr: 4.9827e-02  eta: 1 day, 12:37:12  time: 1.8482  data_time: 0.9863  memory: 12670  grad_norm: 0.6632  loss: 0.1901  top1_acc: 0.8796  top5_acc: 1.0000  loss_cls: 0.1901
+2024/05/18 10:50:55 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:50:55 - mmengine - INFO - Epoch(train)  [37][75/75]  lr: 4.9817e-02  eta: 1 day, 12:36:02  time: 1.8567  data_time: 0.9900  memory: 12670  grad_norm: 0.5538  loss: 0.1811  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1811
+2024/05/18 10:53:19 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:53:19 - mmengine - INFO - Epoch(train)  [38][75/75]  lr: 4.9807e-02  eta: 1 day, 12:33:55  time: 1.8503  data_time: 0.9841  memory: 12670  grad_norm: 0.6315  loss: 0.1866  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1866
+2024/05/18 10:55:44 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:55:44 - mmengine - INFO - Epoch(train)  [39][75/75]  lr: 4.9797e-02  eta: 1 day, 12:32:44  time: 1.9098  data_time: 1.0277  memory: 12670  grad_norm: 0.6056  loss: 0.1882  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1882
+2024/05/18 10:58:08 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 10:58:08 - mmengine - INFO - Epoch(train)  [40][75/75]  lr: 4.9786e-02  eta: 1 day, 12:30:35  time: 1.8470  data_time: 0.9802  memory: 12670  grad_norm: 0.6967  loss: 0.1906  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1906
+2024/05/18 10:58:08 - mmengine - INFO - Saving checkpoint at 40 epochs
+2024/05/18 10:58:15 - mmengine - INFO - Epoch(val) [40][4/4]    acc/top1: 0.7145  acc/top5: 0.9804  acc/mean1: 0.6936  data_time: 1.0307  time: 1.3443
+2024/05/18 11:00:39 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:00:39 - mmengine - INFO - Epoch(train)  [41][75/75]  lr: 4.9775e-02  eta: 1 day, 12:28:38  time: 1.8861  data_time: 1.0240  memory: 12670  grad_norm: 0.6792  loss: 0.1850  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1850
+2024/05/18 11:03:01 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:03:01 - mmengine - INFO - Epoch(train)  [42][75/75]  lr: 4.9764e-02  eta: 1 day, 12:25:55  time: 1.8335  data_time: 0.9697  memory: 12670  grad_norm: 0.4980  loss: 0.1719  top1_acc: 0.8333  top5_acc: 1.0000  loss_cls: 0.1719
+2024/05/18 11:05:24 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:05:24 - mmengine - INFO - Epoch(train)  [43][75/75]  lr: 4.9753e-02  eta: 1 day, 12:23:40  time: 1.8497  data_time: 0.9743  memory: 12670  grad_norm: 0.5511  loss: 0.1725  top1_acc: 0.8565  top5_acc: 1.0000  loss_cls: 0.1725
+2024/05/18 11:07:50 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:07:50 - mmengine - INFO - Epoch(train)  [44][75/75]  lr: 4.9741e-02  eta: 1 day, 12:22:13  time: 1.8535  data_time: 0.9939  memory: 12670  grad_norm: 0.6108  loss: 0.1784  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1784
+2024/05/18 11:10:14 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:10:14 - mmengine - INFO - Epoch(train)  [45][75/75]  lr: 4.9730e-02  eta: 1 day, 12:20:09  time: 1.8566  data_time: 0.9899  memory: 12670  grad_norm: 0.5337  loss: 0.1727  top1_acc: 0.8194  top5_acc: 1.0000  loss_cls: 0.1727
+2024/05/18 11:12:36 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:12:36 - mmengine - INFO - Epoch(train)  [46][75/75]  lr: 4.9717e-02  eta: 1 day, 12:17:24  time: 1.7869  data_time: 0.9210  memory: 12670  grad_norm: 0.5040  loss: 0.1682  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1682
+2024/05/18 11:14:57 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:14:57 - mmengine - INFO - Epoch(train)  [47][75/75]  lr: 4.9705e-02  eta: 1 day, 12:14:25  time: 1.8295  data_time: 0.9634  memory: 12670  grad_norm: 0.6316  loss: 0.1706  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1706
+2024/05/18 11:17:16 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:17:16 - mmengine - INFO - Epoch(train)  [48][75/75]  lr: 4.9692e-02  eta: 1 day, 12:10:44  time: 1.7076  data_time: 0.8378  memory: 12670  grad_norm: 0.7319  loss: 0.1908  top1_acc: 0.8380  top5_acc: 1.0000  loss_cls: 0.1908
+2024/05/18 11:19:35 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:19:35 - mmengine - INFO - Epoch(train)  [49][75/75]  lr: 4.9679e-02  eta: 1 day, 12:07:09  time: 1.7471  data_time: 0.8643  memory: 12670  grad_norm: 0.5857  loss: 0.1728  top1_acc: 0.8380  top5_acc: 1.0000  loss_cls: 0.1728
+2024/05/18 11:21:55 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:21:55 - mmengine - INFO - Epoch(train)  [50][75/75]  lr: 4.9666e-02  eta: 1 day, 12:04:05  time: 1.8387  data_time: 0.9575  memory: 12670  grad_norm: 0.5163  loss: 0.1674  top1_acc: 0.8426  top5_acc: 1.0000  loss_cls: 0.1674
+2024/05/18 11:21:55 - mmengine - INFO - Saving checkpoint at 50 epochs
+2024/05/18 11:22:02 - mmengine - INFO - Epoch(val) [50][4/4]    acc/top1: 0.7169  acc/top5: 0.9755  acc/mean1: 0.6657  data_time: 1.0141  time: 1.3306
+2024/05/18 11:24:24 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:24:24 - mmengine - INFO - Epoch(train)  [51][75/75]  lr: 4.9653e-02  eta: 1 day, 12:01:23  time: 1.7779  data_time: 0.9118  memory: 12670  grad_norm: 0.4395  loss: 0.1560  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1560
+2024/05/18 11:26:42 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:26:42 - mmengine - INFO - Epoch(train)  [52][75/75]  lr: 4.9639e-02  eta: 1 day, 11:57:39  time: 1.7770  data_time: 0.9049  memory: 12670  grad_norm: 0.4463  loss: 0.1627  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1627
+2024/05/18 11:29:00 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:29:00 - mmengine - INFO - Epoch(train)  [53][75/75]  lr: 4.9625e-02  eta: 1 day, 11:53:58  time: 1.7815  data_time: 0.9125  memory: 12670  grad_norm: 0.4790  loss: 0.1599  top1_acc: 0.8380  top5_acc: 1.0000  loss_cls: 0.1599
+2024/05/18 11:29:48 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:31:19 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:31:19 - mmengine - INFO - Epoch(train)  [54][75/75]  lr: 4.9611e-02  eta: 1 day, 11:50:46  time: 1.7651  data_time: 0.8991  memory: 12670  grad_norm: 0.4666  loss: 0.1617  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1617
+2024/05/18 11:33:38 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:33:38 - mmengine - INFO - Epoch(train)  [55][75/75]  lr: 4.9596e-02  eta: 1 day, 11:47:18  time: 1.7834  data_time: 0.9189  memory: 12670  grad_norm: 0.5227  loss: 0.1585  top1_acc: 0.8426  top5_acc: 1.0000  loss_cls: 0.1585
+2024/05/18 11:35:56 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:35:56 - mmengine - INFO - Epoch(train)  [56][75/75]  lr: 4.9582e-02  eta: 1 day, 11:43:51  time: 1.8033  data_time: 0.9381  memory: 12670  grad_norm: 0.4701  loss: 0.1543  top1_acc: 0.8426  top5_acc: 1.0000  loss_cls: 0.1543
+2024/05/18 11:38:15 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:38:15 - mmengine - INFO - Epoch(train)  [57][75/75]  lr: 4.9567e-02  eta: 1 day, 11:40:31  time: 1.7892  data_time: 0.9107  memory: 12670  grad_norm: 0.7271  loss: 0.1747  top1_acc: 0.8380  top5_acc: 1.0000  loss_cls: 0.1747
+2024/05/18 11:40:36 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:40:36 - mmengine - INFO - Epoch(train)  [58][75/75]  lr: 4.9551e-02  eta: 1 day, 11:37:48  time: 1.7848  data_time: 0.9021  memory: 12670  grad_norm: 0.4695  loss: 0.1597  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1597
+2024/05/18 11:42:58 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:42:58 - mmengine - INFO - Epoch(train)  [59][75/75]  lr: 4.9536e-02  eta: 1 day, 11:35:26  time: 1.8704  data_time: 1.0055  memory: 12670  grad_norm: 0.4383  loss: 0.1561  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1561
+2024/05/18 11:45:21 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:45:21 - mmengine - INFO - Epoch(train)  [60][75/75]  lr: 4.9520e-02  eta: 1 day, 11:33:15  time: 1.8200  data_time: 0.9579  memory: 12670  grad_norm: 0.5129  loss: 0.1618  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1618
+2024/05/18 11:45:21 - mmengine - INFO - Saving checkpoint at 60 epochs
+2024/05/18 11:45:28 - mmengine - INFO - Epoch(val) [60][4/4]    acc/top1: 0.7059  acc/top5: 0.9767  acc/mean1: 0.7124  data_time: 1.0184  time: 1.3310
+2024/05/18 11:47:47 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:47:47 - mmengine - INFO - Epoch(train)  [61][75/75]  lr: 4.9504e-02  eta: 1 day, 11:30:04  time: 1.7570  data_time: 0.8941  memory: 12670  grad_norm: 0.5073  loss: 0.1578  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1578
+2024/05/18 11:50:06 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:50:06 - mmengine - INFO - Epoch(train)  [62][75/75]  lr: 4.9487e-02  eta: 1 day, 11:26:55  time: 1.8207  data_time: 0.9560  memory: 12670  grad_norm: 0.4773  loss: 0.1576  top1_acc: 0.8935  top5_acc: 1.0000  loss_cls: 0.1576
+2024/05/18 11:52:23 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:52:23 - mmengine - INFO - Epoch(train)  [63][75/75]  lr: 4.9471e-02  eta: 1 day, 11:23:27  time: 1.7783  data_time: 0.9171  memory: 12670  grad_norm: 0.4886  loss: 0.1623  top1_acc: 0.8565  top5_acc: 1.0000  loss_cls: 0.1623
+2024/05/18 11:54:41 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:54:41 - mmengine - INFO - Epoch(train)  [64][75/75]  lr: 4.9454e-02  eta: 1 day, 11:20:05  time: 1.7826  data_time: 0.9182  memory: 12670  grad_norm: 0.5248  loss: 0.1557  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1557
+2024/05/18 11:57:02 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:57:02 - mmengine - INFO - Epoch(train)  [65][75/75]  lr: 4.9437e-02  eta: 1 day, 11:17:28  time: 1.8754  data_time: 0.9979  memory: 12670  grad_norm: 0.4573  loss: 0.1550  top1_acc: 0.8889  top5_acc: 1.0000  loss_cls: 0.1550
+2024/05/18 11:59:19 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 11:59:19 - mmengine - INFO - Epoch(train)  [66][75/75]  lr: 4.9419e-02  eta: 1 day, 11:14:03  time: 1.7676  data_time: 0.8882  memory: 12670  grad_norm: 0.3952  loss: 0.1470  top1_acc: 0.8657  top5_acc: 1.0000  loss_cls: 0.1470
+2024/05/18 12:00:53 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:01:38 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:01:38 - mmengine - INFO - Epoch(train)  [67][75/75]  lr: 4.9402e-02  eta: 1 day, 11:10:54  time: 1.8010  data_time: 0.9395  memory: 12670  grad_norm: 0.3989  loss: 0.1473  top1_acc: 0.8889  top5_acc: 1.0000  loss_cls: 0.1473
+2024/05/18 12:03:55 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:03:55 - mmengine - INFO - Epoch(train)  [68][75/75]  lr: 4.9384e-02  eta: 1 day, 11:07:30  time: 1.7469  data_time: 0.8855  memory: 12670  grad_norm: 0.8050  loss: 0.1630  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1630
+2024/05/18 12:06:12 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:06:12 - mmengine - INFO - Epoch(train)  [69][75/75]  lr: 4.9366e-02  eta: 1 day, 11:04:03  time: 1.7676  data_time: 0.9013  memory: 12670  grad_norm: 2.0248  loss: 0.3467  top1_acc: 0.7963  top5_acc: 1.0000  loss_cls: 0.3467
+2024/05/18 12:08:33 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:08:33 - mmengine - INFO - Epoch(train)  [70][75/75]  lr: 4.9347e-02  eta: 1 day, 11:01:34  time: 1.8253  data_time: 0.9601  memory: 12670  grad_norm: 1.6005  loss: 0.5026  top1_acc: 0.7870  top5_acc: 1.0000  loss_cls: 0.5026
+2024/05/18 12:08:33 - mmengine - INFO - Saving checkpoint at 70 epochs
+2024/05/18 12:08:40 - mmengine - INFO - Epoch(val) [70][4/4]    acc/top1: 0.7022  acc/top5: 0.9657  acc/mean1: 0.6362  data_time: 0.9699  time: 1.2851
+2024/05/18 12:10:59 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:10:59 - mmengine - INFO - Epoch(train)  [71][75/75]  lr: 4.9328e-02  eta: 1 day, 10:58:41  time: 1.7145  data_time: 0.8516  memory: 12670  grad_norm: 0.5293  loss: 0.2013  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.2013
+2024/05/18 12:13:17 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:13:17 - mmengine - INFO - Epoch(train)  [72][75/75]  lr: 4.9310e-02  eta: 1 day, 10:55:36  time: 1.7514  data_time: 0.8901  memory: 12670  grad_norm: 0.4229  loss: 0.1726  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1726
+2024/05/18 12:15:35 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:15:35 - mmengine - INFO - Epoch(train)  [73][75/75]  lr: 4.9290e-02  eta: 1 day, 10:52:27  time: 1.7452  data_time: 0.8805  memory: 12670  grad_norm: 0.4068  loss: 0.1681  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1681
+2024/05/18 12:17:52 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:17:52 - mmengine - INFO - Epoch(train)  [74][75/75]  lr: 4.9271e-02  eta: 1 day, 10:49:15  time: 1.7472  data_time: 0.8803  memory: 12670  grad_norm: 0.4201  loss: 0.1588  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1588
+2024/05/18 12:20:11 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:20:11 - mmengine - INFO - Epoch(train)  [75][75/75]  lr: 4.9251e-02  eta: 1 day, 10:46:26  time: 1.8133  data_time: 0.9503  memory: 12670  grad_norm: 0.3757  loss: 0.1590  top1_acc: 0.8565  top5_acc: 1.0000  loss_cls: 0.1590
+2024/05/18 12:22:29 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:22:29 - mmengine - INFO - Epoch(train)  [76][75/75]  lr: 4.9231e-02  eta: 1 day, 10:43:23  time: 1.7483  data_time: 0.8788  memory: 12670  grad_norm: 0.3798  loss: 0.1538  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1538
+2024/05/18 12:24:47 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:24:47 - mmengine - INFO - Epoch(train)  [77][75/75]  lr: 4.9211e-02  eta: 1 day, 10:40:19  time: 1.7808  data_time: 0.9150  memory: 12670  grad_norm: 0.3830  loss: 0.1514  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1514
+2024/05/18 12:27:05 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:27:05 - mmengine - INFO - Epoch(train)  [78][75/75]  lr: 4.9190e-02  eta: 1 day, 10:37:16  time: 1.7584  data_time: 0.8741  memory: 12670  grad_norm: 0.3541  loss: 0.1518  top1_acc: 0.8426  top5_acc: 1.0000  loss_cls: 0.1518
+2024/05/18 12:29:23 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:29:23 - mmengine - INFO - Epoch(train)  [79][75/75]  lr: 4.9169e-02  eta: 1 day, 10:34:26  time: 1.7803  data_time: 0.9161  memory: 12670  grad_norm: 0.3776  loss: 0.1543  top1_acc: 0.8657  top5_acc: 1.0000  loss_cls: 0.1543
+2024/05/18 12:31:43 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:31:43 - mmengine - INFO - Epoch(train)  [80][75/75]  lr: 4.9148e-02  eta: 1 day, 10:31:48  time: 1.7553  data_time: 0.8920  memory: 12670  grad_norm: 0.3416  loss: 0.1497  top1_acc: 0.8287  top5_acc: 1.0000  loss_cls: 0.1497
+2024/05/18 12:31:43 - mmengine - INFO - Saving checkpoint at 80 epochs
+2024/05/18 12:31:49 - mmengine - INFO - Epoch(val) [80][4/4]    acc/top1: 0.7451  acc/top5: 0.9853  acc/mean1: 0.7251  data_time: 0.9066  time: 1.2235
+2024/05/18 12:31:50 - mmengine - INFO - The previous best checkpoint /kaggle/working/ciis_not-multi_no-berdiri/best_acc_top1_epoch_30.pth is removed
+2024/05/18 12:31:50 - mmengine - INFO - The best checkpoint with 0.7451 acc/top1 at 80 epoch is saved to best_acc_top1_epoch_80.pth.
+2024/05/18 12:34:07 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:34:07 - mmengine - INFO - Epoch(train)  [81][75/75]  lr: 4.9127e-02  eta: 1 day, 10:28:43  time: 1.7606  data_time: 0.8920  memory: 12670  grad_norm: 0.3490  loss: 0.1508  top1_acc: 0.8657  top5_acc: 1.0000  loss_cls: 0.1508
+2024/05/18 12:36:25 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:36:25 - mmengine - INFO - Epoch(train)  [82][75/75]  lr: 4.9106e-02  eta: 1 day, 10:25:37  time: 1.7305  data_time: 0.8699  memory: 12670  grad_norm: 0.3489  loss: 0.1479  top1_acc: 0.8426  top5_acc: 1.0000  loss_cls: 0.1479
+2024/05/18 12:38:41 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:38:41 - mmengine - INFO - Epoch(train)  [83][75/75]  lr: 4.9084e-02  eta: 1 day, 10:22:31  time: 1.7920  data_time: 0.9265  memory: 12670  grad_norm: 0.3529  loss: 0.1474  top1_acc: 0.8796  top5_acc: 1.0000  loss_cls: 0.1474
+2024/05/18 12:40:57 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:40:57 - mmengine - INFO - Epoch(train)  [84][75/75]  lr: 4.9062e-02  eta: 1 day, 10:19:15  time: 1.7618  data_time: 0.8961  memory: 12670  grad_norm: 0.3621  loss: 0.1472  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1472
+2024/05/18 12:43:16 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:43:16 - mmengine - INFO - Epoch(train)  [85][75/75]  lr: 4.9039e-02  eta: 1 day, 10:16:30  time: 1.7802  data_time: 0.9011  memory: 12670  grad_norm: 0.3612  loss: 0.1467  top1_acc: 0.8796  top5_acc: 1.0000  loss_cls: 0.1467
+2024/05/18 12:45:33 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:45:33 - mmengine - INFO - Epoch(train)  [86][75/75]  lr: 4.9017e-02  eta: 1 day, 10:13:21  time: 1.7349  data_time: 0.8665  memory: 12670  grad_norm: 0.3648  loss: 0.1470  top1_acc: 0.8380  top5_acc: 1.0000  loss_cls: 0.1470
+2024/05/18 12:47:48 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:47:48 - mmengine - INFO - Epoch(train)  [87][75/75]  lr: 4.8994e-02  eta: 1 day, 10:10:08  time: 1.7312  data_time: 0.8668  memory: 12670  grad_norm: 0.3685  loss: 0.1447  top1_acc: 0.8935  top5_acc: 1.0000  loss_cls: 0.1447
+2024/05/18 12:50:07 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:50:07 - mmengine - INFO - Epoch(train)  [88][75/75]  lr: 4.8971e-02  eta: 1 day, 10:07:23  time: 1.8033  data_time: 0.9410  memory: 12670  grad_norm: 0.3412  loss: 0.1408  top1_acc: 0.8889  top5_acc: 1.0000  loss_cls: 0.1408
+2024/05/18 12:52:22 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:52:22 - mmengine - INFO - Epoch(train)  [89][75/75]  lr: 4.8947e-02  eta: 1 day, 10:04:10  time: 1.7408  data_time: 0.8755  memory: 12670  grad_norm: 0.3199  loss: 0.1446  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1446
+2024/05/18 12:54:37 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:54:37 - mmengine - INFO - Epoch(train)  [90][75/75]  lr: 4.8924e-02  eta: 1 day, 10:00:47  time: 1.7628  data_time: 0.8954  memory: 12670  grad_norm: 0.3168  loss: 0.1416  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1416
+2024/05/18 12:54:37 - mmengine - INFO - Saving checkpoint at 90 epochs
+2024/05/18 12:54:44 - mmengine - INFO - Epoch(val) [90][4/4]    acc/top1: 0.7353  acc/top5: 0.9841  acc/mean1: 0.7196  data_time: 1.0039  time: 1.3422
+2024/05/18 12:57:00 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:57:00 - mmengine - INFO - Epoch(train)  [91][75/75]  lr: 4.8900e-02  eta: 1 day, 9:57:48  time: 1.7342  data_time: 0.8702  memory: 12670  grad_norm: 0.4041  loss: 0.1493  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1493
+2024/05/18 12:59:16 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 12:59:16 - mmengine - INFO - Epoch(train)  [92][75/75]  lr: 4.8876e-02  eta: 1 day, 9:54:39  time: 1.7922  data_time: 0.9322  memory: 12670  grad_norm: 0.3807  loss: 0.1447  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1447
+2024/05/18 13:01:32 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:01:32 - mmengine - INFO - Epoch(train)  [93][75/75]  lr: 4.8851e-02  eta: 1 day, 9:51:30  time: 1.7652  data_time: 0.9069  memory: 12670  grad_norm: 0.3704  loss: 0.1464  top1_acc: 0.8472  top5_acc: 1.0000  loss_cls: 0.1464
+2024/05/18 13:02:19 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:03:48 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:03:48 - mmengine - INFO - Epoch(train)  [94][75/75]  lr: 4.8827e-02  eta: 1 day, 9:48:30  time: 1.7536  data_time: 0.8691  memory: 12670  grad_norm: 0.3476  loss: 0.1407  top1_acc: 0.8565  top5_acc: 1.0000  loss_cls: 0.1407
+2024/05/18 13:06:06 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:06:06 - mmengine - INFO - Epoch(train)  [95][75/75]  lr: 4.8802e-02  eta: 1 day, 9:45:48  time: 1.7839  data_time: 0.9172  memory: 12670  grad_norm: 0.3552  loss: 0.1451  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1451
+2024/05/18 13:08:24 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:08:24 - mmengine - INFO - Epoch(train)  [96][75/75]  lr: 4.8777e-02  eta: 1 day, 9:43:02  time: 1.7990  data_time: 0.9372  memory: 12670  grad_norm: 0.3154  loss: 0.1408  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1408
+2024/05/18 13:10:46 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:10:46 - mmengine - INFO - Epoch(train)  [97][75/75]  lr: 4.8751e-02  eta: 1 day, 9:40:57  time: 1.8924  data_time: 1.0280  memory: 12670  grad_norm: 0.3806  loss: 0.1428  top1_acc: 0.8657  top5_acc: 1.0000  loss_cls: 0.1428
+2024/05/18 13:13:13 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:13:13 - mmengine - INFO - Epoch(train)  [98][75/75]  lr: 4.8726e-02  eta: 1 day, 9:39:33  time: 1.9178  data_time: 1.0537  memory: 12670  grad_norm: 0.3821  loss: 0.1439  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1439
+2024/05/18 13:15:40 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:15:40 - mmengine - INFO - Epoch(train)  [99][75/75]  lr: 4.8700e-02  eta: 1 day, 9:38:07  time: 1.8734  data_time: 1.0075  memory: 12670  grad_norm: 0.2594  loss: 0.1374  top1_acc: 0.8843  top5_acc: 1.0000  loss_cls: 0.1374
+2024/05/18 13:17:59 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:17:59 - mmengine - INFO - Epoch(train) [100][75/75]  lr: 4.8674e-02  eta: 1 day, 9:35:29  time: 1.7982  data_time: 0.9294  memory: 12670  grad_norm: 0.3273  loss: 0.1415  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1415
+2024/05/18 13:17:59 - mmengine - INFO - Saving checkpoint at 100 epochs
+2024/05/18 13:18:05 - mmengine - INFO - Epoch(val) [100][4/4]    acc/top1: 0.7525  acc/top5: 0.9841  acc/mean1: 0.7341  data_time: 0.9015  time: 1.2208
+2024/05/18 13:18:05 - mmengine - INFO - The previous best checkpoint /kaggle/working/ciis_not-multi_no-berdiri/best_acc_top1_epoch_80.pth is removed
+2024/05/18 13:18:06 - mmengine - INFO - The best checkpoint with 0.7525 acc/top1 at 100 epoch is saved to best_acc_top1_epoch_100.pth.
+2024/05/18 13:20:21 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:20:21 - mmengine - INFO - Epoch(train) [101][75/75]  lr: 4.8647e-02  eta: 1 day, 9:32:18  time: 1.7005  data_time: 0.8307  memory: 12670  grad_norm: 0.3803  loss: 0.1467  top1_acc: 0.8565  top5_acc: 1.0000  loss_cls: 0.1467
+2024/05/18 13:22:37 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:22:37 - mmengine - INFO - Epoch(train) [102][75/75]  lr: 4.8621e-02  eta: 1 day, 9:29:17  time: 1.7198  data_time: 0.8509  memory: 12670  grad_norm: 0.2920  loss: 0.1387  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1387
+2024/05/18 13:25:00 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:25:00 - mmengine - INFO - Epoch(train) [103][75/75]  lr: 4.8594e-02  eta: 1 day, 9:27:18  time: 1.8156  data_time: 0.9531  memory: 12670  grad_norm: 0.2847  loss: 0.1365  top1_acc: 0.8565  top5_acc: 1.0000  loss_cls: 0.1365
+2024/05/18 13:27:20 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:27:20 - mmengine - INFO - Epoch(train) [104][75/75]  lr: 4.8566e-02  eta: 1 day, 9:24:54  time: 1.7594  data_time: 0.8929  memory: 12670  grad_norm: 0.3129  loss: 0.1415  top1_acc: 0.8380  top5_acc: 1.0000  loss_cls: 0.1415
+2024/05/18 13:29:39 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:29:39 - mmengine - INFO - Epoch(train) [105][75/75]  lr: 4.8539e-02  eta: 1 day, 9:22:25  time: 1.7984  data_time: 0.9329  memory: 12670  grad_norm: 0.3575  loss: 0.1422  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1422
+2024/05/18 13:31:56 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:31:56 - mmengine - INFO - Epoch(train) [106][75/75]  lr: 4.8511e-02  eta: 1 day, 9:19:33  time: 1.7253  data_time: 0.8545  memory: 12670  grad_norm: 0.3272  loss: 0.1381  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1381
+2024/05/18 13:33:29 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:34:12 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:34:12 - mmengine - INFO - Epoch(train) [107][75/75]  lr: 4.8483e-02  eta: 1 day, 9:16:40  time: 1.7593  data_time: 0.8929  memory: 12670  grad_norm: 0.3053  loss: 0.1407  top1_acc: 0.8796  top5_acc: 1.0000  loss_cls: 0.1407
+2024/05/18 13:36:29 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:36:29 - mmengine - INFO - Epoch(train) [108][75/75]  lr: 4.8455e-02  eta: 1 day, 9:13:45  time: 1.7280  data_time: 0.8408  memory: 12670  grad_norm: 0.3132  loss: 0.1410  top1_acc: 0.8657  top5_acc: 1.0000  loss_cls: 0.1410
+2024/05/18 13:38:45 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:38:45 - mmengine - INFO - Epoch(train) [109][75/75]  lr: 4.8427e-02  eta: 1 day, 9:10:49  time: 1.7361  data_time: 0.8534  memory: 12670  grad_norm: 0.2969  loss: 0.1374  top1_acc: 0.8889  top5_acc: 1.0000  loss_cls: 0.1374
+2024/05/18 13:40:58 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:40:58 - mmengine - INFO - Epoch(train) [110][75/75]  lr: 4.8398e-02  eta: 1 day, 9:07:37  time: 1.7126  data_time: 0.8446  memory: 12670  grad_norm: 0.5064  loss: 0.1453  top1_acc: 0.8796  top5_acc: 1.0000  loss_cls: 0.1453
+2024/05/18 13:40:58 - mmengine - INFO - Saving checkpoint at 110 epochs
+2024/05/18 13:41:05 - mmengine - INFO - Epoch(val) [110][4/4]    acc/top1: 0.7022  acc/top5: 0.9841  acc/mean1: 0.6850  data_time: 0.9633  time: 1.2757
+2024/05/18 13:43:20 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:43:20 - mmengine - INFO - Epoch(train) [111][75/75]  lr: 4.8369e-02  eta: 1 day, 9:04:37  time: 1.7031  data_time: 0.8448  memory: 12670  grad_norm: 0.3363  loss: 0.1407  top1_acc: 0.8889  top5_acc: 1.0000  loss_cls: 0.1407
+2024/05/18 13:45:35 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:45:35 - mmengine - INFO - Epoch(train) [112][75/75]  lr: 4.8340e-02  eta: 1 day, 9:01:39  time: 1.7035  data_time: 0.8380  memory: 12670  grad_norm: 0.3517  loss: 0.1389  top1_acc: 0.8426  top5_acc: 1.0000  loss_cls: 0.1389
+2024/05/18 13:47:52 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:47:52 - mmengine - INFO - Epoch(train) [113][75/75]  lr: 4.8310e-02  eta: 1 day, 8:58:52  time: 1.7715  data_time: 0.8921  memory: 12670  grad_norm: 0.6030  loss: 0.1465  top1_acc: 0.8796  top5_acc: 1.0000  loss_cls: 0.1465
+2024/05/18 13:50:06 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:50:06 - mmengine - INFO - Epoch(train) [114][75/75]  lr: 4.8281e-02  eta: 1 day, 8:55:46  time: 1.7077  data_time: 0.8492  memory: 12670  grad_norm: 0.3282  loss: 0.1392  top1_acc: 0.8380  top5_acc: 1.0000  loss_cls: 0.1392
+2024/05/18 13:52:20 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:52:20 - mmengine - INFO - Epoch(train) [115][75/75]  lr: 4.8251e-02  eta: 1 day, 8:52:43  time: 1.7607  data_time: 0.8983  memory: 12670  grad_norm: 0.4465  loss: 0.1403  top1_acc: 0.8796  top5_acc: 1.0000  loss_cls: 0.1403
+2024/05/18 13:54:34 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:54:34 - mmengine - INFO - Epoch(train) [116][75/75]  lr: 4.8221e-02  eta: 1 day, 8:49:39  time: 1.7068  data_time: 0.8408  memory: 12670  grad_norm: 0.2900  loss: 0.1364  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1364
+2024/05/18 13:56:49 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:56:49 - mmengine - INFO - Epoch(train) [117][75/75]  lr: 4.8190e-02  eta: 1 day, 8:46:37  time: 1.6918  data_time: 0.8263  memory: 12670  grad_norm: 0.3320  loss: 0.1380  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1380
+2024/05/18 13:59:04 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 13:59:04 - mmengine - INFO - Epoch(train) [118][75/75]  lr: 4.8160e-02  eta: 1 day, 8:43:41  time: 1.7481  data_time: 0.8846  memory: 12670  grad_norm: 0.3511  loss: 0.1385  top1_acc: 0.8657  top5_acc: 1.0000  loss_cls: 0.1385
+2024/05/18 14:01:18 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:01:18 - mmengine - INFO - Epoch(train) [119][75/75]  lr: 4.8129e-02  eta: 1 day, 8:40:41  time: 1.7558  data_time: 0.8776  memory: 12670  grad_norm: 0.3504  loss: 0.1371  top1_acc: 0.8472  top5_acc: 1.0000  loss_cls: 0.1371
+2024/05/18 14:03:33 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:03:33 - mmengine - INFO - Epoch(train) [120][75/75]  lr: 4.8097e-02  eta: 1 day, 8:37:47  time: 1.7195  data_time: 0.8408  memory: 12670  grad_norm: 0.3018  loss: 0.1365  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1365
+2024/05/18 14:03:33 - mmengine - INFO - Saving checkpoint at 120 epochs
+2024/05/18 14:03:39 - mmengine - INFO - Epoch(val) [120][4/4]    acc/top1: 0.7243  acc/top5: 0.9828  acc/mean1: 0.7033  data_time: 0.9111  time: 1.2289
+2024/05/18 14:05:54 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:05:54 - mmengine - INFO - Epoch(train) [121][75/75]  lr: 4.8066e-02  eta: 1 day, 8:34:49  time: 1.7405  data_time: 0.8755  memory: 12670  grad_norm: 0.2862  loss: 0.1361  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1361
+2024/05/18 14:08:09 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:08:09 - mmengine - INFO - Epoch(train) [122][75/75]  lr: 4.8034e-02  eta: 1 day, 8:31:58  time: 1.7207  data_time: 0.8587  memory: 12670  grad_norm: 0.2741  loss: 0.1370  top1_acc: 0.8565  top5_acc: 1.0000  loss_cls: 0.1370
+2024/05/18 14:10:23 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:10:23 - mmengine - INFO - Epoch(train) [123][75/75]  lr: 4.8002e-02  eta: 1 day, 8:29:00  time: 1.7074  data_time: 0.8400  memory: 12670  grad_norm: 0.3258  loss: 0.1363  top1_acc: 0.8796  top5_acc: 1.0000  loss_cls: 0.1363
+2024/05/18 14:12:41 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:12:41 - mmengine - INFO - Epoch(train) [124][75/75]  lr: 4.7970e-02  eta: 1 day, 8:26:25  time: 1.7683  data_time: 0.9064  memory: 12670  grad_norm: 0.3290  loss: 0.1368  top1_acc: 0.8287  top5_acc: 1.0000  loss_cls: 0.1368
+2024/05/18 14:14:55 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:14:55 - mmengine - INFO - Epoch(train) [125][75/75]  lr: 4.7938e-02  eta: 1 day, 8:23:27  time: 1.7628  data_time: 0.8997  memory: 12670  grad_norm: 0.2855  loss: 0.1361  top1_acc: 0.8843  top5_acc: 1.0000  loss_cls: 0.1361
+2024/05/18 14:17:13 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:17:13 - mmengine - INFO - Epoch(train) [126][75/75]  lr: 4.7905e-02  eta: 1 day, 8:21:01  time: 1.8326  data_time: 0.9712  memory: 12670  grad_norm: 0.3243  loss: 0.1394  top1_acc: 0.8472  top5_acc: 1.0000  loss_cls: 0.1394
+2024/05/18 14:19:31 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:19:31 - mmengine - INFO - Epoch(train) [127][75/75]  lr: 4.7872e-02  eta: 1 day, 8:18:24  time: 1.7656  data_time: 0.8874  memory: 12670  grad_norm: 0.5068  loss: 0.1407  top1_acc: 0.8565  top5_acc: 1.0000  loss_cls: 0.1407
+2024/05/18 14:21:46 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:21:46 - mmengine - INFO - Epoch(train) [128][75/75]  lr: 4.7839e-02  eta: 1 day, 8:15:35  time: 1.7433  data_time: 0.8649  memory: 12670  grad_norm: 0.2791  loss: 0.1353  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1353
+2024/05/18 14:23:58 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:23:58 - mmengine - INFO - Epoch(train) [129][75/75]  lr: 4.7806e-02  eta: 1 day, 8:12:30  time: 1.6749  data_time: 0.8087  memory: 12670  grad_norm: 0.3125  loss: 0.1375  top1_acc: 0.8796  top5_acc: 1.0000  loss_cls: 0.1375
+2024/05/18 14:26:11 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:26:11 - mmengine - INFO - Epoch(train) [130][75/75]  lr: 4.7772e-02  eta: 1 day, 8:09:27  time: 1.6651  data_time: 0.8063  memory: 12670  grad_norm: 0.3129  loss: 0.1358  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1358
+2024/05/18 14:26:11 - mmengine - INFO - Saving checkpoint at 130 epochs
+2024/05/18 14:26:18 - mmengine - INFO - Epoch(val) [130][4/4]    acc/top1: 0.7316  acc/top5: 0.9853  acc/mean1: 0.6995  data_time: 0.9675  time: 1.2813
+2024/05/18 14:28:31 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:28:31 - mmengine - INFO - Epoch(train) [131][75/75]  lr: 4.7738e-02  eta: 1 day, 8:06:32  time: 1.6715  data_time: 0.8083  memory: 12670  grad_norm: 0.3062  loss: 0.1389  top1_acc: 0.8426  top5_acc: 1.0000  loss_cls: 0.1389
+2024/05/18 14:30:45 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:30:45 - mmengine - INFO - Epoch(train) [132][75/75]  lr: 4.7704e-02  eta: 1 day, 8:03:37  time: 1.7029  data_time: 0.8421  memory: 12670  grad_norm: 0.2787  loss: 0.1336  top1_acc: 0.8565  top5_acc: 1.0000  loss_cls: 0.1336
+2024/05/18 14:33:01 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:33:01 - mmengine - INFO - Epoch(train) [133][75/75]  lr: 4.7670e-02  eta: 1 day, 8:00:57  time: 1.7544  data_time: 0.8937  memory: 12670  grad_norm: 0.3077  loss: 0.1364  top1_acc: 0.8426  top5_acc: 1.0000  loss_cls: 0.1364
+2024/05/18 14:33:49 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:35:20 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:35:20 - mmengine - INFO - Epoch(train) [134][75/75]  lr: 4.7635e-02  eta: 1 day, 7:58:33  time: 1.8210  data_time: 0.9580  memory: 12670  grad_norm: 0.4773  loss: 0.1443  top1_acc: 0.8565  top5_acc: 1.0000  loss_cls: 0.1443
+2024/05/18 14:37:38 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:37:38 - mmengine - INFO - Epoch(train) [135][75/75]  lr: 4.7600e-02  eta: 1 day, 7:56:05  time: 1.7760  data_time: 0.9040  memory: 12670  grad_norm: 0.3957  loss: 0.1402  top1_acc: 0.8935  top5_acc: 1.0000  loss_cls: 0.1402
+2024/05/18 14:39:56 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:39:56 - mmengine - INFO - Epoch(train) [136][75/75]  lr: 4.7565e-02  eta: 1 day, 7:53:35  time: 1.8632  data_time: 0.9776  memory: 12670  grad_norm: 0.2504  loss: 0.1341  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1341
+2024/05/18 14:42:14 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:42:14 - mmengine - INFO - Epoch(train) [137][75/75]  lr: 4.7530e-02  eta: 1 day, 7:51:08  time: 1.7768  data_time: 0.9118  memory: 12670  grad_norm: 0.2870  loss: 0.1331  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1331
+2024/05/18 14:44:32 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:44:32 - mmengine - INFO - Epoch(train) [138][75/75]  lr: 4.7494e-02  eta: 1 day, 7:48:41  time: 1.7722  data_time: 0.9084  memory: 12670  grad_norm: 0.2584  loss: 0.1323  top1_acc: 0.8565  top5_acc: 1.0000  loss_cls: 0.1323
+2024/05/18 14:46:49 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:46:49 - mmengine - INFO - Epoch(train) [139][75/75]  lr: 4.7458e-02  eta: 1 day, 7:46:07  time: 1.7371  data_time: 0.8699  memory: 12670  grad_norm: 0.2981  loss: 0.1338  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1338
+2024/05/18 14:49:08 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:49:08 - mmengine - INFO - Epoch(train) [140][75/75]  lr: 4.7422e-02  eta: 1 day, 7:43:45  time: 1.7760  data_time: 0.9140  memory: 12670  grad_norm: 0.6031  loss: 0.1497  top1_acc: 0.8796  top5_acc: 1.0000  loss_cls: 0.1497
+2024/05/18 14:49:08 - mmengine - INFO - Saving checkpoint at 140 epochs
+2024/05/18 14:49:14 - mmengine - INFO - Epoch(val) [140][4/4]    acc/top1: 0.7304  acc/top5: 0.9743  acc/mean1: 0.7130  data_time: 0.9884  time: 1.3028
+2024/05/18 14:51:31 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:51:31 - mmengine - INFO - Epoch(train) [141][75/75]  lr: 4.7386e-02  eta: 1 day, 7:41:08  time: 1.7480  data_time: 0.8886  memory: 12670  grad_norm: 0.3064  loss: 0.1363  top1_acc: 0.9120  top5_acc: 1.0000  loss_cls: 0.1363
+2024/05/18 14:53:47 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:53:47 - mmengine - INFO - Epoch(train) [142][75/75]  lr: 4.7349e-02  eta: 1 day, 7:38:32  time: 1.7760  data_time: 0.9152  memory: 12670  grad_norm: 0.2696  loss: 0.1353  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1353
+2024/05/18 14:56:05 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:56:05 - mmengine - INFO - Epoch(train) [143][75/75]  lr: 4.7313e-02  eta: 1 day, 7:36:05  time: 1.7500  data_time: 0.8890  memory: 12670  grad_norm: 0.3159  loss: 0.1361  top1_acc: 0.8796  top5_acc: 1.0000  loss_cls: 0.1361
+2024/05/18 14:58:21 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 14:58:21 - mmengine - INFO - Epoch(train) [144][75/75]  lr: 4.7276e-02  eta: 1 day, 7:33:25  time: 1.7404  data_time: 0.8753  memory: 12670  grad_norm: 0.3672  loss: 0.1387  top1_acc: 0.8796  top5_acc: 1.0000  loss_cls: 0.1387
+2024/05/18 15:00:37 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:00:37 - mmengine - INFO - Epoch(train) [145][75/75]  lr: 4.7238e-02  eta: 1 day, 7:30:48  time: 1.7781  data_time: 0.9115  memory: 12670  grad_norm: 0.5881  loss: 0.1437  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1437
+2024/05/18 15:02:55 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:02:55 - mmengine - INFO - Epoch(train) [146][75/75]  lr: 4.7201e-02  eta: 1 day, 7:28:21  time: 1.7537  data_time: 0.8886  memory: 12670  grad_norm: 0.4017  loss: 0.1402  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1402
+2024/05/18 15:04:27 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:05:11 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:05:11 - mmengine - INFO - Epoch(train) [147][75/75]  lr: 4.7163e-02  eta: 1 day, 7:25:48  time: 1.7570  data_time: 0.8960  memory: 12670  grad_norm: 0.2310  loss: 0.1298  top1_acc: 0.8796  top5_acc: 1.0000  loss_cls: 0.1298
+2024/05/18 15:07:27 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:07:27 - mmengine - INFO - Epoch(train) [148][75/75]  lr: 4.7125e-02  eta: 1 day, 7:23:12  time: 1.7383  data_time: 0.8594  memory: 12670  grad_norm: 0.2692  loss: 0.1333  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1333
+2024/05/18 15:09:44 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:09:44 - mmengine - INFO - Epoch(train) [149][75/75]  lr: 4.7087e-02  eta: 1 day, 7:20:39  time: 1.7490  data_time: 0.8862  memory: 12670  grad_norm: 0.2585  loss: 0.1324  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1324
+2024/05/18 15:12:00 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:12:00 - mmengine - INFO - Epoch(train) [150][75/75]  lr: 4.7049e-02  eta: 1 day, 7:18:00  time: 1.7304  data_time: 0.8714  memory: 12670  grad_norm: 0.2943  loss: 0.1330  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1330
+2024/05/18 15:12:00 - mmengine - INFO - Saving checkpoint at 150 epochs
+2024/05/18 15:12:06 - mmengine - INFO - Epoch(val) [150][4/4]    acc/top1: 0.7316  acc/top5: 0.9779  acc/mean1: 0.6937  data_time: 0.9075  time: 1.2243
+2024/05/18 15:14:22 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:14:22 - mmengine - INFO - Epoch(train) [151][75/75]  lr: 4.7010e-02  eta: 1 day, 7:15:24  time: 1.7808  data_time: 0.9166  memory: 12670  grad_norm: 0.2650  loss: 0.1349  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1349
+2024/05/18 15:16:39 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:16:39 - mmengine - INFO - Epoch(train) [152][75/75]  lr: 4.6971e-02  eta: 1 day, 7:12:51  time: 1.7719  data_time: 0.9063  memory: 12670  grad_norm: 0.2381  loss: 0.1337  top1_acc: 0.8333  top5_acc: 1.0000  loss_cls: 0.1337
+2024/05/18 15:18:57 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:18:57 - mmengine - INFO - Epoch(train) [153][75/75]  lr: 4.6932e-02  eta: 1 day, 7:10:27  time: 1.7907  data_time: 0.9315  memory: 12670  grad_norm: 0.2455  loss: 0.1319  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1319
+2024/05/18 15:21:15 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:21:15 - mmengine - INFO - Epoch(train) [154][75/75]  lr: 4.6892e-02  eta: 1 day, 7:08:01  time: 1.7300  data_time: 0.8644  memory: 12670  grad_norm: 0.2415  loss: 0.1345  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1345
+2024/05/18 15:23:27 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:23:27 - mmengine - INFO - Epoch(train) [155][75/75]  lr: 4.6853e-02  eta: 1 day, 7:05:06  time: 1.7335  data_time: 0.8599  memory: 12670  grad_norm: 0.2105  loss: 0.1331  top1_acc: 0.8657  top5_acc: 1.0000  loss_cls: 0.1331
+2024/05/18 15:25:41 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:25:41 - mmengine - INFO - Epoch(train) [156][75/75]  lr: 4.6813e-02  eta: 1 day, 7:02:23  time: 1.7592  data_time: 0.8831  memory: 12670  grad_norm: 0.2718  loss: 0.1335  top1_acc: 0.8843  top5_acc: 1.0000  loss_cls: 0.1335
+2024/05/18 15:27:59 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:27:59 - mmengine - INFO - Epoch(train) [157][75/75]  lr: 4.6773e-02  eta: 1 day, 6:59:57  time: 1.7308  data_time: 0.8648  memory: 12670  grad_norm: 0.2344  loss: 0.1303  top1_acc: 0.9028  top5_acc: 1.0000  loss_cls: 0.1303
+2024/05/18 15:30:13 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:30:13 - mmengine - INFO - Epoch(train) [158][75/75]  lr: 4.6733e-02  eta: 1 day, 6:57:16  time: 1.7637  data_time: 0.9065  memory: 12670  grad_norm: 0.2953  loss: 0.1342  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1342
+2024/05/18 15:32:29 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:32:29 - mmengine - INFO - Epoch(train) [159][75/75]  lr: 4.6692e-02  eta: 1 day, 6:54:38  time: 1.7477  data_time: 0.8876  memory: 12670  grad_norm: 0.2709  loss: 0.1317  top1_acc: 0.8472  top5_acc: 1.0000  loss_cls: 0.1317
+2024/05/18 15:34:45 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:34:45 - mmengine - INFO - Epoch(train) [160][75/75]  lr: 4.6651e-02  eta: 1 day, 6:52:05  time: 1.7073  data_time: 0.8443  memory: 12670  grad_norm: 0.3687  loss: 0.1380  top1_acc: 0.8889  top5_acc: 1.0000  loss_cls: 0.1380
+2024/05/18 15:34:45 - mmengine - INFO - Saving checkpoint at 160 epochs
+2024/05/18 15:34:51 - mmengine - INFO - Epoch(val) [160][4/4]    acc/top1: 0.7451  acc/top5: 0.9841  acc/mean1: 0.7232  data_time: 0.9213  time: 1.2337
+2024/05/18 15:37:06 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:37:06 - mmengine - INFO - Epoch(train) [161][75/75]  lr: 4.6610e-02  eta: 1 day, 6:49:23  time: 1.7310  data_time: 0.8738  memory: 12670  grad_norm: 6.0752  loss: 1.7547  top1_acc: 0.3472  top5_acc: 0.7546  loss_cls: 1.7547
+2024/05/18 15:39:20 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:39:20 - mmengine - INFO - Epoch(train) [162][75/75]  lr: 4.6569e-02  eta: 1 day, 6:46:43  time: 1.7183  data_time: 0.8525  memory: 12670  grad_norm: 1.6403  loss: 0.7666  top1_acc: 0.7269  top5_acc: 1.0000  loss_cls: 0.7666
+2024/05/18 15:41:37 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:41:37 - mmengine - INFO - Epoch(train) [163][75/75]  lr: 4.6527e-02  eta: 1 day, 6:44:14  time: 1.8433  data_time: 0.9859  memory: 12670  grad_norm: 1.5775  loss: 0.4606  top1_acc: 0.8194  top5_acc: 0.9954  loss_cls: 0.4606
+2024/05/18 15:43:52 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:43:52 - mmengine - INFO - Epoch(train) [164][75/75]  lr: 4.6486e-02  eta: 1 day, 6:41:35  time: 1.7269  data_time: 0.8648  memory: 12670  grad_norm: 1.4768  loss: 0.3317  top1_acc: 0.7917  top5_acc: 1.0000  loss_cls: 0.3317
+2024/05/18 15:46:08 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:46:08 - mmengine - INFO - Epoch(train) [165][75/75]  lr: 4.6444e-02  eta: 1 day, 6:39:05  time: 1.7759  data_time: 0.9157  memory: 12670  grad_norm: 1.1428  loss: 0.2652  top1_acc: 0.8287  top5_acc: 1.0000  loss_cls: 0.2652
+2024/05/18 15:48:27 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:48:27 - mmengine - INFO - Epoch(train) [166][75/75]  lr: 4.6402e-02  eta: 1 day, 6:36:45  time: 1.7733  data_time: 0.9122  memory: 12670  grad_norm: 0.6846  loss: 0.2068  top1_acc: 0.7963  top5_acc: 1.0000  loss_cls: 0.2068
+2024/05/18 15:50:42 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:50:42 - mmengine - INFO - Epoch(train) [167][75/75]  lr: 4.6359e-02  eta: 1 day, 6:34:07  time: 1.7035  data_time: 0.8426  memory: 12670  grad_norm: 0.6457  loss: 0.1846  top1_acc: 0.8657  top5_acc: 1.0000  loss_cls: 0.1846
+2024/05/18 15:52:58 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:52:58 - mmengine - INFO - Epoch(train) [168][75/75]  lr: 4.6317e-02  eta: 1 day, 6:31:36  time: 1.7366  data_time: 0.8545  memory: 12670  grad_norm: 0.5964  loss: 0.1729  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1729
+2024/05/18 15:55:12 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:55:12 - mmengine - INFO - Epoch(train) [169][75/75]  lr: 4.6274e-02  eta: 1 day, 6:28:56  time: 1.7343  data_time: 0.8746  memory: 12670  grad_norm: 0.7549  loss: 0.1938  top1_acc: 0.8472  top5_acc: 1.0000  loss_cls: 0.1938
+2024/05/18 15:57:29 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:57:29 - mmengine - INFO - Epoch(train) [170][75/75]  lr: 4.6231e-02  eta: 1 day, 6:26:28  time: 1.7454  data_time: 0.8868  memory: 12670  grad_norm: 0.5282  loss: 0.1626  top1_acc: 0.8935  top5_acc: 1.0000  loss_cls: 0.1626
+2024/05/18 15:57:29 - mmengine - INFO - Saving checkpoint at 170 epochs
+2024/05/18 15:57:36 - mmengine - INFO - Epoch(val) [170][4/4]    acc/top1: 0.7377  acc/top5: 0.9890  acc/mean1: 0.7014  data_time: 0.9828  time: 1.2974
+2024/05/18 15:59:50 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 15:59:50 - mmengine - INFO - Epoch(train) [171][75/75]  lr: 4.6187e-02  eta: 1 day, 6:23:49  time: 1.7316  data_time: 0.8683  memory: 12670  grad_norm: 0.5875  loss: 0.1680  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1680
+2024/05/18 16:02:05 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:02:05 - mmengine - INFO - Epoch(train) [172][75/75]  lr: 4.6144e-02  eta: 1 day, 6:21:15  time: 1.7706  data_time: 0.9087  memory: 12670  grad_norm: 0.5174  loss: 0.1602  top1_acc: 0.8657  top5_acc: 1.0000  loss_cls: 0.1602
+2024/05/18 16:04:20 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:04:20 - mmengine - INFO - Epoch(train) [173][75/75]  lr: 4.6100e-02  eta: 1 day, 6:18:39  time: 1.7113  data_time: 0.8523  memory: 12670  grad_norm: 0.4141  loss: 0.1516  top1_acc: 0.8657  top5_acc: 1.0000  loss_cls: 0.1516
+2024/05/18 16:05:07 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:06:33 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:06:33 - mmengine - INFO - Epoch(train) [174][75/75]  lr: 4.6056e-02  eta: 1 day, 6:15:55  time: 1.7062  data_time: 0.8457  memory: 12670  grad_norm: 0.4815  loss: 0.1560  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1560
+2024/05/18 16:08:48 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:08:48 - mmengine - INFO - Epoch(train) [175][75/75]  lr: 4.6012e-02  eta: 1 day, 6:13:18  time: 1.7869  data_time: 0.9103  memory: 12670  grad_norm: 0.3914  loss: 0.1498  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1498
+2024/05/18 16:11:02 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:11:02 - mmengine - INFO - Epoch(train) [176][75/75]  lr: 4.5967e-02  eta: 1 day, 6:10:40  time: 1.7375  data_time: 0.8624  memory: 12670  grad_norm: 0.5012  loss: 0.1526  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1526
+2024/05/18 16:13:16 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:13:16 - mmengine - INFO - Epoch(train) [177][75/75]  lr: 4.5923e-02  eta: 1 day, 6:08:02  time: 1.7094  data_time: 0.8455  memory: 12670  grad_norm: 0.3923  loss: 0.1446  top1_acc: 0.8796  top5_acc: 1.0000  loss_cls: 0.1446
+2024/05/18 16:15:29 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:15:29 - mmengine - INFO - Epoch(train) [178][75/75]  lr: 4.5878e-02  eta: 1 day, 6:05:19  time: 1.7067  data_time: 0.8478  memory: 12670  grad_norm: 0.3701  loss: 0.1443  top1_acc: 0.8472  top5_acc: 1.0000  loss_cls: 0.1443
+2024/05/18 16:17:43 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:17:43 - mmengine - INFO - Epoch(train) [179][75/75]  lr: 4.5833e-02  eta: 1 day, 6:02:38  time: 1.7153  data_time: 0.8563  memory: 12670  grad_norm: 0.4427  loss: 0.1481  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1481
+2024/05/18 16:20:04 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:20:04 - mmengine - INFO - Epoch(train) [180][75/75]  lr: 4.5787e-02  eta: 1 day, 6:00:29  time: 1.8699  data_time: 1.0086  memory: 12670  grad_norm: 0.3838  loss: 0.1446  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1446
+2024/05/18 16:20:04 - mmengine - INFO - Saving checkpoint at 180 epochs
+2024/05/18 16:20:10 - mmengine - INFO - Epoch(val) [180][4/4]    acc/top1: 0.7463  acc/top5: 0.9828  acc/mean1: 0.7274  data_time: 0.9890  time: 1.3033
+2024/05/18 16:22:27 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:22:27 - mmengine - INFO - Epoch(train) [181][75/75]  lr: 4.5742e-02  eta: 1 day, 5:58:04  time: 1.7285  data_time: 0.8702  memory: 12670  grad_norm: 0.4120  loss: 0.1431  top1_acc: 0.8843  top5_acc: 1.0000  loss_cls: 0.1431
+2024/05/18 16:24:41 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:24:41 - mmengine - INFO - Epoch(train) [182][75/75]  lr: 4.5696e-02  eta: 1 day, 5:55:23  time: 1.7015  data_time: 0.8449  memory: 12670  grad_norm: 0.5064  loss: 0.1442  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1442
+2024/05/18 16:26:55 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:26:55 - mmengine - INFO - Epoch(train) [183][75/75]  lr: 4.5650e-02  eta: 1 day, 5:52:49  time: 1.7345  data_time: 0.8739  memory: 12670  grad_norm: 0.3450  loss: 0.1416  top1_acc: 0.8843  top5_acc: 1.0000  loss_cls: 0.1416
+2024/05/18 16:29:11 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:29:11 - mmengine - INFO - Epoch(train) [184][75/75]  lr: 4.5604e-02  eta: 1 day, 5:50:19  time: 1.7372  data_time: 0.8718  memory: 12670  grad_norm: 0.3992  loss: 0.1414  top1_acc: 0.8657  top5_acc: 1.0000  loss_cls: 0.1414
+2024/05/18 16:31:26 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:31:26 - mmengine - INFO - Epoch(train) [185][75/75]  lr: 4.5557e-02  eta: 1 day, 5:47:46  time: 1.7548  data_time: 0.8960  memory: 12670  grad_norm: 0.4222  loss: 0.1447  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1447
+2024/05/18 16:33:41 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:33:41 - mmengine - INFO - Epoch(train) [186][75/75]  lr: 4.5511e-02  eta: 1 day, 5:45:11  time: 1.6989  data_time: 0.8358  memory: 12670  grad_norm: 0.3398  loss: 0.1393  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1393
+2024/05/18 16:35:11 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:35:54 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:35:54 - mmengine - INFO - Epoch(train) [187][75/75]  lr: 4.5464e-02  eta: 1 day, 5:42:32  time: 1.7043  data_time: 0.8393  memory: 12670  grad_norm: 0.4133  loss: 0.1419  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1419
+2024/05/18 16:38:08 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:38:08 - mmengine - INFO - Epoch(train) [188][75/75]  lr: 4.5417e-02  eta: 1 day, 5:39:54  time: 1.7287  data_time: 0.8469  memory: 12670  grad_norm: 0.3860  loss: 0.1444  top1_acc: 0.8380  top5_acc: 1.0000  loss_cls: 0.1444
+2024/05/18 16:40:22 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:40:22 - mmengine - INFO - Epoch(train) [189][75/75]  lr: 4.5369e-02  eta: 1 day, 5:37:17  time: 1.7431  data_time: 0.8794  memory: 12670  grad_norm: 0.3253  loss: 0.1382  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1382
+2024/05/18 16:42:34 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:42:34 - mmengine - INFO - Epoch(train) [190][75/75]  lr: 4.5322e-02  eta: 1 day, 5:34:35  time: 1.6727  data_time: 0.8095  memory: 12670  grad_norm: 0.3701  loss: 0.1399  top1_acc: 0.8657  top5_acc: 1.0000  loss_cls: 0.1399
+2024/05/18 16:42:34 - mmengine - INFO - Saving checkpoint at 190 epochs
+2024/05/18 16:42:40 - mmengine - INFO - Epoch(val) [190][4/4]    acc/top1: 0.7488  acc/top5: 0.9841  acc/mean1: 0.7375  data_time: 0.9381  time: 1.2559
+2024/05/18 16:44:57 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:44:57 - mmengine - INFO - Epoch(train) [191][75/75]  lr: 4.5274e-02  eta: 1 day, 5:32:08  time: 1.7887  data_time: 0.9281  memory: 12670  grad_norm: 0.3864  loss: 0.1388  top1_acc: 0.8472  top5_acc: 1.0000  loss_cls: 0.1388
+2024/05/18 16:47:13 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:47:13 - mmengine - INFO - Epoch(train) [192][75/75]  lr: 4.5226e-02  eta: 1 day, 5:29:40  time: 1.7245  data_time: 0.8633  memory: 12670  grad_norm: 0.3046  loss: 0.1363  top1_acc: 0.8796  top5_acc: 1.0000  loss_cls: 0.1363
+2024/05/18 16:49:30 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:49:30 - mmengine - INFO - Epoch(train) [193][75/75]  lr: 4.5178e-02  eta: 1 day, 5:27:18  time: 1.7723  data_time: 0.9090  memory: 12670  grad_norm: 0.2861  loss: 0.1352  top1_acc: 0.8657  top5_acc: 1.0000  loss_cls: 0.1352
+2024/05/18 16:51:45 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:51:45 - mmengine - INFO - Epoch(train) [194][75/75]  lr: 4.5129e-02  eta: 1 day, 5:24:49  time: 1.7290  data_time: 0.8661  memory: 12670  grad_norm: 0.4303  loss: 0.1409  top1_acc: 0.8796  top5_acc: 1.0000  loss_cls: 0.1409
+2024/05/18 16:54:02 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:54:02 - mmengine - INFO - Epoch(train) [195][75/75]  lr: 4.5081e-02  eta: 1 day, 5:22:22  time: 1.8067  data_time: 0.9303  memory: 12670  grad_norm: 0.3908  loss: 0.1396  top1_acc: 0.8472  top5_acc: 1.0000  loss_cls: 0.1396
+2024/05/18 16:56:16 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:56:16 - mmengine - INFO - Epoch(train) [196][75/75]  lr: 4.5032e-02  eta: 1 day, 5:19:50  time: 1.7412  data_time: 0.8587  memory: 12670  grad_norm: 0.3053  loss: 0.1341  top1_acc: 0.8796  top5_acc: 1.0000  loss_cls: 0.1341
+2024/05/18 16:58:31 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 16:58:31 - mmengine - INFO - Epoch(train) [197][75/75]  lr: 4.4983e-02  eta: 1 day, 5:17:19  time: 1.7081  data_time: 0.8425  memory: 12670  grad_norm: 0.3086  loss: 0.1350  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1350
+2024/05/18 17:00:49 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:00:49 - mmengine - INFO - Epoch(train) [198][75/75]  lr: 4.4934e-02  eta: 1 day, 5:14:59  time: 1.7458  data_time: 0.8840  memory: 12670  grad_norm: 0.6677  loss: 0.1487  top1_acc: 0.8565  top5_acc: 1.0000  loss_cls: 0.1487
+2024/05/18 17:03:03 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:03:03 - mmengine - INFO - Epoch(train) [199][75/75]  lr: 4.4884e-02  eta: 1 day, 5:12:24  time: 1.7252  data_time: 0.8677  memory: 12670  grad_norm: 0.2887  loss: 0.1356  top1_acc: 0.8287  top5_acc: 1.0000  loss_cls: 0.1356
+2024/05/18 17:05:20 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:05:20 - mmengine - INFO - Epoch(train) [200][75/75]  lr: 4.4834e-02  eta: 1 day, 5:10:04  time: 1.8036  data_time: 0.9399  memory: 12670  grad_norm: 0.3019  loss: 0.1350  top1_acc: 0.8889  top5_acc: 1.0000  loss_cls: 0.1350
+2024/05/18 17:05:20 - mmengine - INFO - Saving checkpoint at 200 epochs
+2024/05/18 17:05:27 - mmengine - INFO - Epoch(val) [200][4/4]    acc/top1: 0.7255  acc/top5: 0.9828  acc/mean1: 0.6855  data_time: 0.9369  time: 1.2519
+2024/05/18 17:07:44 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:07:44 - mmengine - INFO - Epoch(train) [201][75/75]  lr: 4.4785e-02  eta: 1 day, 5:07:42  time: 1.7474  data_time: 0.8814  memory: 12670  grad_norm: 0.3490  loss: 0.1362  top1_acc: 0.8333  top5_acc: 1.0000  loss_cls: 0.1362
+2024/05/18 17:09:59 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:09:59 - mmengine - INFO - Epoch(train) [202][75/75]  lr: 4.4734e-02  eta: 1 day, 5:05:13  time: 1.7230  data_time: 0.8624  memory: 12670  grad_norm: 0.2906  loss: 0.1344  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1344
+2024/05/18 17:12:16 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:12:16 - mmengine - INFO - Epoch(train) [203][75/75]  lr: 4.4684e-02  eta: 1 day, 5:02:47  time: 1.7559  data_time: 0.8939  memory: 12670  grad_norm: 0.3899  loss: 0.1363  top1_acc: 0.8380  top5_acc: 1.0000  loss_cls: 0.1363
+2024/05/18 17:14:31 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:14:31 - mmengine - INFO - Epoch(train) [204][75/75]  lr: 4.4634e-02  eta: 1 day, 5:00:17  time: 1.7599  data_time: 0.8983  memory: 12670  grad_norm: 0.7264  loss: 0.1548  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1548
+2024/05/18 17:16:44 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:16:44 - mmengine - INFO - Epoch(train) [205][75/75]  lr: 4.4583e-02  eta: 1 day, 4:57:43  time: 1.6815  data_time: 0.8204  memory: 12670  grad_norm: 0.3591  loss: 0.1382  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1382
+2024/05/18 17:18:57 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:18:57 - mmengine - INFO - Epoch(train) [206][75/75]  lr: 4.4532e-02  eta: 1 day, 4:55:05  time: 1.7127  data_time: 0.8529  memory: 12670  grad_norm: 0.2820  loss: 0.1354  top1_acc: 0.8241  top5_acc: 1.0000  loss_cls: 0.1354
+2024/05/18 17:21:09 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:21:09 - mmengine - INFO - Epoch(train) [207][75/75]  lr: 4.4481e-02  eta: 1 day, 4:52:26  time: 1.7118  data_time: 0.8561  memory: 12670  grad_norm: 0.2816  loss: 0.1344  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1344
+2024/05/18 17:23:20 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:23:20 - mmengine - INFO - Epoch(train) [208][75/75]  lr: 4.4429e-02  eta: 1 day, 4:49:42  time: 1.7087  data_time: 0.8366  memory: 12670  grad_norm: 0.2598  loss: 0.1335  top1_acc: 0.8426  top5_acc: 1.0000  loss_cls: 0.1335
+2024/05/18 17:25:35 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:25:35 - mmengine - INFO - Epoch(train) [209][75/75]  lr: 4.4378e-02  eta: 1 day, 4:47:12  time: 1.7392  data_time: 0.8801  memory: 12670  grad_norm: 0.2272  loss: 0.1327  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1327
+2024/05/18 17:27:47 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:27:47 - mmengine - INFO - Epoch(train) [210][75/75]  lr: 4.4326e-02  eta: 1 day, 4:44:30  time: 1.6998  data_time: 0.8371  memory: 12670  grad_norm: 0.2640  loss: 0.1318  top1_acc: 0.8657  top5_acc: 1.0000  loss_cls: 0.1318
+2024/05/18 17:27:47 - mmengine - INFO - Saving checkpoint at 210 epochs
+2024/05/18 17:27:53 - mmengine - INFO - Epoch(val) [210][4/4]    acc/top1: 0.7341  acc/top5: 0.9828  acc/mean1: 0.7020  data_time: 0.8931  time: 1.2108
+2024/05/18 17:30:07 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:30:07 - mmengine - INFO - Epoch(train) [211][75/75]  lr: 4.4274e-02  eta: 1 day, 4:42:00  time: 1.7497  data_time: 0.8905  memory: 12670  grad_norm: 0.2522  loss: 0.1329  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1329
+2024/05/18 17:32:21 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:32:21 - mmengine - INFO - Epoch(train) [212][75/75]  lr: 4.4222e-02  eta: 1 day, 4:39:26  time: 1.7059  data_time: 0.8415  memory: 12670  grad_norm: 0.2775  loss: 0.1325  top1_acc: 0.8981  top5_acc: 1.0000  loss_cls: 0.1325
+2024/05/18 17:34:40 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:34:40 - mmengine - INFO - Epoch(train) [213][75/75]  lr: 4.4169e-02  eta: 1 day, 4:37:12  time: 1.7921  data_time: 0.9314  memory: 12670  grad_norm: 0.2995  loss: 0.1335  top1_acc: 0.8796  top5_acc: 1.0000  loss_cls: 0.1335
+2024/05/18 17:35:26 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:36:56 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:36:56 - mmengine - INFO - Epoch(train) [214][75/75]  lr: 4.4117e-02  eta: 1 day, 4:34:49  time: 1.7924  data_time: 0.9301  memory: 12670  grad_norm: 0.2293  loss: 0.1316  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1316
+2024/05/18 17:39:15 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:39:15 - mmengine - INFO - Epoch(train) [215][75/75]  lr: 4.4064e-02  eta: 1 day, 4:32:33  time: 1.7402  data_time: 0.8632  memory: 12670  grad_norm: 0.2349  loss: 0.1324  top1_acc: 0.8565  top5_acc: 1.0000  loss_cls: 0.1324
+2024/05/18 17:41:33 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:41:33 - mmengine - INFO - Epoch(train) [216][75/75]  lr: 4.4011e-02  eta: 1 day, 4:30:15  time: 1.7743  data_time: 0.8992  memory: 12670  grad_norm: 0.2470  loss: 0.1328  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1328
+2024/05/18 17:43:50 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:43:50 - mmengine - INFO - Epoch(train) [217][75/75]  lr: 4.3958e-02  eta: 1 day, 4:27:54  time: 1.7058  data_time: 0.8431  memory: 12670  grad_norm: 0.2783  loss: 0.1326  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1326
+2024/05/18 17:46:06 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:46:06 - mmengine - INFO - Epoch(train) [218][75/75]  lr: 4.3904e-02  eta: 1 day, 4:25:29  time: 1.7619  data_time: 0.8998  memory: 12670  grad_norm: 0.2532  loss: 0.1310  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1310
+2024/05/18 17:48:21 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:48:21 - mmengine - INFO - Epoch(train) [219][75/75]  lr: 4.3851e-02  eta: 1 day, 4:23:00  time: 1.7068  data_time: 0.8451  memory: 12670  grad_norm: 0.2467  loss: 0.1301  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1301
+2024/05/18 17:50:38 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:50:38 - mmengine - INFO - Epoch(train) [220][75/75]  lr: 4.3797e-02  eta: 1 day, 4:20:42  time: 1.7762  data_time: 0.9157  memory: 12670  grad_norm: 0.3089  loss: 0.1340  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1340
+2024/05/18 17:50:38 - mmengine - INFO - Saving checkpoint at 220 epochs
+2024/05/18 17:50:45 - mmengine - INFO - Epoch(val) [220][4/4]    acc/top1: 0.7402  acc/top5: 0.9816  acc/mean1: 0.7157  data_time: 0.9776  time: 1.2917
+2024/05/18 17:53:02 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:53:02 - mmengine - INFO - Epoch(train) [221][75/75]  lr: 4.3743e-02  eta: 1 day, 4:18:19  time: 1.7620  data_time: 0.9028  memory: 12670  grad_norm: 0.2038  loss: 0.1299  top1_acc: 0.8657  top5_acc: 1.0000  loss_cls: 0.1299
+2024/05/18 17:55:16 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:55:16 - mmengine - INFO - Epoch(train) [222][75/75]  lr: 4.3688e-02  eta: 1 day, 4:15:50  time: 1.7070  data_time: 0.8461  memory: 12670  grad_norm: 0.3046  loss: 0.1328  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1328
+2024/05/18 17:57:31 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:57:31 - mmengine - INFO - Epoch(train) [223][75/75]  lr: 4.3634e-02  eta: 1 day, 4:13:23  time: 1.7216  data_time: 0.8559  memory: 12670  grad_norm: 0.1983  loss: 0.1302  top1_acc: 0.8472  top5_acc: 1.0000  loss_cls: 0.1302
+2024/05/18 17:59:47 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 17:59:47 - mmengine - INFO - Epoch(train) [224][75/75]  lr: 4.3579e-02  eta: 1 day, 4:10:58  time: 1.7270  data_time: 0.8653  memory: 12670  grad_norm: 0.1949  loss: 0.1318  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1318
+2024/05/18 18:02:02 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:02:02 - mmengine - INFO - Epoch(train) [225][75/75]  lr: 4.3525e-02  eta: 1 day, 4:08:30  time: 1.7451  data_time: 0.8846  memory: 12670  grad_norm: 0.2580  loss: 0.1314  top1_acc: 0.8333  top5_acc: 1.0000  loss_cls: 0.1314
+2024/05/18 18:04:17 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:04:17 - mmengine - INFO - Epoch(train) [226][75/75]  lr: 4.3469e-02  eta: 1 day, 4:06:05  time: 1.7400  data_time: 0.8748  memory: 12670  grad_norm: 3.0961  loss: 1.0900  top1_acc: 0.7222  top5_acc: 1.0000  loss_cls: 1.0900
+2024/05/18 18:05:49 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:06:33 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:06:33 - mmengine - INFO - Epoch(train) [227][75/75]  lr: 4.3414e-02  eta: 1 day, 4:03:42  time: 1.7640  data_time: 0.9045  memory: 12670  grad_norm: 0.6688  loss: 0.2112  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.2112
+2024/05/18 18:08:52 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:08:52 - mmengine - INFO - Epoch(train) [228][75/75]  lr: 4.3359e-02  eta: 1 day, 4:01:27  time: 1.7861  data_time: 0.9140  memory: 12670  grad_norm: 0.4394  loss: 0.1602  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1602
+2024/05/18 18:11:08 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:11:08 - mmengine - INFO - Epoch(train) [229][75/75]  lr: 4.3303e-02  eta: 1 day, 3:59:03  time: 1.7608  data_time: 0.8997  memory: 12670  grad_norm: 0.4584  loss: 0.1561  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1561
+2024/05/18 18:13:26 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:13:26 - mmengine - INFO - Epoch(train) [230][75/75]  lr: 4.3247e-02  eta: 1 day, 3:56:46  time: 1.7571  data_time: 0.8973  memory: 12670  grad_norm: 0.3719  loss: 0.1468  top1_acc: 0.8657  top5_acc: 1.0000  loss_cls: 0.1468
+2024/05/18 18:13:26 - mmengine - INFO - Saving checkpoint at 230 epochs
+2024/05/18 18:13:33 - mmengine - INFO - Epoch(val) [230][4/4]    acc/top1: 0.7610  acc/top5: 0.9890  acc/mean1: 0.7444  data_time: 0.9060  time: 1.2198
+2024/05/18 18:13:33 - mmengine - INFO - The previous best checkpoint /kaggle/working/ciis_not-multi_no-berdiri/best_acc_top1_epoch_100.pth is removed
+2024/05/18 18:13:33 - mmengine - INFO - The best checkpoint with 0.7610 acc/top1 at 230 epoch is saved to best_acc_top1_epoch_230.pth.
+2024/05/18 18:15:49 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:15:49 - mmengine - INFO - Epoch(train) [231][75/75]  lr: 4.3191e-02  eta: 1 day, 3:54:20  time: 1.6951  data_time: 0.8307  memory: 12670  grad_norm: 0.3360  loss: 0.1420  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1420
+2024/05/18 18:18:04 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:18:04 - mmengine - INFO - Epoch(train) [232][75/75]  lr: 4.3135e-02  eta: 1 day, 3:51:55  time: 1.7342  data_time: 0.8697  memory: 12670  grad_norm: 0.3655  loss: 0.1427  top1_acc: 0.8796  top5_acc: 1.0000  loss_cls: 0.1427
+2024/05/18 18:20:18 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:20:18 - mmengine - INFO - Epoch(train) [233][75/75]  lr: 4.3079e-02  eta: 1 day, 3:49:25  time: 1.7115  data_time: 0.8494  memory: 12670  grad_norm: 0.3542  loss: 0.1407  top1_acc: 0.8333  top5_acc: 1.0000  loss_cls: 0.1407
+2024/05/18 18:22:33 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:22:33 - mmengine - INFO - Epoch(train) [234][75/75]  lr: 4.3022e-02  eta: 1 day, 3:46:58  time: 1.7524  data_time: 0.8909  memory: 12670  grad_norm: 0.2975  loss: 0.1382  top1_acc: 0.8287  top5_acc: 1.0000  loss_cls: 0.1382
+2024/05/18 18:24:47 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:24:48 - mmengine - INFO - Epoch(train) [235][75/75]  lr: 4.2965e-02  eta: 1 day, 3:44:30  time: 1.6825  data_time: 0.8010  memory: 12670  grad_norm: 0.2840  loss: 0.1364  top1_acc: 0.8657  top5_acc: 1.0000  loss_cls: 0.1364
+2024/05/18 18:27:01 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:27:01 - mmengine - INFO - Epoch(train) [236][75/75]  lr: 4.2908e-02  eta: 1 day, 3:42:00  time: 1.7064  data_time: 0.8456  memory: 12670  grad_norm: 0.3063  loss: 0.1378  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1378
+2024/05/18 18:29:16 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:29:16 - mmengine - INFO - Epoch(train) [237][75/75]  lr: 4.2851e-02  eta: 1 day, 3:39:31  time: 1.7274  data_time: 0.8678  memory: 12670  grad_norm: 0.2770  loss: 0.1350  top1_acc: 0.8843  top5_acc: 1.0000  loss_cls: 0.1350
+2024/05/18 18:31:29 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:31:29 - mmengine - INFO - Epoch(train) [238][75/75]  lr: 4.2794e-02  eta: 1 day, 3:37:00  time: 1.7338  data_time: 0.8738  memory: 12670  grad_norm: 0.2532  loss: 0.1334  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1334
+2024/05/18 18:33:41 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:33:41 - mmengine - INFO - Epoch(train) [239][75/75]  lr: 4.2736e-02  eta: 1 day, 3:34:26  time: 1.6957  data_time: 0.8337  memory: 12670  grad_norm: 0.2522  loss: 0.1336  top1_acc: 0.8287  top5_acc: 1.0000  loss_cls: 0.1336
+2024/05/18 18:35:53 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:35:53 - mmengine - INFO - Epoch(train) [240][75/75]  lr: 4.2678e-02  eta: 1 day, 3:31:50  time: 1.6964  data_time: 0.8341  memory: 12670  grad_norm: 0.2944  loss: 0.1351  top1_acc: 0.8565  top5_acc: 1.0000  loss_cls: 0.1351
+2024/05/18 18:35:53 - mmengine - INFO - Saving checkpoint at 240 epochs
+2024/05/18 18:35:59 - mmengine - INFO - Epoch(val) [240][4/4]    acc/top1: 0.7463  acc/top5: 0.9853  acc/mean1: 0.7296  data_time: 0.9431  time: 1.2546
+2024/05/18 18:38:17 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:38:17 - mmengine - INFO - Epoch(train) [241][75/75]  lr: 4.2620e-02  eta: 1 day, 3:29:32  time: 1.8353  data_time: 0.9736  memory: 12670  grad_norm: 0.2571  loss: 0.1342  top1_acc: 0.8565  top5_acc: 1.0000  loss_cls: 0.1342
+2024/05/18 18:40:35 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:40:35 - mmengine - INFO - Epoch(train) [242][75/75]  lr: 4.2562e-02  eta: 1 day, 3:27:15  time: 1.8093  data_time: 0.9507  memory: 12670  grad_norm: 0.3556  loss: 0.1369  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1369
+2024/05/18 18:42:49 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:42:49 - mmengine - INFO - Epoch(train) [243][75/75]  lr: 4.2504e-02  eta: 1 day, 3:24:47  time: 1.7437  data_time: 0.8828  memory: 12670  grad_norm: 0.2359  loss: 0.1301  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1301
+2024/05/18 18:45:03 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:45:03 - mmengine - INFO - Epoch(train) [244][75/75]  lr: 4.2446e-02  eta: 1 day, 3:22:17  time: 1.7033  data_time: 0.8281  memory: 12670  grad_norm: 0.3045  loss: 0.1337  top1_acc: 0.8796  top5_acc: 1.0000  loss_cls: 0.1337
+2024/05/18 18:47:17 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:47:17 - mmengine - INFO - Epoch(train) [245][75/75]  lr: 4.2387e-02  eta: 1 day, 3:19:52  time: 1.7184  data_time: 0.8548  memory: 12670  grad_norm: 0.2410  loss: 0.1325  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1325
+2024/05/18 18:49:32 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:49:32 - mmengine - INFO - Epoch(train) [246][75/75]  lr: 4.2328e-02  eta: 1 day, 3:17:26  time: 1.7380  data_time: 0.8764  memory: 12670  grad_norm: 0.2221  loss: 0.1324  top1_acc: 0.8426  top5_acc: 1.0000  loss_cls: 0.1324
+2024/05/18 18:51:45 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:51:45 - mmengine - INFO - Epoch(train) [247][75/75]  lr: 4.2269e-02  eta: 1 day, 3:14:55  time: 1.6859  data_time: 0.8296  memory: 12670  grad_norm: 0.2442  loss: 0.1322  top1_acc: 0.8472  top5_acc: 1.0000  loss_cls: 0.1322
+2024/05/18 18:53:57 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:53:57 - mmengine - INFO - Epoch(train) [248][75/75]  lr: 4.2210e-02  eta: 1 day, 3:12:21  time: 1.6981  data_time: 0.8354  memory: 12670  grad_norm: 0.2748  loss: 0.1345  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1345
+2024/05/18 18:56:09 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:56:09 - mmengine - INFO - Epoch(train) [249][75/75]  lr: 4.2150e-02  eta: 1 day, 3:09:47  time: 1.6836  data_time: 0.8205  memory: 12670  grad_norm: 0.2301  loss: 0.1310  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1310
+2024/05/18 18:58:22 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 18:58:22 - mmengine - INFO - Epoch(train) [250][75/75]  lr: 4.2091e-02  eta: 1 day, 3:07:15  time: 1.7144  data_time: 0.8518  memory: 12670  grad_norm: 0.2069  loss: 0.1332  top1_acc: 0.8657  top5_acc: 1.0000  loss_cls: 0.1332
+2024/05/18 18:58:22 - mmengine - INFO - Saving checkpoint at 250 epochs
+2024/05/18 18:58:28 - mmengine - INFO - Epoch(val) [250][4/4]    acc/top1: 0.7537  acc/top5: 0.9890  acc/mean1: 0.7228  data_time: 0.9485  time: 1.2663
+2024/05/18 19:00:40 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:00:40 - mmengine - INFO - Epoch(train) [251][75/75]  lr: 4.2031e-02  eta: 1 day, 3:04:40  time: 1.6999  data_time: 0.8419  memory: 12670  grad_norm: 0.2691  loss: 0.1309  top1_acc: 0.8565  top5_acc: 1.0000  loss_cls: 0.1309
+2024/05/18 19:02:53 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:02:53 - mmengine - INFO - Epoch(train) [252][75/75]  lr: 4.1971e-02  eta: 1 day, 3:02:10  time: 1.7443  data_time: 0.8828  memory: 12670  grad_norm: 0.2139  loss: 0.1313  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1313
+2024/05/18 19:05:06 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:05:06 - mmengine - INFO - Epoch(train) [253][75/75]  lr: 4.1911e-02  eta: 1 day, 2:59:40  time: 1.7271  data_time: 0.8659  memory: 12670  grad_norm: 0.2091  loss: 0.1307  top1_acc: 0.8565  top5_acc: 1.0000  loss_cls: 0.1307
+2024/05/18 19:05:51 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:07:18 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:07:18 - mmengine - INFO - Epoch(train) [254][75/75]  lr: 4.1850e-02  eta: 1 day, 2:57:09  time: 1.6976  data_time: 0.8355  memory: 12670  grad_norm: 0.2359  loss: 0.1321  top1_acc: 0.8565  top5_acc: 1.0000  loss_cls: 0.1321
+2024/05/18 19:09:30 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:09:30 - mmengine - INFO - Epoch(train) [255][75/75]  lr: 4.1790e-02  eta: 1 day, 2:54:35  time: 1.6652  data_time: 0.8059  memory: 12670  grad_norm: 0.2488  loss: 0.1308  top1_acc: 0.8981  top5_acc: 1.0000  loss_cls: 0.1308
+2024/05/18 19:11:42 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:11:42 - mmengine - INFO - Epoch(train) [256][75/75]  lr: 4.1729e-02  eta: 1 day, 2:52:04  time: 1.7007  data_time: 0.8391  memory: 12670  grad_norm: 0.2195  loss: 0.1305  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1305
+2024/05/18 19:13:52 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:13:52 - mmengine - INFO - Epoch(train) [257][75/75]  lr: 4.1668e-02  eta: 1 day, 2:49:26  time: 1.6394  data_time: 0.7611  memory: 12670  grad_norm: 0.2501  loss: 0.1307  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1307
+2024/05/18 19:16:01 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:16:01 - mmengine - INFO - Epoch(train) [258][75/75]  lr: 4.1607e-02  eta: 1 day, 2:46:46  time: 1.6860  data_time: 0.8225  memory: 12670  grad_norm: 0.1892  loss: 0.1281  top1_acc: 0.8426  top5_acc: 1.0000  loss_cls: 0.1281
+2024/05/18 19:18:13 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:18:13 - mmengine - INFO - Epoch(train) [259][75/75]  lr: 4.1546e-02  eta: 1 day, 2:44:13  time: 1.7087  data_time: 0.8480  memory: 12670  grad_norm: 0.2030  loss: 0.1313  top1_acc: 0.8843  top5_acc: 1.0000  loss_cls: 0.1313
+2024/05/18 19:20:24 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:20:24 - mmengine - INFO - Epoch(train) [260][75/75]  lr: 4.1484e-02  eta: 1 day, 2:41:39  time: 1.6761  data_time: 0.8140  memory: 12670  grad_norm: 0.2376  loss: 0.1317  top1_acc: 0.8472  top5_acc: 1.0000  loss_cls: 0.1317
+2024/05/18 19:20:24 - mmengine - INFO - Saving checkpoint at 260 epochs
+2024/05/18 19:20:31 - mmengine - INFO - Epoch(val) [260][4/4]    acc/top1: 0.7586  acc/top5: 0.9890  acc/mean1: 0.7383  data_time: 0.9454  time: 1.2637
+2024/05/18 19:22:42 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:22:42 - mmengine - INFO - Epoch(train) [261][75/75]  lr: 4.1423e-02  eta: 1 day, 2:39:07  time: 1.7472  data_time: 0.8904  memory: 12670  grad_norm: 0.2335  loss: 0.1308  top1_acc: 0.8565  top5_acc: 1.0000  loss_cls: 0.1308
+2024/05/18 19:24:53 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:24:53 - mmengine - INFO - Epoch(train) [262][75/75]  lr: 4.1361e-02  eta: 1 day, 2:36:32  time: 1.6707  data_time: 0.8078  memory: 12670  grad_norm: 0.2266  loss: 0.1300  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1300
+2024/05/18 19:27:04 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:27:04 - mmengine - INFO - Epoch(train) [263][75/75]  lr: 4.1299e-02  eta: 1 day, 2:33:57  time: 1.6811  data_time: 0.8222  memory: 12670  grad_norm: 0.6782  loss: 0.1426  top1_acc: 0.8981  top5_acc: 1.0000  loss_cls: 0.1426
+2024/05/18 19:29:15 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:29:15 - mmengine - INFO - Epoch(train) [264][75/75]  lr: 4.1237e-02  eta: 1 day, 2:31:25  time: 1.7197  data_time: 0.8579  memory: 12670  grad_norm: 0.6689  loss: 0.1466  top1_acc: 0.8843  top5_acc: 1.0000  loss_cls: 0.1466
+2024/05/18 19:31:28 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:31:28 - mmengine - INFO - Epoch(train) [265][75/75]  lr: 4.1175e-02  eta: 1 day, 2:28:57  time: 1.7236  data_time: 0.8629  memory: 12670  grad_norm: 0.5051  loss: 0.1410  top1_acc: 0.8472  top5_acc: 1.0000  loss_cls: 0.1410
+2024/05/18 19:33:40 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:33:40 - mmengine - INFO - Epoch(train) [266][75/75]  lr: 4.1112e-02  eta: 1 day, 2:26:25  time: 1.6590  data_time: 0.7966  memory: 12670  grad_norm: 0.2255  loss: 0.1328  top1_acc: 0.8565  top5_acc: 1.0000  loss_cls: 0.1328
+2024/05/18 19:35:08 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:35:50 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:35:50 - mmengine - INFO - Epoch(train) [267][75/75]  lr: 4.1050e-02  eta: 1 day, 2:23:50  time: 1.6886  data_time: 0.8289  memory: 12670  grad_norm: 0.2107  loss: 0.1294  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1294
+2024/05/18 19:38:02 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:38:02 - mmengine - INFO - Epoch(train) [268][75/75]  lr: 4.0987e-02  eta: 1 day, 2:21:19  time: 1.7139  data_time: 0.8511  memory: 12670  grad_norm: 0.2047  loss: 0.1290  top1_acc: 0.8657  top5_acc: 1.0000  loss_cls: 0.1290
+2024/05/18 19:40:11 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:40:11 - mmengine - INFO - Epoch(train) [269][75/75]  lr: 4.0924e-02  eta: 1 day, 2:18:42  time: 1.6571  data_time: 0.7936  memory: 12670  grad_norm: 0.2216  loss: 0.1302  top1_acc: 0.8889  top5_acc: 1.0000  loss_cls: 0.1302
+2024/05/18 19:42:21 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:42:21 - mmengine - INFO - Epoch(train) [270][75/75]  lr: 4.0861e-02  eta: 1 day, 2:16:07  time: 1.6577  data_time: 0.7956  memory: 12670  grad_norm: 0.1829  loss: 0.1297  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1297
+2024/05/18 19:42:21 - mmengine - INFO - Saving checkpoint at 270 epochs
+2024/05/18 19:42:28 - mmengine - INFO - Epoch(val) [270][4/4]    acc/top1: 0.7549  acc/top5: 0.9841  acc/mean1: 0.7264  data_time: 0.9449  time: 1.2602
+2024/05/18 19:44:39 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:44:39 - mmengine - INFO - Epoch(train) [271][75/75]  lr: 4.0797e-02  eta: 1 day, 2:13:35  time: 1.6926  data_time: 0.8297  memory: 12670  grad_norm: 0.1890  loss: 0.1288  top1_acc: 0.8889  top5_acc: 1.0000  loss_cls: 0.1288
+2024/05/18 19:46:50 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:46:50 - mmengine - INFO - Epoch(train) [272][75/75]  lr: 4.0734e-02  eta: 1 day, 2:11:02  time: 1.6572  data_time: 0.7740  memory: 12670  grad_norm: 0.1891  loss: 0.1297  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1297
+2024/05/18 19:49:00 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:49:00 - mmengine - INFO - Epoch(train) [273][75/75]  lr: 4.0670e-02  eta: 1 day, 2:08:26  time: 1.6702  data_time: 0.8074  memory: 12670  grad_norm: 0.1464  loss: 0.1292  top1_acc: 0.8380  top5_acc: 1.0000  loss_cls: 0.1292
+2024/05/18 19:51:10 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:51:10 - mmengine - INFO - Epoch(train) [274][75/75]  lr: 4.0606e-02  eta: 1 day, 2:05:53  time: 1.6826  data_time: 0.8210  memory: 12670  grad_norm: 0.3562  loss: 0.1316  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1316
+2024/05/18 19:53:21 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:53:21 - mmengine - INFO - Epoch(train) [275][75/75]  lr: 4.0542e-02  eta: 1 day, 2:03:21  time: 1.6735  data_time: 0.7999  memory: 12670  grad_norm: 0.3629  loss: 0.1332  top1_acc: 0.8889  top5_acc: 1.0000  loss_cls: 0.1332
+2024/05/18 19:55:32 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:55:32 - mmengine - INFO - Epoch(train) [276][75/75]  lr: 4.0478e-02  eta: 1 day, 2:00:49  time: 1.6594  data_time: 0.7960  memory: 12670  grad_norm: 0.2236  loss: 0.1297  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1297
+2024/05/18 19:57:41 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:57:41 - mmengine - INFO - Epoch(train) [277][75/75]  lr: 4.0414e-02  eta: 1 day, 1:58:13  time: 1.6782  data_time: 0.8157  memory: 12670  grad_norm: 0.2023  loss: 0.1291  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1291
+2024/05/18 19:59:51 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 19:59:51 - mmengine - INFO - Epoch(train) [278][75/75]  lr: 4.0349e-02  eta: 1 day, 1:55:39  time: 1.6606  data_time: 0.7776  memory: 12670  grad_norm: 0.3072  loss: 0.1310  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1310
+2024/05/18 20:02:03 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:02:03 - mmengine - INFO - Epoch(train) [279][75/75]  lr: 4.0285e-02  eta: 1 day, 1:53:11  time: 1.6551  data_time: 0.7904  memory: 12670  grad_norm: 0.2132  loss: 0.1302  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1302
+2024/05/18 20:04:14 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:04:14 - mmengine - INFO - Epoch(train) [280][75/75]  lr: 4.0220e-02  eta: 1 day, 1:50:38  time: 1.6927  data_time: 0.8346  memory: 12670  grad_norm: 0.1691  loss: 0.1292  top1_acc: 0.8565  top5_acc: 1.0000  loss_cls: 0.1292
+2024/05/18 20:04:14 - mmengine - INFO - Saving checkpoint at 280 epochs
+2024/05/18 20:04:20 - mmengine - INFO - Epoch(val) [280][4/4]    acc/top1: 0.7402  acc/top5: 0.9902  acc/mean1: 0.7092  data_time: 0.9015  time: 1.2202
+2024/05/18 20:06:33 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:06:33 - mmengine - INFO - Epoch(train) [281][75/75]  lr: 4.0155e-02  eta: 1 day, 1:48:11  time: 1.7055  data_time: 0.8441  memory: 12670  grad_norm: 0.2330  loss: 0.1299  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1299
+2024/05/18 20:08:44 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:08:44 - mmengine - INFO - Epoch(train) [282][75/75]  lr: 4.0090e-02  eta: 1 day, 1:45:40  time: 1.7107  data_time: 0.8483  memory: 12670  grad_norm: 0.1974  loss: 0.1290  top1_acc: 0.8657  top5_acc: 1.0000  loss_cls: 0.1290
+2024/05/18 20:10:56 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:10:56 - mmengine - INFO - Epoch(train) [283][75/75]  lr: 4.0024e-02  eta: 1 day, 1:43:12  time: 1.6957  data_time: 0.8358  memory: 12670  grad_norm: 0.1960  loss: 0.1297  top1_acc: 0.8287  top5_acc: 1.0000  loss_cls: 0.1297
+2024/05/18 20:13:06 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:13:06 - mmengine - INFO - Epoch(train) [284][75/75]  lr: 3.9959e-02  eta: 1 day, 1:40:40  time: 1.6971  data_time: 0.8366  memory: 12670  grad_norm: 0.2415  loss: 0.1297  top1_acc: 0.8935  top5_acc: 1.0000  loss_cls: 0.1297
+2024/05/18 20:15:17 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:15:17 - mmengine - INFO - Epoch(train) [285][75/75]  lr: 3.9893e-02  eta: 1 day, 1:38:07  time: 1.6730  data_time: 0.8095  memory: 12670  grad_norm: 0.2627  loss: 0.1320  top1_acc: 0.8796  top5_acc: 1.0000  loss_cls: 0.1320
+2024/05/18 20:17:29 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:17:29 - mmengine - INFO - Epoch(train) [286][75/75]  lr: 3.9828e-02  eta: 1 day, 1:35:39  time: 1.7055  data_time: 0.8453  memory: 12670  grad_norm: 0.2095  loss: 0.1292  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1292
+2024/05/18 20:19:41 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:19:41 - mmengine - INFO - Epoch(train) [287][75/75]  lr: 3.9762e-02  eta: 1 day, 1:33:12  time: 1.7184  data_time: 0.8594  memory: 12670  grad_norm: 0.1909  loss: 0.1301  top1_acc: 0.8056  top5_acc: 1.0000  loss_cls: 0.1301
+2024/05/18 20:21:51 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:21:51 - mmengine - INFO - Epoch(train) [288][75/75]  lr: 3.9696e-02  eta: 1 day, 1:30:40  time: 1.7117  data_time: 0.8514  memory: 12670  grad_norm: 0.2066  loss: 0.1307  top1_acc: 0.8657  top5_acc: 1.0000  loss_cls: 0.1307
+2024/05/18 20:24:03 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:24:03 - mmengine - INFO - Epoch(train) [289][75/75]  lr: 3.9629e-02  eta: 1 day, 1:28:13  time: 1.7062  data_time: 0.8491  memory: 12670  grad_norm: 0.1602  loss: 0.1277  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1277
+2024/05/18 20:26:15 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:26:15 - mmengine - INFO - Epoch(train) [290][75/75]  lr: 3.9563e-02  eta: 1 day, 1:25:45  time: 1.6878  data_time: 0.8233  memory: 12670  grad_norm: 0.1990  loss: 0.1312  top1_acc: 0.8889  top5_acc: 1.0000  loss_cls: 0.1312
+2024/05/18 20:26:15 - mmengine - INFO - Saving checkpoint at 290 epochs
+2024/05/18 20:26:22 - mmengine - INFO - Epoch(val) [290][4/4]    acc/top1: 0.7181  acc/top5: 0.9804  acc/mean1: 0.6935  data_time: 0.9552  time: 1.2685
+2024/05/18 20:28:32 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:28:32 - mmengine - INFO - Epoch(train) [291][75/75]  lr: 3.9496e-02  eta: 1 day, 1:23:14  time: 1.6727  data_time: 0.8132  memory: 12670  grad_norm: 0.2100  loss: 0.1295  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1295
+2024/05/18 20:30:46 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:30:46 - mmengine - INFO - Epoch(train) [292][75/75]  lr: 3.9430e-02  eta: 1 day, 1:20:51  time: 1.7136  data_time: 0.8511  memory: 12670  grad_norm: 0.1905  loss: 0.1288  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1288
+2024/05/18 20:32:55 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:32:55 - mmengine - INFO - Epoch(train) [293][75/75]  lr: 3.9363e-02  eta: 1 day, 1:18:18  time: 1.6833  data_time: 0.8186  memory: 12670  grad_norm: 0.1779  loss: 0.1291  top1_acc: 0.8426  top5_acc: 1.0000  loss_cls: 0.1291
+2024/05/18 20:33:40 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:35:05 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:35:05 - mmengine - INFO - Epoch(train) [294][75/75]  lr: 3.9296e-02  eta: 1 day, 1:15:47  time: 1.6598  data_time: 0.7965  memory: 12670  grad_norm: 0.2081  loss: 0.1298  top1_acc: 0.8426  top5_acc: 1.0000  loss_cls: 0.1298
+2024/05/18 20:37:16 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:37:16 - mmengine - INFO - Epoch(train) [295][75/75]  lr: 3.9228e-02  eta: 1 day, 1:13:17  time: 1.6811  data_time: 0.7993  memory: 12670  grad_norm: 0.2004  loss: 0.1285  top1_acc: 0.8796  top5_acc: 1.0000  loss_cls: 0.1285
+2024/05/18 20:39:28 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:39:28 - mmengine - INFO - Epoch(train) [296][75/75]  lr: 3.9161e-02  eta: 1 day, 1:10:49  time: 1.6936  data_time: 0.8340  memory: 12670  grad_norm: 0.1697  loss: 0.1292  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1292
+2024/05/18 20:41:38 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:41:38 - mmengine - INFO - Epoch(train) [297][75/75]  lr: 3.9094e-02  eta: 1 day, 1:08:18  time: 1.6502  data_time: 0.7865  memory: 12670  grad_norm: 0.2774  loss: 0.1329  top1_acc: 0.8611  top5_acc: 1.0000  loss_cls: 0.1329
+2024/05/18 20:43:49 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:43:49 - mmengine - INFO - Epoch(train) [298][75/75]  lr: 3.9026e-02  eta: 1 day, 1:05:49  time: 1.6633  data_time: 0.7997  memory: 12670  grad_norm: 0.1916  loss: 0.1280  top1_acc: 0.8426  top5_acc: 1.0000  loss_cls: 0.1280
+2024/05/18 20:45:59 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:45:59 - mmengine - INFO - Epoch(train) [299][75/75]  lr: 3.8958e-02  eta: 1 day, 1:03:19  time: 1.6885  data_time: 0.8296  memory: 12670  grad_norm: 0.1872  loss: 0.1300  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1300
+2024/05/18 20:48:11 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:48:11 - mmengine - INFO - Epoch(train) [300][75/75]  lr: 3.8890e-02  eta: 1 day, 1:00:52  time: 1.6816  data_time: 0.8203  memory: 12670  grad_norm: 0.2152  loss: 0.1294  top1_acc: 0.8657  top5_acc: 1.0000  loss_cls: 0.1294
+2024/05/18 20:48:11 - mmengine - INFO - Saving checkpoint at 300 epochs
+2024/05/18 20:48:17 - mmengine - INFO - Epoch(val) [300][4/4]    acc/top1: 0.7292  acc/top5: 0.9779  acc/mean1: 0.6941  data_time: 0.9167  time: 1.2284
+2024/05/18 20:50:28 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:50:28 - mmengine - INFO - Epoch(train) [301][75/75]  lr: 3.8822e-02  eta: 1 day, 0:58:23  time: 1.7032  data_time: 0.8415  memory: 12670  grad_norm: 0.2589  loss: 0.1307  top1_acc: 0.8657  top5_acc: 1.0000  loss_cls: 0.1307
+2024/05/18 20:52:40 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:52:40 - mmengine - INFO - Epoch(train) [302][75/75]  lr: 3.8754e-02  eta: 1 day, 0:55:58  time: 1.6884  data_time: 0.8281  memory: 12670  grad_norm: 0.2447  loss: 0.1301  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1301
+2024/05/18 20:54:50 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:54:50 - mmengine - INFO - Epoch(train) [303][75/75]  lr: 3.8685e-02  eta: 1 day, 0:53:27  time: 1.6754  data_time: 0.8074  memory: 12670  grad_norm: 0.1969  loss: 0.1290  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1290
+2024/05/18 20:57:01 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:57:01 - mmengine - INFO - Epoch(train) [304][75/75]  lr: 3.8617e-02  eta: 1 day, 0:50:57  time: 1.7099  data_time: 0.8502  memory: 12670  grad_norm: 0.2097  loss: 0.1291  top1_acc: 0.8843  top5_acc: 1.0000  loss_cls: 0.1291
+2024/05/18 20:59:10 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 20:59:10 - mmengine - INFO - Epoch(train) [305][75/75]  lr: 3.8548e-02  eta: 1 day, 0:48:27  time: 1.6739  data_time: 0.8171  memory: 12670  grad_norm: 0.1979  loss: 0.1294  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1294
+2024/05/18 21:01:19 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 21:01:19 - mmengine - INFO - Epoch(train) [306][75/75]  lr: 3.8479e-02  eta: 1 day, 0:45:54  time: 1.6475  data_time: 0.7804  memory: 12670  grad_norm: 0.1733  loss: 0.1293  top1_acc: 0.9028  top5_acc: 1.0000  loss_cls: 0.1293
+2024/05/18 21:02:48 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 21:03:31 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 21:03:31 - mmengine - INFO - Epoch(train) [307][75/75]  lr: 3.8410e-02  eta: 1 day, 0:43:27  time: 1.6876  data_time: 0.8254  memory: 12670  grad_norm: 0.2084  loss: 0.1285  top1_acc: 0.8519  top5_acc: 1.0000  loss_cls: 0.1285
+2024/05/18 21:05:41 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 21:05:41 - mmengine - INFO - Epoch(train) [308][75/75]  lr: 3.8341e-02  eta: 1 day, 0:40:58  time: 1.6994  data_time: 0.8393  memory: 12670  grad_norm: 0.2190  loss: 0.1293  top1_acc: 0.8704  top5_acc: 1.0000  loss_cls: 0.1293
+2024/05/18 21:07:52 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 21:07:52 - mmengine - INFO - Epoch(train) [309][75/75]  lr: 3.8272e-02  eta: 1 day, 0:38:30  time: 1.6855  data_time: 0.8223  memory: 12670  grad_norm: 0.1684  loss: 0.1280  top1_acc: 0.8750  top5_acc: 1.0000  loss_cls: 0.1280
+2024/05/18 21:10:03 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 21:10:03 - mmengine - INFO - Epoch(train) [310][75/75]  lr: 3.8203e-02  eta: 1 day, 0:36:04  time: 1.6730  data_time: 0.8112  memory: 12670  grad_norm: 0.1639  loss: 0.1259  top1_acc: 0.8843  top5_acc: 1.0000  loss_cls: 0.1259
+2024/05/18 21:10:03 - mmengine - INFO - Saving checkpoint at 310 epochs
+2024/05/18 21:10:09 - mmengine - INFO - Epoch(val) [310][4/4]    acc/top1: 0.7439  acc/top5: 0.9841  acc/mean1: 0.7085  data_time: 0.8486  time: 1.1647
+2024/05/18 21:12:20 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 21:12:20 - mmengine - INFO - Epoch(train) [311][75/75]  lr: 3.8133e-02  eta: 1 day, 0:33:36  time: 1.7268  data_time: 0.8686  memory: 12670  grad_norm: 0.1821  loss: 0.1282  top1_acc: 0.8796  top5_acc: 1.0000  loss_cls: 0.1282
+2024/05/18 21:14:33 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 21:14:33 - mmengine - INFO - Epoch(train) [312][75/75]  lr: 3.8063e-02  eta: 1 day, 0:31:12  time: 1.6830  data_time: 0.8189  memory: 12670  grad_norm: 0.2545  loss: 0.1293  top1_acc: 0.8426  top5_acc: 1.0000  loss_cls: 0.1293
+2024/05/18 21:16:43 - mmengine - INFO - Exp name: ciis_not-multi_no-berdiri_20240518_092219
+2024/05/18 21:16:43 - mmengine - INFO - Epoch(train) [313][75/75]  lr: 3.7994e-02  eta: 1 day, 0:28:44  time: 1.6817  data_time: 0.8217  memory: 12670  grad_norm: 6.3034  loss: 1.1507  top1_acc: 0.4167  top5_acc: 0.9537  loss_cls: 1.1507
