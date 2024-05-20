@@ -43,9 +43,11 @@ train_pipeline = [
         use_score=True,
         with_kp=True,
         with_limb=False),
-    dict(type='FormatShape', input_format='NCTHW'),
-    dict(type='Collect', keys=['imgs', 'label'], meta_keys=[]),
-    dict(type='ToTensor', keys=['imgs', 'label'])
+    # dict(type='FormatShape', input_format='NCTHW'),
+    dict(type='FormatShape', input_format='NCTHW_Heatmap'),  # 'NCTHW', 'NCHW', 'NCTHW_Heatmap', 'NPTCHW'
+    # dict(type='Collect', keys=['imgs', 'label'], meta_keys=[]),
+    # dict(type='ToTensor', keys=['imgs', 'label'])
+    dict(type='PackActionInputs')
 ]
 val_pipeline = [
     dict(type='UniformSampleFrames', clip_len=48, num_clips=1, test_mode=True),
@@ -59,9 +61,11 @@ val_pipeline = [
         use_score=True,
         with_kp=True,
         with_limb=False),
-    dict(type='FormatShape', input_format='NCTHW'),
-    dict(type='Collect', keys=['imgs', 'label'], meta_keys=[]),
-    dict(type='ToTensor', keys=['imgs'])
+    # dict(type='FormatShape', input_format='NCTHW'),
+    dict(type='FormatShape', input_format='NCTHW_Heatmap'),  # 'NCTHW', 'NCHW', 'NCTHW_Heatmap', 'NPTCHW'
+    # dict(type='Collect', keys=['imgs', 'label'], meta_keys=[]),
+    # dict(type='ToTensor', keys=['imgs'])
+    dict(type='PackActionInputs')
 ]
 test_pipeline = [
     dict(
@@ -79,10 +83,11 @@ test_pipeline = [
         double=True,
         left_kp=left_kp,
         right_kp=right_kp),
-    dict(type='FormatShape', input_format='NCTHW'),
-    dict(type='Collect', keys=['imgs', 'label'], meta_keys=[]),
-    dict(type='ToTensor', keys=['imgs'])
-    # dict(type='PackActionInputs')
+    # dict(type='FormatShape', input_format='NCTHW'),
+    dict(type='FormatShape', input_format='NCTHW_Heatmap'),  # 'NCTHW', 'NCHW', 'NCTHW_Heatmap', 'NPTCHW'
+    # dict(type='Collect', keys=['imgs', 'label'], meta_keys=[]),
+    # dict(type='ToTensor', keys=['imgs'])
+    dict(type='PackActionInputs')
 ]
 data = dict(
     videos_per_gpu=16, # default 16
