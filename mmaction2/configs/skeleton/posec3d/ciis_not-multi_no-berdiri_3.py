@@ -107,7 +107,7 @@ train_dataloader = dict(
             type=dataset_type,
             ann_file=ann_file,
             split='xsub_train',
-            pipeline=train_pipeline)))
+            pipeline=train_pipeline))#)
 
 
         # val_dataloader (Dataloader or dict, optional): A dataloader object or
