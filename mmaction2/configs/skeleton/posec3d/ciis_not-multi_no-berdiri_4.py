@@ -7,19 +7,18 @@ _base_ = '../../_base_/default_runtime.py'
 model = dict(
     type='Recognizer3D',
     backbone=dict(
-	"""SlowOnly backbone based on ResNet3dPathway.
-	Args:
-	    conv1_kernel (Sequence[int]): Kernel size of the first conv layer.
-		Defaults to ``(1, 7, 7)``.
-	    conv1_stride_t (int): Temporal stride of the first conv layer.
-		Defaults to 1.
-	    pool1_stride_t (int): Temporal stride of the first pooling layer.
-		Defaults to 1.
-	    inflate (Sequence[int]): Inflate dims of each block.
-		Defaults to ``(0, 0, 1, 1)``.
-	    with_pool2 (bool): Whether to use pool2. Defaults to False.
-	"""
         type='ResNet3dSlowOnly',
+	# SlowOnly backbone based on ResNet3dPathway.
+	# Args:
+	#     conv1_kernel (Sequence[int]): Kernel size of the first conv layer.
+	# 	Defaults to ``(1, 7, 7)``.
+	#     conv1_stride_t (int): Temporal stride of the first conv layer.
+	# 	Defaults to 1.
+	#     pool1_stride_t (int): Temporal stride of the first pooling layer.
+	# 	Defaults to 1.
+	#     inflate (Sequence[int]): Inflate dims of each block.
+	# 	Defaults to ``(0, 0, 1, 1)``.
+	#     with_pool2 (bool): Whether to use pool2. Defaults to False.
         depth=50,
         pretrained=None,  # can be changed for ciis
         in_channels=17,
@@ -34,26 +33,25 @@ model = dict(
         temporal_strides=(1, 1, 2),
         dilations=(1, 1, 1)),
     cls_head=dict(
-	"""Classification head for I3D.
-	Args:
-	    num_classes (int): Number of classes to be classified.
-	    in_channels (int): Number of channels in input feature.
-	    loss_cls (dict or ConfigDict): Config for building loss.
-		Default: dict(type='CrossEntropyLoss', loss_weight=1.0)
-	    spatial_type (str): Pooling type in spatial dimension. Default: 'avg'.
-	    dropout_ratio (float): Probability of dropout layer. Default: 0.5.
-	    init_std (float): Std value for Initiation. Default: 0.01.
-	    kwargs (dict, optional): Any keyword argument to be used to initialize
-		the head.
-	"""
         type='I3DHead',
+	# Classification head for I3D.
+	# Args:
+	#     num_classes (int): Number of classes to be classified.
+	#     in_channels (int): Number of channels in input feature.
+	#     loss_cls (dict or ConfigDict): Config for building loss.
+	# 	Default: dict(type='CrossEntropyLoss', loss_weight=1.0)
+	#     spatial_type (str): Pooling type in spatial dimension. Default: 'avg'.
+	#     dropout_ratio (float): Probability of dropout layer. Default: 0.5.
+	#     init_std (float): Std value for Initiation. Default: 0.01.
+	#     kwargs (dict, optional): Any keyword argument to be used to initialize
+	# 	the head.	
         in_channels=512,
         num_classes=9,  # changed for ciis  # Number of classes to be classified.
         dropout_ratio=0.5,
         spatial_type='avg',
         loss_cls=dict(type='CrossEntropyLoss', loss_weight=1.0),
         
-        """BaseHead Args: Base Classification head"""
+        # BaseHead Args: Base Classification head
         average_clips='prob'
         # multi_class=False  # multi_class (bool): Determines whether it is a multi-class
 			      # recognition dataset. Defaults to False.
