@@ -1,6 +1,6 @@
 _base_ = '../../_base_/default_runtime.py'
 
-# load_from='../../../../work_dirs/ciis_not-multi/epoch_240.pth'
+# load_from='../../../../work_dirs/ciis_not-multi_4-1/epoch_480.pth'
 
       # model (:obj:`torch.nn.Module` or dict): The model to be run. It can be
         #     a dict used for build a model.
@@ -36,7 +36,7 @@ model = dict(
 # work_dir = ""
 
 dataset_type = 'PoseDataset'
-ann_file = 'data/skeleton/ciis.pkl'  # changed for ciis
+ann_file = 'data/skeleton/ciis_0s7_v1.pkl'  # changed for ciis
 left_kp = [1, 3, 5, 7, 9, 11, 13, 15]
 right_kp = [2, 4, 6, 8, 10, 12, 14, 16]
 train_pipeline = [
@@ -158,7 +158,7 @@ val_evaluator = [dict(type='AccMetric')]
 test_evaluator = val_evaluator
 
 train_cfg = dict(
-    type='EpochBasedTrainLoop', max_epochs=480, val_begin=1, val_interval=1)
+    type='EpochBasedTrainLoop', max_epochs=960, val_begin=10, val_interval=10)
 
 
         # val_cfg (dict, optional): A dict to build a validation loop. If it does
@@ -196,7 +196,7 @@ param_scheduler = [
     dict(
         type='CosineAnnealingLR',
         eta_min=0,
-        T_max=480,
+        T_max=960,
         by_epoch=True,
         convert_to_iter_based=True)
 ]
