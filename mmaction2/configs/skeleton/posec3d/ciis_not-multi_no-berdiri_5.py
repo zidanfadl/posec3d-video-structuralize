@@ -222,16 +222,15 @@ test_cfg = dict(type='TestLoop')
         #     See :meth:`build_param_scheduler` for examples.
 param_scheduler = [
     dict(
-    '''Set the learning rate of each parameter group using a cosine annealing
-    schedule, where :math:`\eta_{max}` is set to the initial value and
-    :math:`T_{cur}` is the number of epochs since the last restart in SGDR.
-    
-    Stochastic Gradient Descent with Warm Restarts (SGDR): https://arxiv.org/abs/1608.03983
-    
-    Note that this only implements the cosine annealing part of SGDR, and not
-    the restarts.
-    '''
         type='CosineAnnealingLR',
+	# Set the learning rate of each parameter group using a cosine annealing
+	# schedule, where :math:`\eta_{max}` is set to the initial value and
+	# :math:`T_{cur}` is the number of epochs since the last restart in SGDR.
+
+	# Stochastic Gradient Descent with Warm Restarts (SGDR): https://arxiv.org/abs/1608.03983
+	    
+	# Note that this only implements the cosine annealing part of SGDR, and not
+	# the restarts.
         eta_min=0,
         T_max=320,  # https://www.youtube.com/watch?v=WgwBRqhdIrQ&t=468s
         by_epoch=True,
