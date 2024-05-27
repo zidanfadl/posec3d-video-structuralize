@@ -186,7 +186,7 @@ val_evaluator = [dict(type='AccMetric')]
 test_evaluator = val_evaluator
 
 train_cfg = dict(
-    type='EpochBasedTrainLoop', max_epochs=320, val_begin=10, val_interval=10)
+    type='EpochBasedTrainLoop', max_epochs=1600, val_begin=10, val_interval=10)
 
 
         # val_cfg (dict, optional): A dict to build a validation loop. If it does
@@ -232,7 +232,7 @@ param_scheduler = [
 	# Note that this only implements the cosine annealing part of SGDR, and not
 	# the restarts.
         eta_min=0,
-        T_max=320,  # https://www.youtube.com/watch?v=WgwBRqhdIrQ&t=468s
+        T_max=1600,  # https://www.youtube.com/watch?v=WgwBRqhdIrQ&t=468s
         by_epoch=True,
         convert_to_iter_based=True)
 ]
@@ -246,7 +246,7 @@ param_scheduler = [
         #     AmpOptimizerWrapper. See :meth:`build_optim_wrapper` for
         #     examples. Defaults to None.
 optim_wrapper = dict(
-    optimizer=dict(type='SGD', lr=0.05, momentum=0.9, weight_decay=0.0001),
+    optimizer=dict(type='SGD', lr=0.075, momentum=0.9, weight_decay=0.0001),
     clip_grad=dict(max_norm=40, norm_type=2))
 
 
