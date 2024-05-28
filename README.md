@@ -204,6 +204,4 @@ pip uninstall ffmpeg
 pip install moviepy --upgrade --force-reinstall
 ```
 ## To Do
-- mmaction2/demo/visualize_heatmap_volume.ipynb
-- training video structuralize
-- add hash_id to .pth file using publish_model.ipynb
+- 
