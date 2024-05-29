@@ -231,7 +231,7 @@ param_scheduler = [
 	    
 	# Note that this only implements the cosine annealing part of SGDR, and not
 	# the restarts.
-        eta_min=0.3,
+        eta_min=0.03,
         T_max=2240,  # https://www.youtube.com/watch?v=WgwBRqhdIrQ&t=468s
         by_epoch=True,
         convert_to_iter_based=True)
