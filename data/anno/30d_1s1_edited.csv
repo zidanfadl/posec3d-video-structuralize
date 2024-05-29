@@ -67,7 +67,7 @@ berjalan,202.001
 berjalan,206.001
 berjalan,206.002
 berjalan,210.001
-berjalan,210.002
+none,210.002
 berjalan,214.001
 berjalan,214.002
 berjalan,218.001
@@ -89,13 +89,13 @@ berjalan,246.002
 berjalan,250.001
 berjalan,250.002
 berjalan,254.001
-berjalan,254.002
-berjalan,258.001
-berjalan,258.002
-none,262.001
+none,254.002
+none,258.001
+none,258.002
+berjalan,262.001
 berjalan,262.002
 none,266.001
-berjalan,266.002
+none,266.002
 berjalan,270.001
 berjongkok,270.002
 berjalan,274.001
@@ -104,30 +104,30 @@ berjalan,278.001
 berjongkok,278.002
 berjalan,282.001
 berjongkok,282.002
-berjalan,286.001
+berdiri,286.001
 berjongkok,286.002
 berjongkok,290.001
-berjalan,290.002
+berdiri,290.002
 berjongkok,294.001
-berjalan,294.002
-berjalan,298.001
+none,294.002
+none,298.001
 berjongkok,298.002
 berjalan,302.001
 berjongkok,302.002
 berjalan,306.001
 berjongkok,306.002
-berjalan,310.001
+berjongkok,310.001
 berjalan,310.002
 berjalan,314.001
 berjongkok,314.002
 berjalan,318.001
 berjongkok,318.002
 berjongkok,322.001
-berjalan,322.002
+none,322.002
 berjongkok,326.001
-berjalan,326.002
+none,326.002
 berjongkok,330.001
-berjalan,330.002
+none,330.002
 berjongkok,334.001
 berjongkok,338.001
 berjongkok,342.001
@@ -138,53 +138,53 @@ berjongkok,358.001
 berjongkok,362.001
 berjongkok,366.001
 berjongkok,370.001
-berjalan,370.002
+none,370.002
 berjongkok,374.001
-berjalan,374.002
-berjalan,378.001
+none,374.002
+none,378.001
 berjongkok,378.002
 berjalan,382.001
 berjongkok,382.002
 berjalan,386.001
 berjongkok,386.002
-berjalan,390.001
+none,390.001
 berjongkok,390.002
 berjalan,394.001
 berjongkok,394.002
 berjalan,398.001
 berjongkok,398.002
 berjongkok,402.001
-berjongkok,402.002
-berjalan,406.001
+none,402.002
+none,406.001
 berjongkok,406.002
 berjalan,410.001
 berjongkok,410.002
-berjalan,414.001
+none,414.001
 berjongkok,414.002
-berjalan,418.001
+none,418.001
 berjongkok,418.002
 berjalan,422.001
 berjongkok,422.002
 berjalan,426.001
 berjongkok,426.002
-berjalan,430.001
+none,430.001
 berjongkok,430.002
 berjalan,434.001
 berjongkok,434.002
 berjalan,438.001
 berjongkok,438.002
-berjalan,442.001
+none,442.001
 berjongkok,442.002
 berjalan,446.001
 berjongkok,446.002
 berjalan,450.001
 berjongkok,450.002
 berjongkok,454.001
-berjalan,454.002
+none,454.002
 berjongkok,458.001
-berjalan,458.002
+none,458.002
 berjongkok,462.001
-berjalan,462.002
+none,462.002
 berjongkok,466.001
 berjalan,466.002
 berjalan,470.001
@@ -193,15 +193,15 @@ berjalan,474.001
 berjongkok,474.002
 berjalan,478.001
 berjongkok,478.002
-berjalan,482.001
+none,482.001
 berjongkok,482.002
 berjalan,486.001
-berjongkok,486.002
-berjalan,490.001
-berjalan,490.002
-berjalan,494.001
+none,486.002
+none,490.001
+none,490.002
+berdiri,494.001
 none,494.002
-berjalan,498.001
+berdiri,498.001
 berjongkok,498.002
 berjalan,502.001
 berjongkok,502.002
@@ -209,11 +209,11 @@ berjalan,506.001
 berjongkok,506.002
 berjalan,510.001
 berjongkok,510.002
-berjalan,514.001
+none,514.001
 berjongkok,514.002
 berjalan,518.001
 berjongkok,518.002
-berjalan,522.001
+none,522.001
 berjongkok,522.002
 berjalan,526.001
 berjongkok,526.002
@@ -224,7 +224,7 @@ berjongkok,534.002
 berjalan,538.001
 berjongkok,538.002
 berjalan,542.001
-berjongkok,542.002
+none,542.002
 berjalan,546.001
 berjongkok,546.002
 berjalan,550.001
@@ -235,32 +235,32 @@ berjalan,558.001
 berjongkok,558.002
 berjongkok,562.001
 berjalan,562.002
-berjalan,566.001
+none,566.001
 berjongkok,566.002
 berjalan,570.001
 berjongkok,570.002
-berjalan,574.001
+none,574.001
 berjongkok,574.002
 berjalan,578.001
 berjongkok,578.002
 berjalan,582.001
 berjongkok,582.002
 berjongkok,586.001
-berjalan,586.002
+none,586.002
 berjongkok,590.001
-berjalan,590.002
+none,590.002
 berjongkok,594.001
 berjongkok,598.001
 berjongkok,602.001
 berjongkok,606.001
 berjongkok,610.001
 berjongkok,614.001
-berjalan,614.002
+none,614.002
 berjalan,618.001
 berjongkok,618.002
 berjalan,622.001
 berjongkok,622.002
-berjalan,626.001
+none,626.001
 berjongkok,626.002
 berjalan,630.001
 berjongkok,630.002
@@ -284,7 +284,7 @@ berjongkok,666.001
 berjalan,666.002
 berjongkok,670.001
 berjalan,670.002
-berjalan,674.001
+none,674.001
 berjongkok,674.002
 berjongkok,678.001
 berjalan,678.002
@@ -292,42 +292,42 @@ berjalan,682.001
 berjongkok,682.002
 berjongkok,686.001
 berjalan,686.002
-berjalan,690.001
+none,690.001
 berjalan,694.001
 berjongkok,694.002
 berjalan,698.001
 berjongkok,698.002
 berjongkok,702.001
 berjalan,702.002
-berjalan,706.001
+none,706.001
 berjongkok,706.002
-berjalan,710.001
+none,710.001
 berjongkok,710.002
 berjalan,714.001
 berjongkok,714.002
 berjalan,718.001
 berjongkok,718.002
-berjalan,722.001
+berdiri,722.001
 berjongkok,722.002
-berjalan,726.001
+none,726.001
 berjongkok,726.002
 berjalan,730.001
 berjongkok,730.002
-berjalan,734.001
+none,734.001
 berjongkok,734.002
 berjongkok,738.001
 berjalan,738.002
-berjalan,742.001
+none,742.001
 berjongkok,742.002
 berjalan,746.001
 berjongkok,746.002
 berjalan,750.001
 berjongkok,750.002
 berjalan,754.001
-berjalan,758.001
+none,758.001
 berjalan,762.001
 berjongkok,762.002
-berjalan,766.001
+none,766.001
 berjongkok,766.002
 berjongkok,770.001
 berjalan,770.002
@@ -335,37 +335,37 @@ berjongkok,774.001
 berjalan,774.002
 berjalan,778.001
 berjongkok,778.002
-berjalan,782.001
+none,782.001
 berjongkok,782.002
-berjalan,786.001
+none,786.001
 berjongkok,786.002
 berjalan,790.001
 berjongkok,790.002
 berjalan,794.001
 berjongkok,794.002
-berjalan,798.001
+none,798.001
 berjongkok,798.002
-berjalan,802.001
+berdiri,802.001
 berjongkok,802.002
 berjongkok,806.001
-berjalan,806.002
-berjalan,810.001
+none,806.002
+none,810.001
 berjongkok,810.002
 berjalan,814.001
 berjongkok,814.002
-berjalan,818.001
+none,818.001
 berjongkok,818.002
 berjongkok,822.001
 berjalan,822.002
 berjalan,826.001
 berjongkok,826.002
-berjalan,830.001
+none,830.001
 berjongkok,830.002
-berjalan,834.001
+berdiri,834.001
 berjongkok,834.002
-berjalan,838.001
+none,838.001
 berjongkok,838.002
-berjalan,842.001
+none,842.001
 berjongkok,842.002
 berjalan,846.001
 berjongkok,846.002
@@ -373,35 +373,7 @@ berjalan,850.001
 berjongkok,850.002
 berjalan,854.001
 berjongkok,854.002
-berjalan,858.001
-none,858.002
-berjalan,862.001
-none,862.002
-none,810.001
-none,810.002
-none,814.001
-none,814.002
-none,818.001
-none,818.002
-none,822.001
-none,822.002
-none,826.001
-none,826.002
-none,830.001
-none,830.002
-none,834.001
-none,834.002
-none,838.001
-none,838.002
-none,842.001
-none,842.002
-none,846.001
-none,846.002
-none,850.001
-none,850.002
-none,854.001
-none,854.002
-none,858.001
+berdiri,858.001
 none,858.002
 none,862.001
 none,862.002
@@ -554,12 +526,12 @@ none,1270.001
 none,1270.002
 none,1274.001
 none,1274.002
-berdiri,1278.001
-merayap,1278.002
-merayap,1282.001
-berdiri,1282.002
-berdiri,1286.001
-merayap,1286.002
+none,1278.001
+none,1278.002
+none,1282.001
+none,1282.002
+none,1286.001
+none,1286.002
 merayap,1290.001
 berdiri,1290.002
 merayap,1294.001
@@ -1082,699 +1054,162 @@ none,2338.001
 none,2338.002
 none,2342.001
 none,2342.002
-membidik (l. pendek),2346.001
-berdiri,2346.001
+none,2346.001
 none,2346.002
 membidik (l. pendek),2350.001
-berdiri,2350.001
 none,2350.002
 membidik (l. pendek),2354.001
-berdiri,2354.001
 none,2354.002
 membidik (l. pendek),2358.001
-berdiri,2358.001
 membidik (l. pendek),2362.001
-berdiri,2362.001
 membidik (l. pendek),2366.001
-berdiri,2366.001
 none,2366.002
 membidik (l. pendek),2370.001
-berdiri,2370.001
-membidik (l. panjang),2370.002
-merayap,2370.002
 membidik (l. pendek),2374.001
-berdiri,2374.001
-membidik (l. panjang),2374.002
-merayap,2374.002
 membidik (l. pendek),2378.001
-berdiri,2378.001
-membidik (l. panjang),2378.002
-merayap,2378.002
 membidik (l. pendek),2382.001
-berdiri,2382.001
-membidik (l. panjang),2382.002
-merayap,2382.002
 membidik (l. pendek),2386.001
-berdiri,2386.001
-membidik (l. panjang),2386.002
-merayap,2386.002
 membidik (l. pendek),2390.001
-berdiri,2390.001
-membidik (l. panjang),2390.002
-merayap,2390.002
 membidik (l. pendek),2394.001
-berdiri,2394.001
-membidik (l. panjang),2394.002
-merayap,2394.002
 membidik (l. pendek),2398.001
-berdiri,2398.001
-membidik (l. panjang),2398.002
-merayap,398.002
 membidik (l. pendek),2402.001
-berdiri,2402.001
-membidik (l. panjang),2402.002
-merayap,2402.002
 membidik (l. pendek),2406.001
-berdiri,2406.001
-membidik (l. panjang),2406.002
-merayap,2406.002
 membidik (l. pendek),2410.001
-berdiri,2410.001
-membidik (l. panjang),2410.002
-merayap,2410.002
 membidik (l. pendek),2414.001
-berdiri,2414.001
-membidik (l. panjang),2414.002
-merayap,2414.002
-membidik (l. panjang),2418.001
-merayap,2418.001
 membidik (l. pendek),2418.002
-berdiri,2418.002
 membidik (l. pendek),2422.001
-berdiri,2422.001
-membidik (l. panjang),2422.002
-merayap,2422.002
 membidik (l. pendek),2426.001
-berdiri,2426.001
-membidik (l. panjang),2426.002
-merayap,2426.002
+none,2426.002
 membidik (l. pendek),2430.001
-berdiri,2430.001
-membidik (l. panjang),2430.002
-merayap,2430.002
+none,2430.002
 membidik (l. pendek),2434.001
-berdiri,2434.001
-membidik (l. panjang),2434.002
-merayap,2434.002
+none,2434.002
 membidik (l. pendek),2438.001
-berdiri,2438.001
-membidik (l. panjang),2438.002
-merayap,2438.002
+none,2438.002
 membidik (l. pendek),2442.001
-berdiri,2442.001
-membidik (l. panjang),2442.002
-merayap,2442.002
 membidik (l. pendek),2446.001
-berdiri,2446.001
-membidik (l. panjang),2446.002
-merayap,2446.002
 membidik (l. pendek),2450.001
-berdiri,2450.001
-membidik (l. panjang),2450.002
-merayap,2450.002
 membidik (l. pendek),2454.001
-berdiri,2454.001
-membidik (l. panjang),2454.002
-merayap,2454.002
 membidik (l. pendek),2458.001
-berdiri,2458.001
-membidik (l. panjang),2458.002
-merayap,2458.002
 membidik (l. pendek),2462.001
-berdiri,2462.001
-membidik (l. panjang),2462.002
-merayap,2462.002
 membidik (l. pendek),2466.001
-berdiri,2466.001
-membidik (l. panjang),2466.002
-merayap,2466.002
 membidik (l. pendek),2470.001
-berdiri,2470.001
-membidik (l. panjang),2470.002
-merayap,2470.002
-membidik (l. panjang),2474.001
-merayap,2474.001
-membidik (l. pendek),2474.002
-berdiri,2474.002
+membidik (l. pendek),2474.001
 membidik (l. pendek),2478.001
-berdiri,2478.001
-membidik (l. panjang),2478.002
-merayap,2478.002
 membidik (l. pendek),2482.001
-berdiri,2482.001
-membidik (l. panjang),2482.002
-merayap,2482.002
+none,2482.002
 membidik (l. pendek),2486.001
-berdiri,2486.001
 none,2486.002
 membidik (l. pendek),2490.001
-berdiri,2490.001
 none,2490.002
 membidik (l. pendek),2494.001
-berdiri,2494.001
 none,2494.002
 membidik (l. pendek),2498.001
-berdiri,2498.001
 none,2498.002
 none,2502.001
 membidik (l. pendek),2502.002
-berdiri,502.002
-membidik (l. panjang),2506.001
-merayap,2506.001
+none,2506.001
 membidik (l. pendek),2506.002
-berdiri,2506.002
 membidik (l. pendek),2510.001
-berdiri,2510.001
-membidik (l. panjang),2510.002
-merayap,2510.002
 membidik (l. pendek),2514.001
-berdiri,2514.001
-membidik (l. panjang),2514.002
-merayap,2514.002
 membidik (l. pendek),2518.001
-berdiri,2518.001
-membidik (l. panjang),2518.002
-merayap,2518.002
 membidik (l. pendek),2522.001
-berdiri,2522.001
-membidik (l. panjang),2522.002
-merayap,2522.002
 membidik (l. pendek),2526.001
-berdiri,2526.001
-membidik (l. panjang),2526.002
-merayap,2526.002
 membidik (l. pendek),2530.001
-berdiri,2530.001
-membidik (l. panjang),2530.002
-merayap,2530.002
 membidik (l. pendek),2534.001
-berdiri,2534.001
-membidik (l. panjang),2534.002
-merayap,2534.002
 membidik (l. pendek),2538.001
-berdiri,2538.001
-membidik (l. panjang),2538.002
-merayap,2538.002
 membidik (l. pendek),2542.001
-berdiri,2542.001
-membidik (l. panjang),2542.002
-merayap,2542.002
-membidik (l. panjang),2546.001
-merayap,2546.001
 membidik (l. pendek),2546.002
-berdiri,2546.002
 membidik (l. pendek),2550.001
-berdiri,2550.001
-membidik (l. panjang),2550.002
-merayap,2550.002
-membidik (l. pendek),2554.001
-berdiri,2554.001
-membidik (l. panjang),2554.002
-merayap,2554.002
-membidik (l. panjang),2558.001
-merayap,2558.001
-membidik (l. pendek),2558.002
-berdiri,2558.002
-membidik (l. pendek),2562.001
-berdiri,2562.001
-membidik (l. panjang),2562.002
-merayap,2562.002
-membidik (l. pendek),2566.001
-none,2566.002
-membidik (l. pendek),2570.001
-berdiri,2570.001
-none,2570.002
-none,2574.001
-none,2574.002
-none,2578.001
-none,2578.002
-membidik (l. panjang),2582.001
-berjongkok,2582.001
-none,2582.002
-membidik (l. panjang),2586.001
-berjongkok,2586.001
-membidik (l. pendek),2586.002
-berjalan,2586.002
-membidik (l. pendek),2590.001
-berjalan,2590.001
-membidik (l. panjang),2590.002
-berjongkok,2590.002
+none,2566.001
+none,2570.001
+berjongkok,2574.001
+berjongkok,2578.001
 membidik (l. pendek),2594.001
-berjalan,2594.001
-membidik (l. panjang),2594.002
-berjongkok,2594.002
 membidik (l. pendek),2598.001
-berjalan,2598.001
-membidik (l. panjang),2598.002
-berjongkok,2598.002
 membidik (l. pendek),2602.001
-berjalan,2602.001
-membidik (l. panjang),2602.002
-berjongkok,2602.002
 membidik (l. pendek),2606.001
-berjalan,2606.001
-membidik (l. panjang),2606.002
-berjongkok,2606.002
 membidik (l. pendek),2610.001
-berjalan,2610.001
-membidik (l. panjang),2610.002
-berjongkok,2610.002
-membidik (l. panjang),2614.001
-berjongkok,2614.001
 membidik (l. pendek),2614.002
-berjalan,2614.002
 membidik (l. pendek),2618.001
-berjalan,2618.001
-membidik (l. panjang),2618.002
-berjongkok,2618.002
 membidik (l. pendek),2622.001
-berjalan,2622.001
-membidik (l. panjang),2622.002
-berjongkok,2622.002
 membidik (l. pendek),2626.001
-berjalan,2626.001
-membidik (l. panjang),2626.002
-berjongkok,2626.002
 membidik (l. pendek),2630.001
-berjalan,2630.001
-membidik (l. panjang),2630.002
-berjongkok,2630.002
 membidik (l. pendek),2634.001
-berjalan,2634.001
-membidik (l. panjang),2634.002
-berjongkok,2634.002
 membidik (l. pendek),2638.001
-berjalan,2638.001
-membidik (l. panjang),2638.002
-berjongkok,2638.002
 membidik (l. pendek),2642.001
-berjalan,2642.001
-membidik (l. panjang),2642.002
-berjongkok,2642.002
 membidik (l. pendek),2646.001
-berjalan,2646.001
-membidik (l. panjang),2646.002
-berjongkok,2646.002
-membidik (l. panjang),2650.001
-berjongkok,2650.001
 membidik (l. pendek),2650.002
-berjalan,2650.002
 membidik (l. pendek),2654.001
-berjalan,2654.001
-membidik (l. panjang),2654.002
-berjongkok,2654.002
 membidik (l. pendek),2658.001
-berjalan,2658.001
-membidik (l. panjang),2658.002
-berjongkok,2658.002
 membidik (l. pendek),2662.001
-berjalan,2662.001
-membidik (l. panjang),2662.002
-berjongkok,2662.002
 membidik (l. pendek),2666.001
-berjalan,2666.001
-membidik (l. panjang),2666.002
-berjongkok,2666.002
 membidik (l. pendek),2670.001
-berjalan,2670.001
-membidik (l. panjang),2670.002
-berjongkok,2670.002
 membidik (l. pendek),2674.001
-berjalan,2674.001
-membidik (l. panjang),2674.002
-berjongkok,2674.002
 membidik (l. pendek),2678.001
-berjalan,2678.001
-membidik (l. panjang),2678.002
-berjongkok,2678.002
 membidik (l. pendek),2682.001
-berjalan,2682.001
-membidik (l. panjang),2682.002
-berjongkok,2682.002
-membidik (l. panjang),2686.001
-berjongkok,2686.001
 membidik (l. pendek),2686.002
-berjalan,2686.002
-membidik (l. panjang),2690.001
-berjongkok,2690.001
 membidik (l. pendek),2690.002
-berjalan,2690.002
-membidik (l. panjang),2694.001
-berjongkok,2694.001
 membidik (l. pendek),2694.002
-berjalan,2694.002
-membidik (l. pendek),2698.001
-berjalan,2698.001
+none,2698.001
 none,2698.002
-membidik (l. pendek),2702.001
-berjalan,2702.001
-membidik (l. panjang),2702.002
-membidik (l. pendek),2706.001
-berjalan,2706.001
+none,2702.001
+none,2702.002
 membidik (l. panjang),2706.002
-berjalan,2706.002
-membidik (l. pendek),2710.001
-berjalan,2710.001
 membidik (l. panjang),2710.002
-berjalan,2710.002
 membidik (l. panjang),2714.001
-berjalan,2714.001
-membidik (l. pendek),2714.002
-berjalan,2714.002
-membidik (l. pendek),2718.001
 membidik (l. panjang),2718.002
-berjalan,2718.002
 membidik (l. panjang),2722.001
-berjalan,2722.001
 none,2722.002
 membidik (l. panjang),2726.001
-berjalan,2726.001
 membidik (l. panjang),2730.001
-berjalan,2730.001
-membidik (l. panjang),2734.001
-berjalan,2734.001
-membidik (l. panjang),2738.001
-berjalan,2738.001
-membidik (l. pendek),2738.002
-berjongkok,2738.002
-membidik (l. panjang),2742.001
-berjalan,2742.001
-membidik (l. pendek),2742.002
-berjongkok,2742.002
-membidik (l. panjang),2746.001
-berjalan,2746.001
-membidik (l. pendek),2746.002
-berjongkok,2746.002
-membidik (l. panjang),2750.001
-berjalan,2750.001
-membidik (l. pendek),2750.002
-berjongkok,2750.002
-membidik (l. pendek),2754.001
-berjongkok,2754.001
-membidik (l. panjang),2754.002
-berjalan,2754.002
-membidik (l. pendek),2758.001
-berjongkok,2758.001
+none,2750.001
 membidik (l. panjang),2758.002
-berjalan,2758.002
-membidik (l. pendek),2762.001
-berjongkok,2762.001
 membidik (l. panjang),2762.002
-berjalan,2762.002
-membidik (l. pendek),2766.001
-berjongkok,2766.001
 membidik (l. panjang),2766.002
-berjalan,2766.002
-membidik (l. panjang),2770.001
-berjalan,2770.001
-membidik (l. pendek),2770.002
-berjongkok,2770.002
-membidik (l. panjang),2774.001
-berjalan,2774.001
-membidik (l. pendek),2774.002
-berjongkok,2774.002
-membidik (l. pendek),2778.001
-berjongkok,2778.001
-membidik (l. panjang),2778.002
-berjalan,2778.002
-membidik (l. panjang),2782.001
-berjalan,2782.001
-membidik (l. pendek),2782.002
-berjongkok,2782.002
-membidik (l. panjang),2786.001
-berjalan,2786.001
-membidik (l. pendek),2786.002
-berjongkok,2786.002
-membidik (l. panjang),2790.001
-berjalan,2790.001
-membidik (l. pendek),2790.002
-berjongkok,2790.002
 membidik (l. panjang),2794.001
-berjalan,2794.001
-membidik (l. pendek),2794.002
-berjongkok,2794.002
 membidik (l. panjang),2798.001
-berjalan,2798.001
-membidik (l. pendek),2798.002
-berjongkok,2798.002
 membidik (l. panjang),2802.001
-berjalan,2802.001
-membidik (l. pendek),2802.002
-berjongkok,2802.002
 membidik (l. panjang),2806.001
-berjalan,2806.001
-membidik (l. pendek),2806.002
-berjongkok,2806.002
-membidik (l. panjang),2810.001
-berjalan,2810.001
-membidik (l. pendek),2810.002
-berjongkok,2810.002
-membidik (l. panjang),2814.001
-berjalan,2814.001
-membidik (l. pendek),2814.002
-berjongkok,2814.002
-membidik (l. panjang),2818.001
-berjalan,2818.001
-membidik (l. pendek),2818.002
-berjongkok,2818.002
-membidik (l. pendek),2822.001
-berjongkok,2822.001
-membidik (l. panjang),2822.002
-berjalan,2822.002
-membidik (l. pendek),2826.001
-berjongkok,2826.001
-membidik (l. panjang),2826.002
-berjalan,2826.002
-membidik (l. pendek),2830.001
-berjongkok,2830.001
-membidik (l. panjang),2830.002
-berjalan,2830.002
-membidik (l. pendek),2834.001
-berjongkok,2834.001
-membidik (l. panjang),2834.002
-berjalan,2834.002
-membidik (l. pendek),2838.001
-berjongkok,2838.001
+none,2822.001
 membidik (l. panjang),2838.002
-berjalan,2838.002
-membidik (l. pendek),2842.001
-berjongkok,2842.001
 membidik (l. panjang),2842.002
-berjalan,2842.002
-membidik (l. pendek),2846.001
-berjongkok,2846.001
 membidik (l. panjang),2846.002
-berjalan,2846.002
-membidik (l. pendek),2850.001
-berjongkok,2850.001
-membidik (l. panjang),2850.002
-berjalan,2850.002
-membidik (l. pendek),2854.001
-berjongkok,2854.001
-membidik (l. panjang),2854.002
-berjalan,2854.002
-membidik (l. pendek),2858.001
-berjongkok,2858.001
-membidik (l. panjang),2858.002
-berjalan,2858.002
-membidik (l. pendek),2862.001
-berjongkok,2862.001
-membidik (l. panjang),2862.002
-berjalan,2862.002
-membidik (l. panjang),2866.001
-berjalan,2866.001
-membidik (l. pendek),2866.002
-berjongkok,2866.002
-membidik (l. panjang),2870.001
-berjalan,2870.001
-membidik (l. pendek),2870.002
-berjongkok,2870.002
 membidik (l. panjang),2874.001
-berjalan,2874.001
-membidik (l. pendek),2874.002
-berjongkok,2874.002
 membidik (l. panjang),2878.001
-berjalan,2878.001
-membidik (l. pendek),2878.002
-berjongkok,2878.002
 membidik (l. panjang),2882.001
-berjalan,2882.001
-membidik (l. pendek),2882.002
-berjongkok,2882.002
 membidik (l. panjang),2886.001
-berdiri,2886.001
-membidik (l. pendek),2886.002
-berjongkok,2886.002
 membidik (l. panjang),2890.001
-berdiri,2890.001
 none,2890.002
 none,2894.001
 membidik (l. panjang),2894.002
-berdiri,2894.002
 none,2898.001
 membidik (l. panjang),2898.002
-berdiri,2898.002
 none,2902.001
-membidik (l. panjang),2902.002
-berdiri,2902.002
-membidik (l. panjang),2906.001
-berdiri,2906.001
-membidik (l. pendek),2906.002
-merayap,2906.002
-membidik (l. panjang),2910.001
-berdiri,2910.001
-membidik (l. pendek),2910.002
-merayap,2910.002
 membidik (l. panjang),2914.001
-berdiri,2914.001
-membidik (l. pendek),2914.002
-merayap,2914.002
 membidik (l. panjang),2918.001
-berdiri,2918.001
-membidik (l. pendek),2918.002
-merayap,2918.002
 membidik (l. panjang),2922.001
-berdiri,2922.001
-membidik (l. pendek),2922.002
-merayap,2922.002
 membidik (l. panjang),2926.001
-berdiri,2926.001
-membidik (l. pendek),2926.002
-merayap,2926.002
 membidik (l. panjang),2930.001
-berdiri,2930.001
-membidik (l. pendek),2930.002
-merayap,2930.002
-membidik (l. panjang),2934.001
-berdiri,2934.001
-membidik (l. pendek),2934.002
-merayap,2934.002
-membidik (l. panjang),2938.001
-berdiri,2938.001
-membidik (l. pendek),2938.002
-merayap,2938.002
-membidik (l. pendek),2942.001
-merayap,2942.001
-membidik (l. panjang),2942.002
-berdiri,2942.002
-membidik (l. pendek),2946.001
-merayap,2946.001
-membidik (l. panjang),2946.002
-berdiri,2946.002
 membidik (l. panjang),2950.001
-berdiri,2950.001
-membidik (l. pendek),2950.002
-merayap,2950.002
 membidik (l. panjang),2954.001
-berdiri,2954.001
-membidik (l. pendek),2954.002
-merayap,2954.002
 membidik (l. panjang),2958.001
-berdiri,2958.001
-membidik (l. pendek),2958.002
-merayap,2958.002
-membidik (l. pendek),2962.001
-merayap,2962.001
 membidik (l. panjang),2962.002
-berdiri,2962.002
 membidik (l. panjang),2966.001
-berdiri,2966.001
-membidik (l. pendek),2966.002
-merayap,2966.002
-membidik (l. pendek),2970.001
-merayap,2970.001
 membidik (l. panjang),2970.002
-berdiri,2970.002
-membidik (l. pendek),2974.001
-merayap,2974.001
-membidik (l. panjang),2974.002
-berdiri,2974.002
-membidik (l. pendek),2978.001
-merayap,2978.001
-membidik (l. panjang),2978.002
-berdiri,2978.002
-membidik (l. pendek),2982.001
-merayap,2982.001
-membidik (l. panjang),2982.002
-berdiri,2982.002
-membidik (l. panjang),2986.001
-berdiri,2986.001
-membidik (l. pendek),2986.002
-merayap,2986.002
-membidik (l. pendek),2990.001
-merayap,2990.001
-membidik (l. panjang),2990.002
-berdiri,2990.002
-membidik (l. pendek),2994.001
-merayap,2994.001
-membidik (l. panjang),2994.002
-berdiri,2994.002
-membidik (l. pendek),2998.001
-merayap,2998.001
 membidik (l. panjang),2998.002
-berdiri,2998.002
-membidik (l. pendek),3002.001
-merayap,3002.001
 membidik (l. panjang),3002.002
-berdiri,3002.002
-membidik (l. pendek),3006.001
-merayap,3006.001
 membidik (l. panjang),3006.002
-berdiri,3006.002
-membidik (l. pendek),3010.001
-merayap,3010.001
-membidik (l. panjang),3010.002
-berdiri,3010.002
-membidik (l. pendek),3014.001
-merayap,3014.001
-membidik (l. panjang),3014.002
-berdiri,3014.002
-membidik (l. panjang),3018.001
-berdiri,3018.001
-membidik (l. pendek),3018.002
-merayap,3018.002
-membidik (l. pendek),3022.001
-merayap,3022.001
-membidik (l. panjang),3022.002
-berdiri,3022.002
-membidik (l. panjang),3026.001
-berdiri,3026.001
-membidik (l. pendek),3026.002
-merayap,3026.002
-membidik (l. panjang),3030.001
-berdiri,3030.001
-membidik (l. pendek),3030.002
-merayap,3030.002
-membidik (l. pendek),3034.001
-merayap,3034.001
-membidik (l. panjang),3034.002
-berdiri,3034.002
-membidik (l. pendek),3038.001
-merayap,3038.001
 membidik (l. panjang),3038.002
-berdiri,3038.002
-membidik (l. pendek),3042.001
-merayap,3042.001
 membidik (l. panjang),3042.002
-berdiri,3042.002
-membidik (l. pendek),3046.001
-merayap,3046.001
 membidik (l. panjang),3046.002
-berdiri,3046.002
-membidik (l. panjang),3050.001
-berdiri,3050.001
-membidik (l. pendek),3050.002
-merayap,3050.002
-membidik (l. panjang),3054.001
-berdiri,3054.001
-membidik (l. pendek),3054.002
-merayap,3054.002
-membidik (l. panjang),3058.001
-berdiri,3058.001
-membidik (l. pendek),3058.002
-merayap,3058.002
 membidik (l. panjang),3062.001
-berdiri,3062.001
-membidik (l. pendek),3062.002
-merayap,3062.002
 membidik (l. panjang),3066.001
-berdiri,3066.001
-membidik (l. pendek),3066.002
-merayap,3066.002
-none,3070.001
+none,3066.002
+membidik (l. panjang),3070.001
 none,3070.002
 none,3074.001
-none,3074.002
+membidik (l. panjang),3074.002
 none,3078.001
 none,3078.002
 none,3082.001
@@ -1946,278 +1381,154 @@ none,3426.001
 none,3426.002
 none,3430.001
 none,3430.002
-menusuk,3434.001
-berdiri,3434.002
-berdiri,3438.001
+none,3434.001
+none,3434.002
 menusuk,3438.002
-berdiri,3442.001
-menusuk,3442.002
-menusuk,3446.001
-berdiri,3446.002
 menusuk,3450.001
-berdiri,3450.002
-menusuk,3454.001
-berdiri,3454.002
-berdiri,3458.001
 menusuk,3458.002
-menusuk,3462.001
-berdiri,3462.002
-berdiri,3466.001
-menusuk,3466.002
 menusuk,3470.001
-berdiri,3470.002
-berdiri,3474.001
-menusuk,3474.002
-berdiri,3478.001
-menusuk,3478.002
-berdiri,3482.001
 menusuk,3482.002
-menusuk,3486.001
-berdiri,3486.002
-berdiri,3490.001
-menusuk,3490.002
 menusuk,3494.001
-berdiri,3494.002
-menusuk,3498.001
-berdiri,3498.002
-menusuk,3502.001
-berdiri,3502.002
 menusuk,3506.001
-berdiri,3506.002
-menusuk,3510.001
-berdiri,3510.002
-menusuk,3514.001
-berdiri,3514.002
 menusuk,3518.001
-berdiri,3518.002
-menusuk,3522.001
-berdiri,3522.002
-menusuk,3526.001
-berdiri,3526.002
 menusuk,3530.001
-berdiri,3530.002
-berdiri,3534.001
-menusuk,3534.002
-menusuk,3538.001
-berdiri,3538.002
-berdiri,3542.001
 menusuk,3542.002
-berdiri,3546.001
-menusuk,3546.002
-berdiri,3550.001
-menusuk,3550.002
-berdiri,3554.001
 menusuk,3554.002
-menusuk,3558.001
-berdiri,3558.002
 menusuk,3562.001
-berdiri,3562.002
 menusuk,3566.001
-berdiri,3566.002
-menusuk,3570.001
-berdiri,3570.002
 menusuk,3574.001
-berdiri,3574.002
 menusuk,3578.001
-berdiri,3578.002
-menusuk,3582.001
-berdiri,3582.002
 menusuk,3586.001
-berdiri,3586.002
-menusuk,3590.001
-berdiri,3590.002
-menusuk,3594.001
-berdiri,3594.002
-berdiri,3598.001
 menusuk,3598.002
-menusuk,3602.001
-berdiri,3602.002
-menusuk,3606.001
-berdiri,3606.002
 menusuk,3610.001
-berdiri,3610.002
-menusuk,3614.001
-berdiri,3614.002
-berdiri,3618.001
-menusuk,3618.002
-menusuk,3622.001
-berdiri,3622.002
-berdiri,3626.001
-berdiri,3626.002
-berdiri,3630.001
-berdiri,3630.002
-berdiri,3634.001
-berdiri,3634.002
-berdiri,3638.001
-berdiri,3638.002
-berdiri,3642.001
-berdiri,3642.002
-berdiri,3646.001
-berdiri,3646.002
-berdiri,3650.001
-berdiri,3650.002
-menusuk,3654.001
-berdiri,3654.002
-menusuk,3658.001
-berdiri,3658.002
-menusuk,3662.001
-berdiri,3662.002
+none,3614.001
+none,3614.002
+none,3618.001
+none,3618.002
+none,3622.001
+none,3622.002
+none,3626.001
+none,3626.002
+none,3630.001
+none,3630.002
+none,3634.001
+none,3634.002
+none,3638.001
+none,3638.002
+none,3642.001
+none,3642.002
+none,3646.001
+none,3646.002
+none,3650.001
+none,3650.002
+none,3654.001
+none,3654.002
+none,3658.001
+none,3658.002
+none,3662.001
+none,3662.002
 menusuk,3666.001
-berdiri,3666.002
-menusuk,3670.001
-menusuk,3674.001
+none,3666.002
+none,3670.001
+none,3674.001
 menusuk,3678.001
-berdiri,3678.002
-menusuk,3682.001
-berdiri,3682.002
+none,3678.002
+none,3682.001
+none,3682.002
 menusuk,3686.001
-menusuk,3690.001
-berdiri,3690.002
-menusuk,3694.001
-berdiri,3694.002
+none,3690.002
+none,3694.002
 menusuk,3698.001
-berdiri,3698.002
-menusuk,3702.001
-berdiri,3702.002
-menusuk,3706.001
-berdiri,3706.002
-menusuk,3710.001
-berdiri,3710.002
-menusuk,3714.001
-berdiri,3714.002
-menusuk,3718.001
-berdiri,3718.002
+none,3698.002
+none,3702.002
+none,3706.002
+none,3710.002
+none,3714.002
+none,3718.002
 menusuk,3722.001
-berdiri,3722.002
-menusuk,3726.001
-berdiri,3726.002
-menusuk,3730.001
-berdiri,3730.002
-menusuk,3734.001
-berdiri,3734.002
-menusuk,3738.001
-berdiri,3738.002
-menusuk,3742.001
-berdiri,3742.002
+none,3722.002
+none,3726.002
+none,3730.002
+none,3734.002
+none,3738.002
+none,3742.002
 menusuk,3746.001
-berdiri,3746.002
-menusuk,3750.001
-berdiri,3750.002
+none,3746.002
+none,3750.002
 menusuk,3754.001
-berdiri,3754.002
+none,3754.002
 menusuk,3758.001
-berdiri,3758.002
-menusuk,3762.001
-berdiri,3762.002
 menusuk,3766.001
-berdiri,3766.002
 menusuk,3770.001
-berdiri,3770.002
-menusuk,3774.001
-berdiri,3774.002
 menusuk,3778.001
-berdiri,3778.002
-menusuk,3782.001
-berdiri,3782.002
-menusuk,3786.001
-berdiri,3786.002
 menusuk,3790.001
-berdiri,3790.002
-menusuk,3794.001
-berdiri,3794.002
-berdiri,3798.001
-menusuk,3798.002
+none,3794.001
+none,3794.002
+none,3798.001
+none,3798.002
 menusuk,3802.001
-berdiri,3802.002
-menusuk,3806.001
-berdiri,3806.002
-menusuk,3810.001
-berdiri,3810.002
-menusuk,3814.001
-berdiri,3814.002
+none,3806.001
+none,3806.002
+none,3810.001
+none,3810.002
+none,3814.001
+none,3814.002
 none,3818.001
-berdiri,3818.002
+none,3818.002
 none,3822.001
-berdiri,3822.002
-berdiri,3826.001
+none,3822.002
+none,3826.001
 none,3826.002
-berdiri,3830.001
+none,3830.001
 none,3830.002
-berdiri,3834.001
+none,3834.001
 none,3834.002
-berdiri,3838.001
+none,3838.001
 none,3838.002
 none,3842.001
-berdiri,3842.002
-berdiri,3846.001
+none,3842.002
+none,3846.001
 none,3846.002
 none,3850.001
-berdiri,3850.002
-berdiri,3854.001
+none,3850.002
+none,3854.001
 none,3854.002
 none,3858.001
-berdiri,3858.002
+none,3858.002
 none,3862.001
-berdiri,3862.002
+none,3862.002
 none,3866.001
-berdiri,3866.002
+none,3866.002
 none,3870.001
-berdiri,3870.002
+none,3870.002
 none,3874.001
-berdiri,3874.002
+none,3874.002
 none,3878.001
-berdiri,3878.002
+none,3878.002
 none,3882.001
-berdiri,3882.002
+none,3882.002
 menusuk,3886.001
-berdiri,3886.002
 menusuk,3890.001
-berdiri,3890.002
-menusuk,3894.001
-berdiri,3894.002
 menusuk,3898.001
-berdiri,3898.002
 menusuk,3902.001
-berdiri,3902.002
-menusuk,3906.001
-berdiri,3906.002
-berdiri,3910.001
 menusuk,3910.002
-berdiri,3914.001
-menusuk,3914.002
-berdiri,3918.001
-menusuk,3918.002
-berdiri,3922.001
 menusuk,3922.002
-berdiri,3926.001
-menusuk,3926.002
-berdiri,3930.001
-menusuk,3930.002
-berdiri,3934.001
 menusuk,3934.002
-berdiri,3938.001
-menusuk,3938.002
-berdiri,3942.001
 menusuk,3942.002
-berdiri,3946.001
 menusuk,3946.002
-menusuk,3950.001
-berdiri,3950.002
-berdiri,3954.001
 menusuk,3954.002
 menusuk,3958.001
-berdiri,3958.002
-berdiri,3962.001
-menusuk,3962.002
-menusuk,3966.001
-berdiri,3966.002
-berdiri,3970.001
+none,3962.001
+none,3962.002
+none,3966.001
+none,3966.002
+none,3970.001
 none,3970.002
 none,3974.001
-berdiri,3974.002
-berdiri,3978.001
+none,3974.002
+none,3978.001
 none,3978.002
-berdiri,3982.001
+none,3982.001
 none,3982.002
 none,3986.001
 none,3990.001
