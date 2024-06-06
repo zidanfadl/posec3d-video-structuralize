@@ -7,6 +7,7 @@ data/*out.mp4
 data/DJI_0013_12r_10s_2_heatmap_17.MP4
 
 data/anno/other/
+data/video/
 
 work_dirs/ciis_1/
 work_dirs/temp/
@@ -24,3 +25,15 @@ work_dirs/ciis_not-multi_3-1_best-129/epoch_250.pth
 work_dirs/ciis_not-multi_no-berdiri_1-1_best-200/best_acc_top1_epoch_200.pth
 work_dirs/ciis_not-multi_no-berdiri_1-1_best-200/epoch_310.pth
 work_dirs/ciis_not-multi_no-berdiri_1-2_best-200/epoch_620.pth
+work_dirs/ciis_not-multi_10_best-550/best_acc_top1_epoch_550.pth
+work_dirs/ciis_not-multi_10_best-550/epoch_1120.pth
+work_dirs/ciis_not-multi_9_best-660/best_acc_top1_epoch_660.pth
+work_dirs/ciis_not-multi_9_best-660/epoch_2240.pth
+work_dirs/ciis_not-multi_8_best-1450/best_acc_top1_epoch_1450.pth
+work_dirs/ciis_not-multi_8_best-1450/epoch_2020.pth
+work_dirs/ciis_not-multi_7_best-260/best_acc_top1_epoch_260.pth
+work_dirs/ciis_not-multi_7_best-260/epoch_1920.pth
+work_dirs/ciis_not-multi_7_best-260/epoch_1660.pth
+work_dirs/ciis_not-multi_6_best-550/best_acc_top1_epoch_550.pth
+work_dirs/ciis_not-multi_6_best-550/epoch_1600.pth
+work_dirs/ciis_not-multi_no-berdiri_5_best-230/lr-0d0712_loss-0d3596_top1-0d7163_top5-0d9829_mean1-0d7122.json
