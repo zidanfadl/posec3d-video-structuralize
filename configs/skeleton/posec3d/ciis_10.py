@@ -1,6 +1,17 @@
-_base_ = '../../_base_/default_runtime.py'
+_base_ = '../../../mmaction2/configs/_base_/default_runtime.py'
 
-# load_from='../../../../work_dirs/ciis_not-multi_7/epoch_1920.pth'
+default_hooks = dict(
+    runtime_info=dict(type='RuntimeInfoHook'),
+    timer=dict(type='IterTimerHook'),
+    logger=dict(type='LoggerHook', interval=10000, ignore_last=False),
+    param_scheduler=dict(type='ParamSchedulerHook'),
+    checkpoint=dict(type='CheckpointHook', interval=10, save_best='auto'),
+    sampler_seed=dict(type='DistSamplerSeedHook'),
+    sync_buffers=dict(type='SyncBuffersHook'))
+
+
+# load_from='../../../work_dirs/ciis_10_0lr2_1/epoch_24.pth'
+
 
       # model (:obj:`torch.nn.Module` or dict): The model to be run. It can be
         #     a dict used for build a model.
